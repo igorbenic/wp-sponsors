@@ -200,11 +200,61 @@ class Wp_Sponsors {
               'hierarchical'        => false,
               'can_export'          => true,
               'query_var'           => false,
-              'supports'            => array( 'title' )
+              'capability_type'     => 'post',
+              'supports'            => array( 'title' ),
+              'register_meta_box_cb'=> 'add_sponsor_metabox'
               );
         register_post_type( 'sponsor', $args );
         }
         add_action( 'init', 'sponsors_register' );
+
+        /**
+         * Register meta box(es).
+         */
+        function add_sponsor_metabox() {
+            add_meta_box( 'meta-box-id', __( 'Sponsor data', 'textdomain' ), 'sponsor_metabox_cb', 'sponsor', 'normal', 'high' );
+        }
+        add_action( 'add_meta_boxes', 'add_sponsor_metabox' );
+
+        /**
+         * Meta box display callback.
+         *
+         * @param WP_Post $post Current post object.
+         */
+        function sponsor_metabox_cb( $post ) {
+            // Display code/markup goes here. Don't forget to include nonces!
+            // Noncename needed to verify where the data originated
+            echo '<input type="hidden" name="wp_sponsors_nonce" id="wp_sponsors_nonce" value="' . wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
+            // Get the url data if its already been entered
+            $meta_value = get_post_meta( get_the_ID(), 'wp_sponsors_url', true );
+            // Checks and displays the retrieved value
+            echo '<input type="url" name="wp_sponsors_url" value="' . $meta_value  . '" class="widefat" />';
+        }
+
+        /**
+         * Save meta box content.
+         *
+         * @param int $post_id Post ID
+         */
+        function sponsors_save_metabox( $post_id ) {
+            // verify this came from the our screen and with proper authorization,
+            // because save_post can be triggered at other times
+
+            // Checks save status
+            $is_autosave = wp_is_post_autosave( $post_id );
+            $is_revision = wp_is_post_revision( $post_id );
+            $is_valid_nonce = ( isset( $_POST[ 'wp_sponsors_nonce' ] ) && wp_verify_nonce( $_POST[ 'wp_sponsors_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+            // Exits script depending on save status
+            if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
+                return;
+            }
+            // Checks for input and sanitizes/saves if needed
+            if( isset( $_POST[ 'wp_sponsors_url' ] ) ) {
+                update_post_meta( $post_id, 'wp_sponsors_url', sanitize_text_field( $_POST[ 'wp_sponsors_url' ] ) );
+            }
+        }
+        add_action( 'save_post', 'sponsors_save_metabox' );
+
   }
 
   /**
