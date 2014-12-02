@@ -11,6 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
 
 == Description ==
+[ ![Codeship Status for janhenckens/wp-sponsors](https://codeship.com/projects/205c8ad0-5c72-0132-84bf-4639f9f56247/status)](https://codeship.com/projects/50845)
 
 This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
 
