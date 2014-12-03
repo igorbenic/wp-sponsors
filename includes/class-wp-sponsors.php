@@ -211,16 +211,14 @@ class Wp_Sponsors {
 
 
         function sponsors_upload_enqueue() {
-
               wp_enqueue_media();
-
-                wp_localize_script( 'wp_sponsor_img-button', 'wp_sponsor_img',
-                    array(
-                        'title' => 'Choose or Upload an Image',
-                        'button' => 'Use this image',
-                    )
-                );
-                wp_enqueue_script( 'wp_sponsor_img-button' );
+              wp_localize_script( 'wp_sponsor_img-button', 'wp_sponsor_img',
+                  array(
+                      'title' => 'Choose or Upload an Image',
+                      'button' => 'Use this image',
+                  )
+              );
+              wp_enqueue_script( 'wp_sponsor_img-button' );
             }
         add_action( 'admin_enqueue_scripts', 'sponsors_upload_enqueue' );
 
@@ -254,8 +252,9 @@ class Wp_Sponsors {
         }
 
         function sponsors_metabox_image( $post ) {
-            wp_nonce_field( 'wp_sponsors_nonce');
-            $sponsors_stored_meta = get_post_meta( $post->ID ); ?>
+            $sponsors_stored_meta = get_post_meta( $post->ID );
+            echo '<input type="hidden" name="wp_sponsors_img_nonce" id="wp_sponsors_img_nonce" value="' . wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
+            ?>
             <p>
                 <label for="case-study-bg" class="lacuna2-row-title">Case Study Background Image</label>
                 <input type="text" name="wp_sponsor_img" id="wp_sponsor_img" value="<?php if ( isset ( $sponsors_stored_meta['wp_sponsor_img'] ) ){ echo $sponsors_stored_meta['wp_sponsor_img'][0]; } ?>" />
@@ -285,6 +284,7 @@ class Wp_Sponsors {
             if( isset( $_POST[ 'wp_sponsors_url' ] ) ) {
                 update_post_meta( $post_id, 'wp_sponsors_url', sanitize_text_field( $_POST[ 'wp_sponsors_url' ] ) );
             }
+            $is_valid_nonce = ( isset( $_POST[ 'wp_sponsors_img_nonce' ] ) && wp_verify_nonce( $_POST[ 'wp_sponsors_img_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
             // Checks for input and sanitizes/saves if needed
             if( isset( $_POST[ 'wp_sponsor_img' ] ) ) {
                 update_post_meta( $post_id, 'wp_sponsor_img', $_POST[ 'wp_sponsor_img' ] );
