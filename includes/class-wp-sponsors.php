@@ -212,13 +212,13 @@ class Wp_Sponsors {
 
         function sponsors_upload_enqueue() {
               wp_enqueue_media();
-              wp_localize_script( 'wp_sponsor_img-button', 'wp_sponsor_img',
+              wp_localize_script( 'wp_sponsors_img-button', 'wp_sponsors_img',
                   array(
                       'title' => 'Choose or Upload an Image',
                       'button' => 'Use this image',
                   )
               );
-              wp_enqueue_script( 'wp_sponsor_img-button' );
+              wp_enqueue_script( 'wp_sponsors_img-button' );
             }
         add_action( 'admin_enqueue_scripts', 'sponsors_upload_enqueue' );
 
@@ -252,15 +252,13 @@ class Wp_Sponsors {
         }
 
         function sponsors_metabox_image( $post ) {
-            $sponsors_stored_meta = get_post_meta( $post->ID );
+            $meta_value = get_post_meta( $post->ID );
+            if(isset($meta_value['wp_sponsors_img'] ) ){ $image = $meta_value['wp_sponsors_img'][0];  }else {$image = "";}
             echo '<input type="hidden" name="wp_sponsors_img_nonce" id="wp_sponsors_img_nonce" value="' . wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
-            ?>
-            <p>
-                <label for="case-study-bg" class="lacuna2-row-title">Case Study Background Image</label>
-                <input type="text" name="wp_sponsor_img" id="wp_sponsor_img" value="<?php if ( isset ( $sponsors_stored_meta['wp_sponsor_img'] ) ){ echo $sponsors_stored_meta['wp_sponsor_img'][0]; } ?>" />
-                <input type="button" id="wp_sponsor_img-button" class="button" value="Choose or Upload an Image" />
-            </p>
-        <?php
+            echo '<p><label for="case-study-bg" class="lacuna2-row-title">Case Study Background Image</label>';
+            echo '<input type="text" name="wp_sponsors_img" id="wp_sponsors_img" value="'. $image .'" />';
+            echo '<input type="button" id="wp_sponsors_img-button" class="button" value="Choose or Upload an Image" /></p>';
+
         }
 
         /**
@@ -286,8 +284,8 @@ class Wp_Sponsors {
             }
             $is_valid_nonce = ( isset( $_POST[ 'wp_sponsors_img_nonce' ] ) && wp_verify_nonce( $_POST[ 'wp_sponsors_img_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
             // Checks for input and sanitizes/saves if needed
-            if( isset( $_POST[ 'wp_sponsor_img' ] ) ) {
-                update_post_meta( $post_id, 'wp_sponsor_img', $_POST[ 'wp_sponsor_img' ] );
+            if( isset( $_POST[ 'wp_sponsors_img' ] ) ) {
+                update_post_meta( $post_id, 'wp_sponsors_img', $_POST[ 'wp_sponsors_img' ] );
             }
         }
         add_action( 'save_post', 'sponsors_save_metabox' );
