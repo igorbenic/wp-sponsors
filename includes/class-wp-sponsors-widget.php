@@ -21,12 +21,17 @@ class sponsors_widget extends WP_Widget {
 
         // The Query
         $query = new WP_Query( $args ); ?>
-        <ul>
-
-          <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-              <li><a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" target="_blank"><?php the_title(); ?></a></li>
-          <?php endwhile; wp_reset_postdata(); ?>
-          </ul>
+        <div class="wp-sponsors widget">
+          <ul>
+            <?php while ( $query->have_posts() ) : $query->the_post(); ?>
+                <li class="sponsors-item">
+                  <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" target="_blank">
+                    <img src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" alt="<?php the_title(); ?>">
+                  </a>
+                </li>
+            <?php endwhile; wp_reset_postdata(); ?>
+            </ul>
+          </div>
         <?php
     }
 

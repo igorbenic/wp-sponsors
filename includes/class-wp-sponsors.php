@@ -255,8 +255,9 @@ class Wp_Sponsors {
             $meta_value = get_post_meta( $post->ID );
             if(isset($meta_value['wp_sponsors_img'] ) ){ $image = $meta_value['wp_sponsors_img'][0];  }else {$image = "";}
             echo '<input type="hidden" name="wp_sponsors_img_nonce" id="wp_sponsors_img_nonce" value="' . wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
-            echo '<p><label for="case-study-bg" class="lacuna2-row-title">Case Study Background Image</label>';
-            echo '<input type="text" name="wp_sponsors_img" id="wp_sponsors_img" value="'. $image .'" />';
+            echo '<label for="case-study-bg" class="lacuna2-row-title">' . __( 'Logo', 'wp_sponsors' ) . '</label>';
+            echo '<div><input type="text" name="wp_sponsors_img" id="wp_sponsors_img" value="'. $image .'" /></div>';
+            echo '<div><img src="' . $image .'" width="200px"></div>';
             echo '<input type="button" id="wp_sponsors_img-button" class="button" value="Choose or Upload an Image" /></p>';
 
         }
