@@ -213,16 +213,22 @@ class Wp_Sponsors {
          * Register meta box(es).
          */
         function add_sponsor_metabox() {
-            add_meta_box( 'meta-box-id', __( 'Sponsor data', 'textdomain' ), 'sponsor_metabox_cb', 'sponsor', 'normal', 'high' );
+            add_meta_box( 'meta-box-id', __( 'Sponsor data', 'wp_sponsors' ), 'sponsor_metabox_url', 'sponsor', 'normal', 'high' );
         }
         add_action( 'add_meta_boxes', 'add_sponsor_metabox' );
+
+        function add_file_meta_box() {
+              add_meta_box('meta-box-media', __( 'Media', 'wp_sponsors' ), 'sponsors_metabox_image', 'sponsor', 'normal');
+        }
+        add_action( 'add_meta_boxes', 'add_file_meta_box' );
+
 
         /**
          * Meta box display callback.
          *
          * @param WP_Post $post Current post object.
          */
-        function sponsor_metabox_cb( $post ) {
+        function sponsor_metabox_url( $post ) {
             // Display code/markup goes here. Don't forget to include nonces!
             // Noncename needed to verify where the data originated
             echo '<input type="hidden" name="wp_sponsors_nonce" id="wp_sponsors_nonce" value="' . wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
