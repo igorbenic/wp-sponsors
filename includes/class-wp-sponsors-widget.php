@@ -17,6 +17,8 @@ class sponsors_widget extends WP_Widget {
           'post_type'              => 'sponsor',
           'post_status'            => 'publish',
           'pagination'             => false,
+          'order'                  => 'ASC'
+
         );
 
         // The Query
