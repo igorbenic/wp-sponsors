@@ -1,32 +1,40 @@
-(function( $ ) {
-	'use strict';
+jQuery(document).ready(function($){
 
-	/**
-	 * All of the code for your Dashboard-specific JavaScript source
-	 * should reside in this file.
-	 *
-	 * Note that this assume you're going to use jQuery, so it prepares
-	 * the $ function reference to be used within the scope of this
-	 * function.
-	 *
-	 * From here, you're able to define handlers for when the DOM is
-	 * ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * Or when the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and so on.
-	 *
-	 * Remember that ideally, we should not attach any more than a single DOM-ready or window-load handler
-	 * for any particular page. Though other scripts in WordPress core, other plugins, and other themes may
-	 * be doing this, we should try to minimize doing that in our own work.
-	 */
+    // Instantiates the variable that holds the media library frame.
+    var meta_image_frame;
 
-})( jQuery );
+    // Runs when the image button is clicked.
+    $('#wp_sponsor_img-button').click(function(e){
+
+        // Prevents the default action from occuring.
+        e.preventDefault();
+
+        // If the frame already exists, re-open it.
+        if ( meta_image_frame ) {
+            wp.media.editor.open();
+            return;
+        }
+
+        // Sets up the media library frame
+        meta_image_frame = wp.media.frames.meta_image_frame = wp.media({
+            title: wp_sponsor_img.title,
+            button: { text:  wp_sponsor_img.button },
+            library: { type: 'image' }
+        });
+
+        // Runs when an image is selected.
+        meta_image_frame.on('select', function(){
+
+            return false;
+
+            // Grabs the attachment selection and creates a JSON representation of the model.
+            var media_attachment = meta_image_frame.state().get('selection').first().toJSON();
+
+            // Sends the attachment URL to our custom image input field.
+            $('#wp_sponsor_img').val(media_attachment.url);
+        });
+
+        // Opens the media library frame.
+        wp.media.editor.open();
+    });
+});

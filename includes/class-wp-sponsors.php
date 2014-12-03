@@ -209,6 +209,21 @@ class Wp_Sponsors {
         }
         add_action( 'init', 'sponsors_register' );
 
+
+        function sponsors_upload_enqueue() {
+
+              wp_enqueue_media();
+
+                wp_localize_script( 'wp_sponsor_img-button', 'wp_sponsor_img',
+                    array(
+                        'title' => 'Choose or Upload an Image',
+                        'button' => 'Use this image',
+                    )
+                );
+                wp_enqueue_script( 'wp_sponsor_img-button' );
+            }
+        add_action( 'admin_enqueue_scripts', 'sponsors_upload_enqueue' );
+
         /**
          * Register meta box(es).
          */
@@ -238,6 +253,17 @@ class Wp_Sponsors {
             echo '<input type="url" name="wp_sponsors_url" value="' . $meta_value  . '" class="widefat" />';
         }
 
+        function sponsors_metabox_image( $post ) {
+            wp_nonce_field( 'wp_sponsors_nonce');
+            $sponsors_stored_meta = get_post_meta( $post->ID ); ?>
+            <p>
+                <label for="case-study-bg" class="lacuna2-row-title">Case Study Background Image</label>
+                <input type="text" name="wp_sponsor_img" id="wp_sponsor_img" value="<?php if ( isset ( $sponsors_stored_meta['wp_sponsor_img'] ) ){ echo $sponsors_stored_meta['wp_sponsor_img'][0]; } ?>" />
+                <input type="button" id="wp_sponsor_img-button" class="button" value="Choose or Upload an Image" />
+            </p>
+        <?php
+        }
+
         /**
          * Save meta box content.
          *
@@ -259,9 +285,12 @@ class Wp_Sponsors {
             if( isset( $_POST[ 'wp_sponsors_url' ] ) ) {
                 update_post_meta( $post_id, 'wp_sponsors_url', sanitize_text_field( $_POST[ 'wp_sponsors_url' ] ) );
             }
+            // Checks for input and sanitizes/saves if needed
+            if( isset( $_POST[ 'wp_sponsor_img' ] ) ) {
+                update_post_meta( $post_id, 'wp_sponsor_img', $_POST[ 'wp_sponsor_img' ] );
+            }
         }
         add_action( 'save_post', 'sponsors_save_metabox' );
-
   }
 
   /**
