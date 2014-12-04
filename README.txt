@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: janhenckens
 Donate link: http://onedge.be
-Tags: comments, spam
+Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
 Tested up to: 4.0.1
 Stable tag: trunk
@@ -11,11 +11,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 WP-Sponsors registeres gives your sponsors or partners a separate home where can add a link and a logo.
 
 == Description ==
-[ ![Codeship Status for janhenckens/wp-sponsors](https://codeship.com/projects/205c8ad0-5c72-0132-84bf-4639f9f56247/status)](https://codeship.com/projects/50845)
 
 WP-Sponsors registeres gives your sponsors or partners a separate home where can add a link and a logo.
 
-Ever had to a a bunch of images with links on them for event/company partners? With WP Sponsors, you won't have to use a text widget for that anymore. The companies that support you get a separate place where you can add a link and an image. Then you add the widget to the sidebar of your chosing and the linked images will show up there.
+Ever had to add a bunch of images with links on them for event/company partners? With WP Sponsors, you won't have to use a text widget for that anymore. The companies and people that support you, your company or your event now get a separate place where you can add a link and an image. Then you add the widget to the sidebar of your chosing and the linked images will show up there.
 
 == Installation ==
 
@@ -26,9 +25,16 @@ Ever had to a a bunch of images with links on them for event/company partners? W
 
 == Screenshots ==
 
+== Screenshots ==
+1. After you activate the plugin, a new content type will become available on the your WordPress admin panel. Here you can add a link and an image for each Sponsor.
+2. Add the widget to one or more sidebars and the images of your sponsors will show up there.
 
 == Changelog ==
 
 = 1.0 =
 * Custom post type for Sponsors
 * Widget to display all sponsors (currenty sorted oldest entry first)
+
+== Upcoming features ==
+* Taxonomy - divide your sponsors up in by category and choose which ones to display in which widget
+* Weight - Give your sponsors a weight in their category to determine how they should be sorted in the widget
