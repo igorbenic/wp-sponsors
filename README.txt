@@ -14,7 +14,11 @@ WP-Sponsors registeres gives your sponsors or partners a separate home where can
 
 WP-Sponsors registeres gives your sponsors or partners a separate home where can add a link and a logo.
 
-Ever had to add a bunch of images with links on them for event/company partners? With WP Sponsors, you won't have to use a text widget for that anymore. The companies and people that support you, your company or your event now get a separate place where you can add a link and an image. Then you add the widget to the sidebar of your chosing and the linked images will show up there.
+Ever had to add a bunch of images with links on them for your event/company partners? With Sponsors, you won't have to use a text widget for that anymore. The companies and people that support you, your company or your event now get a separate place where you can add a link and an image for each of them. Then you add the Sponsors widget to the sidebar of your choosing and the linked images will show up there.
+
+= Upcoming features: =
+* Taxonomy - divide your sponsors up in categories and choose which ones to display in which widget
+* Weight - Give your sponsors a weight (in their category) to determine how they should be sorted in the widget
 
 == Installation ==
 
@@ -34,7 +38,3 @@ Ever had to add a bunch of images with links on them for event/company partners?
 = 1.0 =
 * Custom post type for Sponsors
 * Widget to display all sponsors (currenty sorted oldest entry first)
-
-== Upcoming features ==
-* Taxonomy - divide your sponsors up in by category and choose which ones to display in which widget
-* Weight - Give your sponsors a weight in their category to determine how they should be sorted in the widget
