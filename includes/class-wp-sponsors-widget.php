@@ -48,7 +48,12 @@ class sponsors_widget extends WP_Widget {
         $check_images    = esc_attr($instance['check_images']);
         ?>
           <p>
-              <input class="checkbox" type="checkbox" <?php checked($instance['check_images'], 'on'); ?> id="<?php echo $this->get_field_id('check_images'); ?>" name="<?php echo $this->get_field_name('check_images'); ?>" />
+              <input
+                type="checkbox"
+                id="<?php echo $this->get_field_id('check_images'); ?>"
+                name="<?php echo $this->get_field_name('check_images'); ?>"
+                <?php checked($instance['check_images'], 'on'); ?>
+                />
               <label for="<?php echo $this->get_field_id('check_images'); ?>"><?php echo __( 'Show images', 'wp-sponsors' )?></label>
           </p>
         <?php

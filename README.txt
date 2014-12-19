@@ -1,18 +1,18 @@
 === Plugin Name ===
 Contributors: janhenckens
-Donate link: http://onedge.be
+Donate link: http://onedge.be/donate/
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
-Tested up to: 4.0.1
+Tested up to: 4.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WP-Sponsors registeres gives your sponsors or partners a separate home where can add a link and a logo.
+WP-Sponsors gives your sponsors or partners a separate home where can add a link and a logo.
 
 == Description ==
 
-WP-Sponsors registeres gives your sponsors or partners a separate home where can add a link and a logo.
+WP-Sponsors gives your sponsors or partners a separate home where can add a link and a logo.
 
 Ever had to add a bunch of images with links on them for your event/company partners? With Sponsors, you won't have to use a text widget for that anymore. The companies and people that support you, your company or your event now get a separate place where you can add a link and an image for each of them. Then you add the Sponsors widget to the sidebar of your choosing and the linked images will show up there.
 
