@@ -18,12 +18,17 @@ class sponsors_widget extends WP_Widget {
         'pagination'             => false,
         'order'                  => 'ASC'
       );
-
+      $title = apply_filters('widget_title', $instance['title'] );
+      $before_title = "<h1 class='widget-title'>";
+      $after_title = "</h1>";
       // The Query
       $query = new WP_Query( $args );
       // The Output
       ?>
-      <div class="wp-sponsors widget">
+      <aside id="wp-sponsors" class="widget wp-sponsors">
+      <?php
+      if ( $title ) echo $before_title . $title . $after_title;
+      ?>
         <ul>
           <?php while ( $query->have_posts() ) : $query->the_post(); ?>
               <li class="sponsors-item">
@@ -35,17 +40,25 @@ class sponsors_widget extends WP_Widget {
               </li>
           <?php endwhile; wp_reset_postdata(); ?>
           </ul>
-        </div>
+        </aside>
       <?php
   }
   // Update the widget
   function update( $new_instance, $old_instance ) {
+
       $instance = $old_instance;
       $instance['check_images'] = $new_instance['check_images'];
+      $instance['title'] = strip_tags( $new_instance['title'] );
+
       return $instance;
   }
   // The Widget form
   function form($instance) {
+
+    //Set up some default widget settings.
+    $defaults = array( 'title' => __('Our sponsors', 'example_title'), 'check_images' => 'on' );
+    $instance = wp_parse_args( (array) $instance, $defaults );
+
     if(empty($instance)) {
       $key = array('check_images');
       $instance = array_fill_keys($key, 'on');
@@ -60,6 +73,10 @@ class sponsors_widget extends WP_Widget {
           />
         <label for="<?php echo $this->get_field_id('check_images'); ?>"><?php echo __( 'Show images', 'wp-sponsors' )?></label>
       </p>
+    <p>
+        <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title', 'example'); ?></label>
+        <input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
+    </p>
     <?php
   }
 }

@@ -16,7 +16,7 @@
  * Plugin Name:       Sponsors
  * Plugin URI:        http://onedge.be/plungins/sponsors
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress dashboard.
- * Version:           1.0.0
+ * Version:           1.0.2
  * Author:            Jan Henckens
  * Author URI:        http://onedge.be
  * License:           GPL-2.0+

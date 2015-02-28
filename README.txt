@@ -3,8 +3,8 @@ Contributors: janhenckens
 Donate link: http://onedge.be/donate/
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
-Tested up to: 4.1
-Stable tag: 1.0.1
+Tested up to: 4.1.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,9 +35,12 @@ Ever had to add a bunch of images with links on them for your event/company part
 
 == Changelog ==
 
+= 1.0.2 =
+* Add a title to the sponsors widget
+
 = 1.0.1 =
 * Fixed a PHP error when adding the widget for the first time
-* The "Show images" checkbox in the widget actually works now.
+* The "Show images" checkbox in the widget actually works now
 
 = 1.0 =
 * Custom post type for Sponsors
