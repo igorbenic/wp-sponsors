@@ -16,7 +16,8 @@ class sponsors_widget extends WP_Widget {
         'post_type'              => 'sponsor',
         'post_status'            => 'publish',
         'pagination'             => false,
-        'order'                  => 'ASC'
+        'order'                  => 'ASC',
+        'posts_per_page'        => '-1'
       );
       $title = apply_filters('widget_title', $instance['title'] );
       $before_title = "<h1 class='widget-title'>";

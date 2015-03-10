@@ -35,6 +35,9 @@ Ever had to add a bunch of images with links on them for your event/company part
 
 == Changelog ==
 
+= 1.0.3-
+* Fixed a bug that caused only 5 items to display, now all items are shown
+
 = 1.0.2 =
 * Add a title to the sponsors widget
 
