@@ -182,44 +182,90 @@ class Wp_Sponsors {
    */
     public function run() {
         $this->loader->run();
+
+        /**
+         * Trigger create_sponsor_taxonomies on init
+         */
+        add_action( 'init', 'create_sponsor_taxonomies', 0 );
+
+        /**
+         * Creates a categories taxonomy for the sponsors post type
+         */
+        function create_sponsor_taxonomies()
+        {
+            // Labels for the sponsor categories
+            $labels = array(
+                'name' => _x('Categories', 'taxonomy general name'),
+                'singular_name' => _x('Categorie', 'taxonomy singular name'),
+                'search_items' => __('Search categories'),
+                'all_items' => __('All categories'),
+                'parent_item' => __('Parent categorie'),
+                'parent_item_colon' => __('Parent categorie:'),
+                'edit_item' => __('Edit categorie'),
+                'update_item' => __('Update categorie'),
+                'add_new_item' => __('Add New categorie'),
+                'new_item_name' => __('New Genre categore'),
+                'menu_name' => __('Categories'),
+            );
+            // Arguments for the sponsor categories (public = false means it don't have a url)
+            $args = array(
+                'hierarchical'      => true,
+                'public'            => false,
+                'rewrite'           => false,
+                'labels'            => $labels,
+                'show_ui'           => true,
+                'show_admin_column' => true,
+                'query_var'         => true,
+                'rewrite'           => array('slug' => 'sponsor'),
+            );
+            // Register the sponsors taxonomy
+            register_taxonomy( 'categories', array( 'sponsor' ), $args );
+        }
+
+        /**
+         * Registers the Sponsors custom post type
+         */
         function sponsors_register() {
             $args = array(
-                'public'              => true,
-                'label'               => 'Sponsors',
-                'public'              => true,
-                'exclude_from_search' => true,
-                'publicly_queryable'  => false,
-                'show_ui'             => true,
-                'show_in_menu'        => true,
-                'show_in_admin_bar'   => false,
-                'menu_position'       => 5,
-                'menu_icon'           => 'dashicons-format-image',
-                'query_var'           => true,
-                'rewrite'             => false,
-                'capability_type'     => 'post',
-                'has_archive'         => false,
-                'hierarchical'        => false,
-                'can_export'          => true,
-                'query_var'           => false,
-                'capability_type'     => 'post',
-                'supports'            => array( 'title' ),
-                'taxonomies' => array( 'post_tag','themes_categories'),
-                'register_meta_box_cb'=> 'add_sponsor_metabox'
+                'public'                => true,
+                'label'                 => 'Sponsors',
+                'public'                => false,
+                'exclude_from_search'   => true,
+                'publicly_queryable'    => false,
+                'show_ui'               => true,
+                'show_in_menu'          => true,
+                'show_in_admin_bar'     => false,
+                'menu_position'         => 5,
+                'menu_icon'             => 'dashicons-format-image',
+                'query_var'             => true,
+                'rewrite'               => false,
+                'capability_type'       => 'post',
+                'has_archive'           => false,
+                'hierarchical'          => false,
+                'can_export'            => true,
+                'query_var'             => false,
+                'capability_type'       => 'post',
+                'supports'              => array( 'title' ),
+                'taxonomies'            => array( 'sponsor_categories'),
+                'register_meta_box_cb'  => 'add_sponsor_metabox'
             );
             register_post_type( 'sponsor', $args );
         }
         add_action( 'init', 'sponsors_register' );
 
+        /**
+         * Loads the scripts needed for the upload modal
+         */
         function sponsors_upload_enqueue() {
-              wp_enqueue_media();
-              wp_localize_script( 'wp_sponsors_img-button', 'wp_sponsors_img',
-                  array(
-                      'title' => 'Choose or Upload an Image',
-                      'button' => 'Use this image',
-                  )
-              );
-              wp_enqueue_script( 'wp_sponsors_img-button' );
-            }
+            wp_enqueue_media();
+            wp_localize_script( 'wp_sponsors_img-button', 'wp_sponsors_img',
+                array(
+                    'title' => 'Choose or Upload an Image',
+                    'button' => 'Use this image',
+                )
+            );
+            wp_enqueue_script( 'wp_sponsors_img-button' );
+        }
         add_action( 'admin_enqueue_scripts', 'sponsors_upload_enqueue' );
 
         /**
@@ -231,7 +277,7 @@ class Wp_Sponsors {
         add_action( 'add_meta_boxes', 'add_sponsor_metabox' );
 
         function add_file_meta_box() {
-              add_meta_box('meta-box-media', __( 'Media', 'wp_sponsors' ), 'sponsors_metabox_image', 'sponsor', 'normal');
+            add_meta_box('meta-box-media', __( 'Media', 'wp_sponsors' ), 'sponsors_metabox_image', 'sponsor', 'normal');
         }
         add_action( 'add_meta_boxes', 'add_file_meta_box' );
 
