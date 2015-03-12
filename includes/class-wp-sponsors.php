@@ -215,11 +215,10 @@ class Wp_Sponsors {
                 'labels'            => $labels,
                 'show_ui'           => true,
                 'show_admin_column' => true,
-                'query_var'         => true,
-                'rewrite'           => array('slug' => 'sponsor'),
+                'query_var'         => true
             );
             // Register the sponsors taxonomy
-            register_taxonomy( 'categories', array( 'sponsor' ), $args );
+            register_taxonomy( 'sponsor_categories', array( 'sponsor' ), $args );
         }
 
         /**
