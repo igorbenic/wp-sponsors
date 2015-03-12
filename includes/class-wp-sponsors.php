@@ -180,35 +180,35 @@ class Wp_Sponsors {
    *
    * @since    1.0.0
    */
-  public function run() {
-    $this->loader->run();
-    function sponsors_register() {
+    public function run() {
+        $this->loader->run();
+        function sponsors_register() {
             $args = array(
-              'public'              => true,
-              'label'               => 'Sponsors',
-              'public'              => true,
-              'exclude_from_search' => true,
-              'publicly_queryable'  => false,
-              'show_ui'             => true,
-              'show_in_menu'        => true,
-              'show_in_admin_bar'   => false,
-              'menu_position'       => 5,
-              'menu_icon'           => 'dashicons-format-image',
-              'query_var'           => true,
-              'rewrite'             => false,
-              'capability_type'     => 'post',
-              'has_archive'         => false,
-              'hierarchical'        => false,
-              'can_export'          => true,
-              'query_var'           => false,
-              'capability_type'     => 'post',
-              'supports'            => array( 'title' ),
-              'register_meta_box_cb'=> 'add_sponsor_metabox'
-              );
-        register_post_type( 'sponsor', $args );
+                'public'              => true,
+                'label'               => 'Sponsors',
+                'public'              => true,
+                'exclude_from_search' => true,
+                'publicly_queryable'  => false,
+                'show_ui'             => true,
+                'show_in_menu'        => true,
+                'show_in_admin_bar'   => false,
+                'menu_position'       => 5,
+                'menu_icon'           => 'dashicons-format-image',
+                'query_var'           => true,
+                'rewrite'             => false,
+                'capability_type'     => 'post',
+                'has_archive'         => false,
+                'hierarchical'        => false,
+                'can_export'          => true,
+                'query_var'           => false,
+                'capability_type'     => 'post',
+                'supports'            => array( 'title' ),
+                'taxonomies' => array( 'post_tag','themes_categories'),
+                'register_meta_box_cb'=> 'add_sponsor_metabox'
+            );
+            register_post_type( 'sponsor', $args );
         }
         add_action( 'init', 'sponsors_register' );
-
 
         function sponsors_upload_enqueue() {
               wp_enqueue_media();
