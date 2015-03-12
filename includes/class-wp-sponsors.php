@@ -272,12 +272,12 @@ class Wp_Sponsors {
          * Register meta box(es).
          */
         function add_sponsor_metabox() {
-            add_meta_box( 'meta-box-id', __( 'Sponsor data', 'wp_sponsors' ), 'sponsor_metabox_url', 'sponsor', 'normal', 'high' );
+            add_meta_box( 'meta-box-id', __( 'Sponsor Website', 'wp_sponsors' ), 'sponsor_metabox_url', 'sponsor', 'normal', 'high' );
         }
         add_action( 'add_meta_boxes', 'add_sponsor_metabox' );
 
         function add_file_meta_box() {
-            add_meta_box('meta-box-media', __( 'Media', 'wp_sponsors' ), 'sponsors_metabox_image', 'sponsor', 'normal');
+            add_meta_box('meta-box-media', __( 'Sponsor Logo', 'wp_sponsors' ), 'sponsors_metabox_image', 'sponsor', 'normal');
         }
         add_action( 'add_meta_boxes', 'add_file_meta_box' );
 
