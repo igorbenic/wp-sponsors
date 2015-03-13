@@ -2,3 +2,10 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+#wp-sponsors ul{
+    list-style: none;
+}
+.sponsors-item {
+    padding-bottom: 15px;
+}
