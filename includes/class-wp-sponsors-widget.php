@@ -12,12 +12,20 @@
         function widget($args, $instance) {
             extract( $args );
             // WP_Query arguments
+
+            if($instance['category'] != 'all') {
+                $term = $instance['category'];
+            }
+            else {
+                $term = '';
+            };
             $args = array (
                 'post_type'              => 'sponsor',
                 'post_status'            => 'publish',
                 'pagination'             => false,
                 'order'                  => 'ASC',
-                'posts_per_page'        => '-1'
+                'posts_per_page'         => '-1',
+                'sponsor_categories'     => $term
             );
             $title = apply_filters('widget_title', $instance['title'] );
             $before_title = "<h1 class='widget-title'>";
@@ -27,7 +35,7 @@
             // The Output
             ?>
             <aside id="wp-sponsors" class="widget wp-sponsors">
-            <?php if ( $title ) echo $before_title . $title . $after_title; ?>
+                <?php if ( $title ) echo $before_title . $title . $after_title; ?>
                 <ul>
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                     <li class="sponsors-item">
@@ -68,10 +76,6 @@
                 <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title', 'wp-sponsors'); ?></label>
                 <input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
             </p>
-            <p>
-                <input type="checkbox" id="<?php echo $this->get_field_id('check_images'); ?>" name="<?php echo $this->get_field_name('check_images'); ?>" <?php checked($instance['check_images'], 'on'); ?> />
-                <label for="<?php echo $this->get_field_id('check_images'); ?>"><?php echo __( 'Show images', 'wp-sponsors' )?></label>
-            </p>
             <?php if ( ! empty( $cats ) && ! is_wp_error( $cats ) ){ ?>
             <p>
                 <label for="<?php echo $this->get_field_id('category'); ?>"> <?php echo __('Category', 'wp_sponsors')?></label>
@@ -82,8 +86,12 @@
                     <?php } ?>
                 </select>
             </p>
+            <?php } ?>
+            <p>
+                <input type="checkbox" id="<?php echo $this->get_field_id('check_images'); ?>" name="<?php echo $this->get_field_name('check_images'); ?>" <?php checked($instance['check_images'], 'on'); ?> />
+                <label for="<?php echo $this->get_field_id('check_images'); ?>"><?php echo __( 'Show images', 'wp-sponsors' )?></label>
+            </p>
             <?php }
-            }
         }
         // end class sponsors_widget
         add_action('widgets_init', create_function('', 'return register_widget("sponsors_widget");'));
