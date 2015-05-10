@@ -64,7 +64,7 @@
         function form($instance) {
 
             //Set up some default widget settings.
-            $defaults = array( 'title' => __('Our sponsors', 'example_title'), 'check_images' => 'on' , 'category' => 'All');
+            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'All');
             $instance = wp_parse_args( (array) $instance, $defaults );
 
             if(empty($instance)) {
@@ -78,7 +78,7 @@
             </p>
             <?php if ( ! empty( $cats ) && ! is_wp_error( $cats ) ){ ?>
             <p>
-                <label for="<?php echo $this->get_field_id('category'); ?>"> <?php echo __('Category', 'wp_sponsors')?></label>
+                <label for="<?php echo $this->get_field_id('category'); ?>"> <?php echo __('Category', 'wp-sponsors')?></label>
                 <select id="<?php echo $this->get_field_id('category'); ?>" name="<?php echo $this->get_field_name('category'); ?>" class="widefat" style="width:100%;">
                     <option value="all"><?php echo _e('All', 'wp-sponsors'); ?></option>
                     <?php foreach ( $cats as $cat ) { ?>

@@ -108,6 +108,7 @@ class Wp_Sponsors {
      */
     require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-i18n.php';
     require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-widget.php';
+    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-shortcode.php';
 
     /**
      * The class responsible for defining all actions that occur in the Dashboard.

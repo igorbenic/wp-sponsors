@@ -3,8 +3,8 @@ Contributors: janhenckens
 Donate link: http://onedge.be/donate/
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
-Tested up to: 4.1.1
-Stable tag: 1.1
+Tested up to: 4.2.2
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,13 @@ Ever had to add a bunch of images with links on them for your event/company part
 2. Add the widget to one or more sidebars and the images of your sponsors will show up there.
 
 == Changelog ==
+
+= 1.2 =
+* Added shortcode support. Use the shortcode [sponsors] with these options: images="yes/no", size="small/medium/large/full". Defaults to showing images at 25% width of the current container.
+* Added initial translations for nl_NL and include updated POT file to others can translate the plugin if needed.
+
+= 1.1 =
+* Added categories and filter-on-category option in widgets
 
 = 1.0.3=
 * Fixed a bug that caused only 5 items to display, now all items are shown
