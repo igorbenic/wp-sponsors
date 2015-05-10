@@ -1,0 +1,110 @@
+# Copyright (C) 2015 Sponsors
+# This file is distributed under the same license as the Sponsors package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Sponsors 1.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/wp-sponsors\n"
+"POT-Creation-Date: 2015-05-10 15:56:06+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#. #-#-#-#-#  plugin.pot (Sponsors 1.1)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: includes/class-wp-sponsors-widget.php:9
+msgid "Sponsors"
+msgstr ""
+
+#: includes/class-wp-sponsors-widget.php:67
+msgid "Our sponsors"
+msgstr ""
+
+#: includes/class-wp-sponsors-widget.php:76
+msgid "Title"
+msgstr ""
+
+#: includes/class-wp-sponsors-widget.php:81
+msgid "Category"
+msgstr ""
+
+#: includes/class-wp-sponsors-widget.php:83
+msgid "All"
+msgstr ""
+
+#: includes/class-wp-sponsors-widget.php:92
+msgid "Show images"
+msgstr ""
+
+#: includes/class-wp-sponsors.php:198
+msgctxt "taxonomy general name"
+msgid "Categories"
+msgstr ""
+
+#: includes/class-wp-sponsors.php:199
+msgctxt "taxonomy singular name"
+msgid "Categorie"
+msgstr ""
+
+#: includes/class-wp-sponsors.php:200
+msgid "Search categories"
+msgstr ""
+
+#: includes/class-wp-sponsors.php:201
+msgid "All categories"
+msgstr ""
+
+#: includes/class-wp-sponsors.php:202
+msgid "Parent categorie"
+msgstr ""
+
+#: includes/class-wp-sponsors.php:203
+msgid "Parent categorie:"
+msgstr ""
+
+#: includes/class-wp-sponsors.php:204
+msgid "Edit categorie"
+msgstr ""
+
+#: includes/class-wp-sponsors.php:205
+msgid "Update categorie"
+msgstr ""
+
+#: includes/class-wp-sponsors.php:206
+msgid "Add New categorie"
+msgstr ""
+
+#: includes/class-wp-sponsors.php:207
+msgid "New Genre categore"
+msgstr ""
+
+#: includes/class-wp-sponsors.php:208
+msgid "Categories"
+msgstr ""
+
+#: includes/class-wp-sponsors.php:274
+msgid "Sponsor Website"
+msgstr ""
+
+#: includes/class-wp-sponsors.php:279
+msgid "Sponsor Logo"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://onedge.be/plungins/sponsors"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Add links and logo's for your sponsors/partners/etc to your sidebars and posts with our widget and shortcode."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Jan Henckens"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://onedge.be"
+msgstr ""
