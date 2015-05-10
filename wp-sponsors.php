@@ -14,9 +14,9 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Sponsors
- * Plugin URI:        http://onedge.be/plungins/sponsors
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress dashboard.
- * Version:           1.1
+ * Plugin URI:        http://onedge.be/plugins/sponsors
+ * Description:       Add links and logo's for your sponsors/partners/etc to your sidebars and posts with our widget and shortcode.
+ * Version:           1.2
  * Author:            Jan Henckens
  * Author URI:        http://onedge.be
  * License:           GPL-2.0+
