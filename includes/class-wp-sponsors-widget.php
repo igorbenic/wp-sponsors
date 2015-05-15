@@ -28,8 +28,8 @@
                 'sponsor_categories'     => $term
             );
             $title = apply_filters('widget_title', $instance['title'] );
-            $before_title = "<h1 class='widget-title'>";
-            $after_title = "</h1>";
+            $before_title = "<div class='widget-title'>";
+            $after_title = "</div>";
             // The Query
             $query = new WP_Query( $args );
             // The Output
@@ -42,7 +42,10 @@
                         <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" target="_blank">
                         <?php if($instance['check_images'] === "on"){ ?>
                             <img src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" alt="<?php the_title(); ?>">
-                    <?php } else { the_title(); } ?>
+                        <?php } else { the_title(); } ?>
+                        <?php if($instance['show_description'] === "on"){ ?>
+                            <br><p class="sponsor-desc"><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p>
+                        <?php }; ?>
                         </a>
                     </li>
                 <?php endwhile; wp_reset_postdata(); ?>
@@ -54,6 +57,7 @@
         // Update the widget
         function update( $new_instance, $old_instance ) {
             $instance = $old_instance;
+            $instance['show_description'] = $new_instance['show_description'];
             $instance['check_images'] = $new_instance['check_images'];
             $instance['category'] = $new_instance['category'];
             $instance['title'] = strip_tags( $new_instance['title'] );
@@ -90,6 +94,10 @@
             <p>
                 <input type="checkbox" id="<?php echo $this->get_field_id('check_images'); ?>" name="<?php echo $this->get_field_name('check_images'); ?>" <?php checked($instance['check_images'], 'on'); ?> />
                 <label for="<?php echo $this->get_field_id('check_images'); ?>"><?php echo __( 'Show images', 'wp-sponsors' )?></label>
+            </p>
+            <p>
+                <input type="checkbox" id="<?php echo $this->get_field_id('show_description'); ?>" name="<?php echo $this->get_field_name('show_description'); ?>" <?php checked($instance['show_description'], 'on'); ?> />
+                <label for="<?php echo $this->get_field_id('show_description'); ?>"><?php echo __( 'Show descriptions', 'wp-sponsors' )?></label>
             </p>
             <?php }
         }
