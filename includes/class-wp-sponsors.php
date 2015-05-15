@@ -353,7 +353,29 @@ class Wp_Sponsors {
             }
         }
         add_action( 'save_post', 'sponsors_save_metabox' );
-  }
+
+        /**
+         * Adds a new column to the Sponsors overview list in the dashboard
+         */
+        function sponsors_add_new_column($defaults) {
+            $defaults['wp_sponsors_img'] = 'Sponsor Image';
+            return $defaults;
+        }
+        add_filter('manage_sponsor_posts_columns', 'sponsors_add_new_column');
+         
+        /**
+         * Adds the sponsors image (if available) to the Sponsors overview list in the dashboard
+         */
+        function sponsors_column_add_image($column_name, $post_ID) {
+            if ($column_name == 'wp_sponsors_img') {
+                $post_featured_image = get_post_meta( $post_ID, 'wp_sponsors_img', true );
+                if ($post_featured_image) {
+                    echo '<img src="' . $post_featured_image . '" height="80px"/>';
+                }
+            }
+        }
+        add_action('manage_sponsor_posts_custom_column', 'sponsors_column_add_image', 10, 2);
+    }
 
   /**
    * The name of the plugin used to uniquely identify it within the context of
