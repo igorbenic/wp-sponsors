@@ -10,6 +10,7 @@
         extract( shortcode_atts( array (
             'type' => 'post',
             'image' => 'yes',
+            'images' => 'yes',
             'category' => '',
             'size' => 'default',
         ), $atts ) );
@@ -25,14 +26,21 @@
         $sizes = array('small' => '15%', 'medium' => '30%', 'large' => '60', 'full' => '100%', 'default' => '25%');
 
         ob_start();
+
         $query = new WP_Query($args);
-        if ( $query->have_posts() ) { ?>
+        if ( $query->have_posts() ) { 
+        if ( empty($atts) ) {
+            $atts = Array();
+            $atts['images'] = "yes";
+            $atts['image'] = "yes";
+        }
+            ?>
         <div id="wp-sponsors">
             <ul>
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                 <li class="sponsors-item">
                     <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" target="_blank">
-                        <?php if($atts['images'] === "yes"){ ?>
+                        <?php if($atts['image'] === "yes" OR $atts['images'] === "yes" ){ ?>
                             <img 
                             src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" 
                             alt="<?php the_title(); ?>" 
