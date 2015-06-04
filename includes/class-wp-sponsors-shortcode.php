@@ -24,7 +24,7 @@
             'posts_per_page'        => '-1',
             'sponsor_categories'    => $category,
         );
-        $sizes = array('small' => '15%', 'medium' => '30%', 'large' => '60', 'full' => '100%', 'default' => '25%');
+        $sizes = array('small' => '15%', 'medium' => '30%', 'large' => '60%', 'full' => '100%', 'default' => '25%');
 
         ob_start();
         $query = new WP_Query($args);
@@ -66,4 +66,4 @@
     }
     add_shortcode( 'sponsors', 'sponsors_register_shortcode' );
 
-?>
+?>%

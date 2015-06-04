@@ -6,6 +6,7 @@
 #wp-sponsors {
     list-style: none;
     margin-bottom: 15px;
+    height: 100%;
 }
 .sponsors-item {
     padding-bottom: 15px;
