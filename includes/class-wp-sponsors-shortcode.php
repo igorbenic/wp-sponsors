@@ -10,9 +10,10 @@
         extract( shortcode_atts( array (
             'type' => 'post',
             'image' => 'yes',
-            'images' => 'yes',
             'category' => '',
             'size' => 'default',
+            'style' => 'list',
+            'description' => 'no'
         ), $atts ) );
 
         $args = array (
@@ -26,21 +27,16 @@
         $sizes = array('small' => '15%', 'medium' => '30%', 'large' => '60%', 'full' => '100%', 'default' => '25%');
 
         ob_start();
-
         $query = new WP_Query($args);
         if ( $query->have_posts() ) { 
-        if ( empty($atts) ) {
-            $atts = Array();
-            $atts['images'] = "yes";
-            $atts['image'] = "yes";
-        }
-            ?>
+            if($atts['style'] === "list") { ?>
+
         <div id="wp-sponsors">
             <ul>
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                 <li class="sponsors-item">
                     <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" target="_blank">
-                        <?php if($atts['image'] === "yes" OR $atts['images'] === "yes" ){ ?>
+                        <?php if($atts['images'] === "yes"){ ?>
                             <img 
                             src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" 
                             alt="<?php the_title(); ?>" 
@@ -51,7 +47,22 @@
                 </li>
                 <?php endwhile; return ob_get_clean(); ?>
             </ul>
-        </div><?php
+        </div>
+        <?php };
+
+
+        if($atts['style'] === "linear") { ?>
+        <div id="wp-sponsors" class="clearfix"> 
+            <?php while ( $query->have_posts() ) : $query->the_post(); ?>
+            <div class="sponsor-item <?php echo $size; ?>">
+                <?php if($atts['image'] === "yes" OR $atts['images'] === "yes" ){ ?>
+                    <img src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" alt="<?php the_title(); ?>" >
+                <?php } else { the_title(); } ?>
+                <?php if ( $atts['description'] === "yes" ) { ?> <p><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p> <?php } ?>
+            </div>
+            <?php endwhile; return ob_get_clean(); ?>
+        </div>
+        <?php };
         }
     }
     add_shortcode( 'sponsors', 'sponsors_register_shortcode' );
