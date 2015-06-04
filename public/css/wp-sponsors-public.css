@@ -3,10 +3,9 @@
  * included in this file.
  */
 
-#wp-sponsors {
+#wp-sponsors ul {
     list-style: none;
     margin-bottom: 15px;
-    height: 100%;
 }
 .sponsors-item {
     padding-bottom: 15px;
@@ -16,28 +15,30 @@ p.sponsor-desc {
     margin-top: 5px;
 }
 
-#wp-sponsors div.sponsor-item {
-    display: inline;
-    float: left;
-}
-#wp-sponsors div.sponsor-item p {
-    
-
-}
-
 /**
 * Styling the for the linear shortcode option
 *
 */
+div#wp-sponsors {margin-bottom: 50px;}
+
+#wp-sponsors div.sponsor-item {float: left;}
+
 #wp-sponsors div.sponsor-item.default {max-width: 40%;}
 #wp-sponsors div.sponsor-item.small {max-width: 15%;}
 #wp-sponsors div.sponsor-item.medium {max-width: 25%;}
 #wp-sponsors div.sponsor-item.large {max-width: 50%;}
 #wp-sponsors div.sponsor-item.full {max-width: 100%;}
 
-
 #wp-sponsors div.sponsor-item.default p {max-width:100%;}
 #wp-sponsors div.sponsor-item.small p {max-width:100%;}
 #wp-sponsors div.sponsor-item.medium p {max-width:100%;}
 #wp-sponsors div.sponsor-item.large p {max-width:100%;}
 #wp-sponsors div.sponsor-item.full p {max-width: 100%;}
+
+.clearfix:after { 
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}
