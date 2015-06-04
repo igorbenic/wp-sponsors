@@ -276,6 +276,11 @@ class Wp_Sponsors {
         }
         add_action( 'add_meta_boxes', 'add_sponsor_metabox' );
 
+        function add_sponsor_desc() {
+            add_meta_box( 'meta-box-desc', __( 'Sponsor Description', 'wp_sponsors' ), 'sponsor_metabox_desc', 'sponsor', 'normal' );
+        }
+        add_action( 'add_meta_boxes', 'add_sponsor_desc' );
+
         function add_file_meta_box() {
             add_meta_box('meta-box-media', __( 'Sponsor Logo', 'wp_sponsors' ), 'sponsors_metabox_image', 'sponsor', 'normal');
         }
@@ -295,6 +300,16 @@ class Wp_Sponsors {
             $meta_value = get_post_meta( get_the_ID(), 'wp_sponsors_url', true );
             // Checks and displays the retrieved value
             echo '<input type="url" name="wp_sponsors_url" value="' . $meta_value  . '" class="widefat" />';
+        }
+
+        function sponsor_metabox_desc( $post ) {
+            // Display code/markup goes here. Don't forget to include nonces!
+            // Noncename needed to verify where the data originated
+            echo '<input type="hidden" name="wp_sponsors_desc_nonce" id="wp_sponsors_desc_nonce" value="' . wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
+            // Get the url data if its already been entered
+            $meta_value = get_post_meta( get_the_ID(), 'wp_sponsors_desc', true );
+            // Checks and displays the retrieved value
+            echo '<textarea rows="4" name="wp_sponsors_desc" value="' . $meta_value  . '" class="widefat" />' . $meta_value . '</textarea>';
         }
 
         function sponsors_metabox_image( $post ) {
@@ -328,6 +343,9 @@ class Wp_Sponsors {
             if( isset( $_POST[ 'wp_sponsors_url' ] ) ) {
                 update_post_meta( $post_id, 'wp_sponsors_url', sanitize_text_field( $_POST[ 'wp_sponsors_url' ] ) );
             }
+            if( isset( $_POST[ 'wp_sponsors_desc' ] ) ) {
+                update_post_meta( $post_id, 'wp_sponsors_desc', sanitize_text_field( $_POST[ 'wp_sponsors_desc' ] ) );
+            }
             $is_valid_nonce = ( isset( $_POST[ 'wp_sponsors_img_nonce' ] ) && wp_verify_nonce( $_POST[ 'wp_sponsors_img_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
             // Checks for input and sanitizes/saves if needed
             if( isset( $_POST[ 'wp_sponsors_img' ] ) ) {
@@ -335,7 +353,29 @@ class Wp_Sponsors {
             }
         }
         add_action( 'save_post', 'sponsors_save_metabox' );
-  }
+
+        /**
+         * Adds a new column to the Sponsors overview list in the dashboard
+         */
+        function sponsors_add_new_column($defaults) {
+            $defaults['wp_sponsors_img'] = 'Sponsor Image';
+            return $defaults;
+        }
+        add_filter('manage_sponsor_posts_columns', 'sponsors_add_new_column');
+         
+        /**
+         * Adds the sponsors image (if available) to the Sponsors overview list in the dashboard
+         */
+        function sponsors_column_add_image($column_name, $post_ID) {
+            if ($column_name == 'wp_sponsors_img') {
+                $post_featured_image = get_post_meta( $post_ID, 'wp_sponsors_img', true );
+                if ($post_featured_image) {
+                    echo '<img src="' . $post_featured_image . '" height="80px"/>';
+                }
+            }
+        }
+        add_action('manage_sponsor_posts_custom_column', 'sponsors_column_add_image', 10, 2);
+    }
 
   /**
    * The name of the plugin used to uniquely identify it within the context of
