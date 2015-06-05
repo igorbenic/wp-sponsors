@@ -21,12 +21,12 @@ p.sponsor-desc {
 */
 div#wp-sponsors {margin-bottom: 50px;}
 
-#wp-sponsors div.sponsor-item {float: left;}
+#wp-sponsors div.sponsor-item {float: left; margin-right: 20px;}
 
 #wp-sponsors div.sponsor-item.default {max-width: 40%;}
 #wp-sponsors div.sponsor-item.small {max-width: 15%;}
 #wp-sponsors div.sponsor-item.medium {max-width: 25%;}
-#wp-sponsors div.sponsor-item.large {max-width: 50%;}
+#wp-sponsors div.sponsor-item.large {max-width: 45%;}
 #wp-sponsors div.sponsor-item.full {max-width: 100%;}
 
 #wp-sponsors div.sponsor-item.default p {max-width:100%;}

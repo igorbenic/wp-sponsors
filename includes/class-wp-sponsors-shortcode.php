@@ -30,41 +30,38 @@
         $query = new WP_Query($args);
         if ( $query->have_posts() ) { 
             if($atts['style'] === "list") { ?>
-
-        <div id="wp-sponsors">
-            <ul>
-                <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                <li class="sponsors-item">
-                    <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" target="_blank">
-                        <?php if($atts['images'] === "yes"){ ?>
-                            <img 
-                            src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" 
-                            alt="<?php the_title(); ?>" 
-                            width="<?php echo $sizes[$size]; ?>"
-                            >
+                <div id="wp-sponsors">
+                    <ul>
+                        <?php while ( $query->have_posts() ) : $query->the_post(); ?>
+                        <li class="sponsors-item">
+                            <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" target="_blank">
+                                <?php if($atts['images'] === "yes"){ ?>
+                                    <img 
+                                    src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" 
+                                    alt="<?php the_title(); ?>" 
+                                    width="<?php echo $sizes[$size]; ?>"
+                                    >
+                                <?php } else { the_title(); } ?>
+                            </a>
+                        </li>
+                        <?php endwhile; return ob_get_clean(); ?>
+                    </ul>
+                </div>
+        <?php };
+            if($atts['style'] === "linear") { ?>
+                <div id="wp-sponsors" class="clearfix"> 
+                    <?php while ( $query->have_posts() ) : $query->the_post(); ?>
+                    <div class="sponsor-item <?php echo $size; ?>">
+                        <?php if($atts['image'] === "yes" OR $atts['images'] === "yes" ){ ?>
+                            <img src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" alt="<?php the_title(); ?>" >
                         <?php } else { the_title(); } ?>
-                    </a>
-                </li>
-                <?php endwhile; return ob_get_clean(); ?>
-            </ul>
-        </div>
+                        <?php if ( $atts['description'] === "yes" ) { ?> <p><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p> <?php } ?>
+                    </div>
+                    <?php endwhile; return ob_get_clean(); ?>
+                </div>
         <?php };
-
-
-        if($atts['style'] === "linear") { ?>
-        <div id="wp-sponsors" class="clearfix"> 
-            <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-            <div class="sponsor-item <?php echo $size; ?>">
-                <?php if($atts['image'] === "yes" OR $atts['images'] === "yes" ){ ?>
-                    <img src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" alt="<?php the_title(); ?>" >
-                <?php } else { the_title(); } ?>
-                <?php if ( $atts['description'] === "yes" ) { ?> <p><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p> <?php } ?>
-            </div>
-            <?php endwhile; return ob_get_clean(); ?>
-        </div>
-        <?php };
+            }
         }
-    }
     add_shortcode( 'sponsors', 'sponsors_register_shortcode' );
 
 ?>
