@@ -4,7 +4,7 @@ Donate link: http://onedge.be/donate/
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
 Tested up to: 4.2.2
-Stable tag: 1.3.1
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,9 @@ Ever had to add a bunch of images with links on them for your event/company part
 2. Add the widget to one or more sidebars and the images of your sponsors will show up there. Choose from which category you want to display sponsors (or select all), to show or hide images and the description
 
 == Changelog ==
+
+= 1.4 =
+* Added a style option to the shortcode: use 'style="list"' to show all sponsors bellow each other in a list view, use 'style="linear"' to display the sponsors in a grid-like view on the page. This also works in combination with the 'size' option. The sizes options are: full, large, medium and small. If you don't specify a size, the default will be set to 40% (around have the width of the page)
 
 = 1.3.1 =
 * Fixed a bug where a shortcode without an image(s) parameters would throw an error.

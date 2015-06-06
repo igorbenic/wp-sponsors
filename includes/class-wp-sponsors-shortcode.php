@@ -32,7 +32,9 @@
         if ( !isset($atts['images']) && $atts['image'] != "no" ) { $atts['images'] = 'yes';}
 
         $query = new WP_Query($args);
+        // If we have results, continue:
         if ( $query->have_posts() ) { 
+            // If the style option is set to list or the nothing, list view will be used
             if($atts['style'] === "list") { ?>
                 <div id="wp-sponsors">
                     <ul>
@@ -53,6 +55,7 @@
                     </ul>
                 </div>
         <?php };
+            // If the style option is set to linear, this view will be used
             if($atts['style'] === "linear") { ?>
                 <div id="wp-sponsors" class="clearfix"> 
                     <?php while ( $query->have_posts() ) : $query->the_post(); ?>
