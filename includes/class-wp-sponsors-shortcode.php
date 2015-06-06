@@ -25,8 +25,12 @@
             'sponsor_categories'    => $category,
         );
         $sizes = array('small' => '15%', 'medium' => '30%', 'large' => '60%', 'full' => '100%', 'default' => '25%');
-
         ob_start();
+
+        // Set default options with then shortcode is used without parameters
+        if ( !isset($atts['style']) ) { $atts['style'] = 'list';}
+        if ( !isset($atts['images']) && $atts['image'] != "no" ) { $atts['images'] = 'yes';}
+
         $query = new WP_Query($args);
         if ( $query->have_posts() ) { 
             if($atts['style'] === "list") { ?>
@@ -43,6 +47,7 @@
                                     >
                                 <?php } else { the_title(); } ?>
                             </a>
+                            <?php if ( $atts['description'] === "yes" ) { ?> <p><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p> <?php } ?>
                         </li>
                         <?php endwhile; return ob_get_clean(); ?>
                     </ul>
