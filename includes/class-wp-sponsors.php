@@ -359,6 +359,7 @@ class Wp_Sponsors {
          */
         function sponsors_add_new_column($defaults) {
             $defaults['wp_sponsors_img'] = 'Sponsor Image';
+            $defaults['menu_order'] = "Order";
             return $defaults;
         }
         add_filter('manage_sponsor_posts_columns', 'sponsors_add_new_column');
@@ -375,6 +376,30 @@ class Wp_Sponsors {
             }
         }
         add_action('manage_sponsor_posts_custom_column', 'sponsors_column_add_image', 10, 2);
+
+        /**
+         * show custom order column values
+         */
+        function sponsors_column_add_order($name){
+            global $post;
+
+            switch ($name) {
+                case 'menu_order':
+                    $order = $post->menu_order;
+                    echo $order;
+                    break;
+                default:
+                    break;
+            }
+        }
+        add_action('manage_sponsor_posts_custom_column','sponsors_column_add_order');
+
+
+        function sponsor_order_column($columns){
+            $columns['menu_order'] = 'menu_order';
+            return $columns;
+        }
+        add_filter('manage_edit-sponsor_sortable_columns','sponsor_order_column');
     }
 
   /**
