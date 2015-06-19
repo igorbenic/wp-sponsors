@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.5.0] - 2015-06-19
+## [Unreleased][unreleased]
 ### Added
 - Added menu_order to Sponsors to allow sorting
 - Added sortable order column to the dashboard
