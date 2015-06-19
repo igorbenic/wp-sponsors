@@ -245,7 +245,7 @@ class Wp_Sponsors {
                 'can_export'            => true,
                 'query_var'             => false,
                 'capability_type'       => 'post',
-                'supports'              => array( 'title' ),
+                'supports'              => array( 'title', 'page-attributes' ),
                 'taxonomies'            => array( 'sponsor_categories'),
                 'register_meta_box_cb'  => 'add_sponsor_metabox'
             );

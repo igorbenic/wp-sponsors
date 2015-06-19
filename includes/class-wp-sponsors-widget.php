@@ -25,7 +25,8 @@
                 'pagination'             => false,
                 'order'                  => 'ASC',
                 'posts_per_page'         => '-1',
-                'sponsor_categories'     => $term
+                'sponsor_categories'     => $term,
+                'orderby'                => 'menu_order'
             );
             $title = apply_filters('widget_title', $instance['title'] );
             $before_title = "<div class='widget-title'>";
