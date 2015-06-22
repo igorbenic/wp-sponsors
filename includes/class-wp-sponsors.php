@@ -309,7 +309,8 @@ class Wp_Sponsors {
             // Get the url data if its already been entered
             $meta_value = get_post_meta( get_the_ID(), 'wp_sponsors_desc', true );
             // Checks and displays the retrieved value
-            echo '<textarea rows="4" name="wp_sponsors_desc" value="' . $meta_value  . '" class="widefat" />' . $meta_value . '</textarea>';
+            $editor_settings = array( 'media_buttons' => false, 'textarea_rows' => '8', 'textarea_name' => 'wp_sponsors_desc');
+            echo wp_editor($meta_value, 'wp_sponsors_desc', $editor_settings);
         }
 
         function sponsors_metabox_image( $post ) {
@@ -344,7 +345,7 @@ class Wp_Sponsors {
                 update_post_meta( $post_id, 'wp_sponsors_url', sanitize_text_field( $_POST[ 'wp_sponsors_url' ] ) );
             }
             if( isset( $_POST[ 'wp_sponsors_desc' ] ) ) {
-                update_post_meta( $post_id, 'wp_sponsors_desc', sanitize_text_field( $_POST[ 'wp_sponsors_desc' ] ) );
+                update_post_meta( $post_id, 'wp_sponsors_desc', $_POST[ 'wp_sponsors_desc' ] );
             }
             $is_valid_nonce = ( isset( $_POST[ 'wp_sponsors_img_nonce' ] ) && wp_verify_nonce( $_POST[ 'wp_sponsors_img_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
             // Checks for input and sanitizes/saves if needed
