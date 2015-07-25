@@ -8,15 +8,15 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://example.com
+ * @link              http://onedge.be/plugins
  * @since             1.0.0
  * @package           Wp_Sponsors
  *
  * @wordpress-plugin
  * Plugin Name:       Sponsors
- * Plugin URI:        http://onedge.be/plugins/sponsors
+ * Plugin URI:        http://onedge.be/plugins
  * Description:       Add links and logo's for your sponsors/partners/etc to your sidebars and posts with our widget and shortcode.
- * Version:           1.5
+ * Version:           1.5.1
  * Author:            Jan Henckens
  * Author URI:        http://onedge.be
  * License:           GPL-2.0+
