@@ -71,5 +71,3 @@
             }
         }
     add_shortcode( 'sponsors', 'sponsors_register_shortcode' );
-
-?>

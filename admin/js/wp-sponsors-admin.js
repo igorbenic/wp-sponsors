@@ -15,8 +15,8 @@ jQuery(document).ready(function($){
         }
         // Sets up the media library frame
         meta_image_frame = wp.media.frames.meta_image_frame = wp.media({
-            title: wp_sponsors_img.title,
-            button: { text:  wp_sponsors_img.button },
+            title: objectL10n.title,
+            button: { text:  objectL10n.button },
             library: { type: 'image' }
         });
         // Runs when an image is selected.

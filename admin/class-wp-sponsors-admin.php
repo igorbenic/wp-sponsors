@@ -97,6 +97,10 @@ class Wp_Sponsors_Admin {
 		 */
 
 		wp_enqueue_script( $this->wp_sponsors, plugin_dir_url( __FILE__ ) . 'js/wp-sponsors-admin.js', array( 'jquery' ), $this->version, false );
+		wp_localize_script($this->wp_sponsors, 'objectL10n', array(
+			'title' => __('Select a sponsor logo', 'wp_sponsors'),
+			'button' => __('Add image', 'wp_sponsors')
+			));
 
 	}
 
