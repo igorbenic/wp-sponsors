@@ -69,7 +69,7 @@ class Wp_Sponsors {
   public function __construct() {
 
     $this->wp_sponsors = 'wp-sponsors';
-    $this->version = '1.0.0';
+    $this->version = '1.5.1';
 
     $this->load_dependencies();
     $this->set_locale();
