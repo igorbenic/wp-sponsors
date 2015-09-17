@@ -8,7 +8,19 @@
     margin-bottom: 15px;
 }
 #wp-sponsors ul li {list-style-type: none;}
+#wp-sponsors ul.horizontal li {
+    display: inline;
+    list-style-type: none;
+    padding-right: 20px;
+}
 
+#wp-sponsors ul.horizontal {
+    margin: 10px;
+}
+#wp-sponsors ul.horizontal li.sponsors-item a img {
+    max-height: 100px;
+    padding-bottom: 15px;
+}
 .sponsors-item {
     padding-bottom: 15px;
 }
@@ -36,6 +48,10 @@ div#wp-sponsors {margin-bottom: 50px;}
 #wp-sponsors div.sponsor-item.medium p {max-width:100%;}
 #wp-sponsors div.sponsor-item.large p {max-width:100%;}
 #wp-sponsors div.sponsor-item.full p {max-width: 100%;}
+
+/**
+* Other styling
+*/
 
 .clearfix:after { 
    content: "."; 
