@@ -37,7 +37,7 @@
             ?>
             <aside id="wp-sponsors" class="widget wp-sponsors">
                 <?php if ( $title ) echo $before_title . $title . $after_title; ?>
-                <ul>
+                <ul class="<?php echo $instance['display_option']; ?>">
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                     <li class="sponsors-item">
                         <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" target="_blank">
@@ -61,6 +61,7 @@
             $instance['show_description'] = $new_instance['show_description'];
             $instance['check_images'] = $new_instance['check_images'];
             $instance['category'] = $new_instance['category'];
+            $instance['display_option'] = $new_instance['display_option'];
             $instance['title'] = strip_tags( $new_instance['title'] );
             return $instance;
         }
@@ -69,7 +70,7 @@
         function form($instance) {
 
             //Set up some default widget settings.
-            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'All');
+            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'All', 'display_option' => 'vertical');
             $instance = wp_parse_args( (array) $instance, $defaults );
 
             if(empty($instance)) {
@@ -92,6 +93,14 @@
                 </select>
             </p>
             <?php } ?>
+            <p>
+                <label for="<?php echo $this->get_field_id('display_option'); ?>"> <?php echo __('Display', 'wp-sponsors')?></label>
+                <select id="<?php echo $this->get_field_id('display_option'); ?>" name="<?php echo $this->get_field_name('display_option'); ?>" class="widefat" style="width:100%;">
+                    <option <?php selected( $instance['display_option'], 'vertical' ); ?> value="vertical"><?php echo _e('Vertical (best for sidebars)', 'wp-sponsors'); ?></option>
+                    <option <?php selected( $instance['display_option'], 'horizontal' ); ?> value="horizontal"><?php echo _e('Horizontal (best for footers)', 'wp-sponsors'); ?></option>
+                </select>
+
+            </p>
             <p>
                 <input type="checkbox" id="<?php echo $this->get_field_id('check_images'); ?>" name="<?php echo $this->get_field_name('check_images'); ?>" <?php checked($instance['check_images'], 'on'); ?> />
                 <label for="<?php echo $this->get_field_id('check_images'); ?>"><?php echo __( 'Show images', 'wp-sponsors' )?></label>
