@@ -40,7 +40,7 @@
                 <ul class="<?php echo $instance['display_option']; ?>">
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                     <li class="sponsors-item">
-                        <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" target="_blank">
+                        <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" <?php if($instance['target_blank'] === "on"){ ?> target="_blank"<?php }; ?>>
                         <?php if($instance['check_images'] === "on"){ ?>
                             <img src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" alt="<?php the_title(); ?>">
                         <?php } else { the_title(); } ?>
@@ -60,6 +60,7 @@
             $instance = $old_instance;
             $instance['show_description'] = $new_instance['show_description'];
             $instance['check_images'] = $new_instance['check_images'];
+            $instance['target_blank'] = $new_instance['target_blank'];
             $instance['category'] = $new_instance['category'];
             $instance['display_option'] = $new_instance['display_option'];
             $instance['title'] = strip_tags( $new_instance['title'] );
@@ -70,13 +71,14 @@
         function form($instance) {
 
             //Set up some default widget settings.
-            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'All', 'display_option' => 'vertical');
+            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'All', 'display_option' => 'vertical', 'target_blank' => 'on');
             $instance = wp_parse_args( (array) $instance, $defaults );
 
             if(empty($instance)) {
                 $key = array('check_images');
                 $instance = array_fill_keys($key, 'on');
             }
+            var_dump($instance);
             $cats = get_terms( 'sponsor_categories' ); ?>
             <p>
                 <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title', 'wp-sponsors'); ?></label>
@@ -108,6 +110,10 @@
             <p>
                 <input type="checkbox" id="<?php echo $this->get_field_id('show_description'); ?>" name="<?php echo $this->get_field_name('show_description'); ?>" <?php checked($instance['show_description'], 'on'); ?> />
                 <label for="<?php echo $this->get_field_id('show_description'); ?>"><?php echo __( 'Show descriptions', 'wp-sponsors' )?></label>
+            </p>
+            <p>
+                <input type="checkbox" id="<?php echo $this->get_field_id('target_blank'); ?>" name="<?php echo $this->get_field_name('target_blank'); ?>" <?php checked($instance['target_blank'], 'on'); ?> />
+                <label for="<?php echo $this->get_field_id('target_blank'); ?>"><?php echo __( 'Open links in a new window', 'wp-sponsors' )?></label>
             </p>
             <?php }
         }
