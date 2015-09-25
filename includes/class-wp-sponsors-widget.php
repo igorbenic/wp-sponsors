@@ -83,7 +83,6 @@
                 $key = array('check_images');
                 $instance = array_fill_keys($key, 'on');
             }
-            var_dump($instance);
             $cats = get_terms( 'sponsor_categories' ); ?>
             <p>
                 <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title', 'wp-sponsors'); ?></label>
