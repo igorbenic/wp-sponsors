@@ -39,8 +39,9 @@
                 <div id="wp-sponsors">
                     <ul>
                         <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                        <li class="sponsors-item">
-                            <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" target="_blank">
+                            <?php $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ); ?>
+                            <li class="sponsors-item">
+                                <?php if(!empty($link)) { ?><a href="<?php echo $link ?>" target="_blank"><?php }; ?>
                                 <?php if($atts['images'] === "yes"){ ?>
                                     <img 
                                     src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" 
@@ -48,7 +49,7 @@
                                     width="<?php echo $sizes[$size]; ?>"
                                     >
                                 <?php } else { the_title(); } ?>
-                            </a>
+                                <?php if(!empty($link)) { ?></a><?php }; ?>
                             <?php if ( $atts['description'] === "yes" ) { ?> <p><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p> <?php } ?>
                         </li>
                         <?php endwhile; return ob_get_clean(); ?>
@@ -59,11 +60,17 @@
             if($atts['style'] === "linear") { ?>
                 <div id="wp-sponsors" class="clearfix"> 
                     <?php while ( $query->have_posts() ) : $query->the_post(); ?>
+                    <?php $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ); ?>
                     <div class="sponsor-item <?php echo $size; ?>">
+                        <?php if(!empty($link)) { ?><a href="<?php echo $link ?>" target="_blank"><?php }; ?>
                         <?php if($atts['image'] === "yes" OR $atts['images'] === "yes" ){ ?>
-                            <img src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" alt="<?php the_title(); ?>" >
+                            <img
+                                src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>"
+                                alt="<?php the_title(); ?>"
+                                >
                         <?php } else { the_title(); } ?>
                         <?php if ( $atts['description'] === "yes" ) { ?> <p><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p> <?php } ?>
+                        <?php if(!empty($link)) { ?></a><?php }; ?>
                     </div>
                     <?php endwhile; return ob_get_clean(); ?>
                 </div>
