@@ -1,104 +1,144 @@
-# Copyright (C) 2015 Sponsors
-# This file is distributed under the same license as the Sponsors package.
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Sponsors 1.1\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/wp-sponsors\n"
-"POT-Creation-Date: 2015-05-10 15:56:06+00:00\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Sponsors\n"
+"POT-Creation-Date: 2015-11-16 07:10+0100\n"
+"PO-Revision-Date: 2015-11-16 07:10+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: wp-sponsors.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#. #-#-#-#-#  plugin.pot (Sponsors 1.1)  #-#-#-#-#
+#: admin/class-wp-sponsors-admin.php:101
+msgid "Select a sponsor logo"
+msgstr ""
+
+#: admin/class-wp-sponsors-admin.php:102
+msgid "Add image"
+msgstr ""
+
 #. Plugin Name of the plugin/theme
 #: includes/class-wp-sponsors-widget.php:9
 msgid "Sponsors"
 msgstr ""
 
-#: includes/class-wp-sponsors-widget.php:67
+#: includes/class-wp-sponsors-widget.php:79
 msgid "Our sponsors"
 msgstr ""
 
-#: includes/class-wp-sponsors-widget.php:76
+#: includes/class-wp-sponsors-widget.php:88
 msgid "Title"
 msgstr ""
 
-#: includes/class-wp-sponsors-widget.php:81
+#: includes/class-wp-sponsors-widget.php:93
 msgid "Category"
 msgstr ""
 
-#: includes/class-wp-sponsors-widget.php:83
+#: includes/class-wp-sponsors-widget.php:95
 msgid "All"
 msgstr ""
 
-#: includes/class-wp-sponsors-widget.php:92
+#: includes/class-wp-sponsors-widget.php:103
+msgid "Display"
+msgstr ""
+
+#: includes/class-wp-sponsors-widget.php:105
+msgid "Vertical (best for sidebars)"
+msgstr ""
+
+#: includes/class-wp-sponsors-widget.php:106
+msgid "Horizontal (best for footers)"
+msgstr ""
+
+#: includes/class-wp-sponsors-widget.php:112
 msgid "Show images"
 msgstr ""
 
-#: includes/class-wp-sponsors.php:198
+#: includes/class-wp-sponsors-widget.php:116
+msgid "Show descriptions"
+msgstr ""
+
+#: includes/class-wp-sponsors-widget.php:120
+msgid "Open links in a new window"
+msgstr ""
+
+#: includes/class-wp-sponsors.php:199
 msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr ""
 
-#: includes/class-wp-sponsors.php:199
+#: includes/class-wp-sponsors.php:200
 msgctxt "taxonomy singular name"
 msgid "Categorie"
 msgstr ""
 
-#: includes/class-wp-sponsors.php:200
+#: includes/class-wp-sponsors.php:201
 msgid "Search categories"
 msgstr ""
 
-#: includes/class-wp-sponsors.php:201
+#: includes/class-wp-sponsors.php:202
 msgid "All categories"
 msgstr ""
 
-#: includes/class-wp-sponsors.php:202
+#: includes/class-wp-sponsors.php:203
 msgid "Parent categorie"
 msgstr ""
 
-#: includes/class-wp-sponsors.php:203
+#: includes/class-wp-sponsors.php:204
 msgid "Parent categorie:"
 msgstr ""
 
-#: includes/class-wp-sponsors.php:204
+#: includes/class-wp-sponsors.php:205
 msgid "Edit categorie"
 msgstr ""
 
-#: includes/class-wp-sponsors.php:205
+#: includes/class-wp-sponsors.php:206
 msgid "Update categorie"
 msgstr ""
 
-#: includes/class-wp-sponsors.php:206
+#: includes/class-wp-sponsors.php:207
 msgid "Add New categorie"
 msgstr ""
 
-#: includes/class-wp-sponsors.php:207
+#: includes/class-wp-sponsors.php:208
 msgid "New Genre categore"
 msgstr ""
 
-#: includes/class-wp-sponsors.php:208
+#: includes/class-wp-sponsors.php:209
 msgid "Categories"
 msgstr ""
 
-#: includes/class-wp-sponsors.php:274
+#: includes/class-wp-sponsors.php:275
 msgid "Sponsor Website"
 msgstr ""
 
-#: includes/class-wp-sponsors.php:279
+#: includes/class-wp-sponsors.php:280
+msgid "Sponsor Description"
+msgstr ""
+
+#: includes/class-wp-sponsors.php:285
 msgid "Sponsor Logo"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "http://onedge.be/plungins/sponsors"
+msgid "http://onedge.be/plugins"
 msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"Add links and logo's for your sponsors/partners/etc to your sidebars and posts with our widget and shortcode."
+"Add links and logo's for your sponsors/partners/etc to your sidebars and "
+"posts with our widget and shortcode."
 msgstr ""
 
 #. Author of the plugin/theme
