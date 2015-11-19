@@ -44,6 +44,9 @@
                         <?php if(!empty($link)) { ?>
                         <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" <?php if($instance['target_blank'] === "on"){ ?> target="_blank"<?php }; ?>>
                         <?php }; ?>
+                        <?php if($instance['show_title'] === "on"){ ?>
+                            <h4 class="sponsor-title"><?php echo the_title(); ?></h4>
+                        <?php }; ?>
                         <?php if($instance['check_images'] === "on"){ ?>
                             <img src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" alt="<?php the_title(); ?>">
                         <?php } else { the_title(); } ?>
@@ -64,6 +67,7 @@
         function update( $new_instance, $old_instance ) {
             $instance = $old_instance;
             $instance['show_description'] = $new_instance['show_description'];
+            $instance['show_title'] = $new_instance['show_title'];
             $instance['check_images'] = $new_instance['check_images'];
             $instance['target_blank'] = $new_instance['target_blank'];
             $instance['category'] = $new_instance['category'];
@@ -108,12 +112,16 @@
 
             </p>
             <p>
+                <input type="checkbox" id="<?php echo $this->get_field_id('show_title'); ?>" name="<?php echo $this->get_field_name('show_title'); ?>" <?php checked($instance['show_title'], 'on'); ?> />
+                <label for="<?php echo $this->get_field_id('show_title'); ?>"><?php echo __( 'Show sponsor title', 'wp-sponsors' )?></label>
+            </p>
+            <p>
                 <input type="checkbox" id="<?php echo $this->get_field_id('check_images'); ?>" name="<?php echo $this->get_field_name('check_images'); ?>" <?php checked($instance['check_images'], 'on'); ?> />
-                <label for="<?php echo $this->get_field_id('check_images'); ?>"><?php echo __( 'Show images', 'wp-sponsors' )?></label>
+                <label for="<?php echo $this->get_field_id('check_images'); ?>"><?php echo __( 'Show sponsor logo', 'wp-sponsors' )?></label>
             </p>
             <p>
                 <input type="checkbox" id="<?php echo $this->get_field_id('show_description'); ?>" name="<?php echo $this->get_field_name('show_description'); ?>" <?php checked($instance['show_description'], 'on'); ?> />
-                <label for="<?php echo $this->get_field_id('show_description'); ?>"><?php echo __( 'Show descriptions', 'wp-sponsors' )?></label>
+                <label for="<?php echo $this->get_field_id('show_description'); ?>"><?php echo __( 'Show sponsor description', 'wp-sponsors' )?></label>
             </p>
             <p>
                 <input type="checkbox" id="<?php echo $this->get_field_id('target_blank'); ?>" name="<?php echo $this->get_field_name('target_blank'); ?>" <?php checked($instance['target_blank'], 'on'); ?> />
