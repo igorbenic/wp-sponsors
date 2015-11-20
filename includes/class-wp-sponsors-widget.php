@@ -45,7 +45,7 @@
                         <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" <?php if($instance['target_blank'] === "on"){ ?> target="_blank"<?php }; ?>>
                         <?php }; ?>
                         <?php if($instance['show_title'] === "on"){ ?>
-                            <h4 class="sponsor-title"><?php echo the_title(); ?></h4>
+                            <div class="sponsor-title widget-title"><?php echo the_title(); ?></div>
                         <?php }; ?>
                         <?php if($instance['check_images'] === "on"){ ?>
                             <img src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" alt="<?php the_title(); ?>">
