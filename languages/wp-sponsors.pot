@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Sponsors\n"
-"POT-Creation-Date: 2015-11-16 07:10+0100\n"
-"PO-Revision-Date: 2015-11-16 07:10+0100\n"
+"POT-Creation-Date: 2015-11-23 18:52+0100\n"
+"PO-Revision-Date: 2015-11-23 18:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -33,43 +33,47 @@ msgstr ""
 msgid "Sponsors"
 msgstr ""
 
-#: includes/class-wp-sponsors-widget.php:79
+#: includes/class-wp-sponsors-widget.php:83
 msgid "Our sponsors"
 msgstr ""
 
-#: includes/class-wp-sponsors-widget.php:88
+#: includes/class-wp-sponsors-widget.php:92
 msgid "Title"
 msgstr ""
 
-#: includes/class-wp-sponsors-widget.php:93
+#: includes/class-wp-sponsors-widget.php:97
 msgid "Category"
 msgstr ""
 
-#: includes/class-wp-sponsors-widget.php:95
+#: includes/class-wp-sponsors-widget.php:99
 msgid "All"
 msgstr ""
 
-#: includes/class-wp-sponsors-widget.php:103
+#: includes/class-wp-sponsors-widget.php:107
 msgid "Display"
 msgstr ""
 
-#: includes/class-wp-sponsors-widget.php:105
+#: includes/class-wp-sponsors-widget.php:109
 msgid "Vertical (best for sidebars)"
 msgstr ""
 
-#: includes/class-wp-sponsors-widget.php:106
+#: includes/class-wp-sponsors-widget.php:110
 msgid "Horizontal (best for footers)"
 msgstr ""
 
-#: includes/class-wp-sponsors-widget.php:112
-msgid "Show images"
-msgstr ""
-
 #: includes/class-wp-sponsors-widget.php:116
-msgid "Show descriptions"
+msgid "Show sponsor title"
 msgstr ""
 
 #: includes/class-wp-sponsors-widget.php:120
+msgid "Show sponsor logo"
+msgstr ""
+
+#: includes/class-wp-sponsors-widget.php:124
+msgid "Show sponsor description"
+msgstr ""
+
+#: includes/class-wp-sponsors-widget.php:128
 msgid "Open links in a new window"
 msgstr ""
 
@@ -80,7 +84,7 @@ msgstr ""
 
 #: includes/class-wp-sponsors.php:200
 msgctxt "taxonomy singular name"
-msgid "Categorie"
+msgid "Category"
 msgstr ""
 
 #: includes/class-wp-sponsors.php:201
@@ -92,27 +96,27 @@ msgid "All categories"
 msgstr ""
 
 #: includes/class-wp-sponsors.php:203
-msgid "Parent categorie"
+msgid "Parent category"
 msgstr ""
 
 #: includes/class-wp-sponsors.php:204
-msgid "Parent categorie:"
+msgid "Parent category:"
 msgstr ""
 
 #: includes/class-wp-sponsors.php:205
-msgid "Edit categorie"
+msgid "Edit category"
 msgstr ""
 
 #: includes/class-wp-sponsors.php:206
-msgid "Update categorie"
+msgid "Update category"
 msgstr ""
 
 #: includes/class-wp-sponsors.php:207
-msgid "Add New categorie"
+msgid "Add New category"
 msgstr ""
 
 #: includes/class-wp-sponsors.php:208
-msgid "New Genre categore"
+msgid "New category"
 msgstr ""
 
 #: includes/class-wp-sponsors.php:209
