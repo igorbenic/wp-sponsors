@@ -2,3 +2,7 @@
  * All of the CSS for your dashboard-specific functionality should be
  * included in this file.
  */
+
+td.column-wp_sponsors_img {
+    width: 100%;
+}

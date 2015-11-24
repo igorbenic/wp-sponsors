@@ -197,15 +197,15 @@ class Wp_Sponsors {
             // Labels for the sponsor categories
             $labels = array(
                 'name' => _x('Categories', 'taxonomy general name'),
-                'singular_name' => _x('Categorie', 'taxonomy singular name'),
+                'singular_name' => _x('Category', 'taxonomy singular name'),
                 'search_items' => __('Search categories'),
                 'all_items' => __('All categories'),
-                'parent_item' => __('Parent categorie'),
-                'parent_item_colon' => __('Parent categorie:'),
-                'edit_item' => __('Edit categorie'),
-                'update_item' => __('Update categorie'),
-                'add_new_item' => __('Add New categorie'),
-                'new_item_name' => __('New Genre categore'),
+                'parent_item' => __('Parent category'),
+                'parent_item_colon' => __('Parent category:'),
+                'edit_item' => __('Edit category'),
+                'update_item' => __('Update category'),
+                'add_new_item' => __('Add New category'),
+                'new_item_name' => __('New category'),
                 'menu_name' => __('Categories'),
             );
             // Arguments for the sponsor categories (public = false means it don't have a url)
