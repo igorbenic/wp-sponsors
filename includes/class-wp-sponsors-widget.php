@@ -25,7 +25,13 @@
                 'pagination'             => false,
                 'order'                  => 'ASC',
                 'posts_per_page'         => '-1',
-                'sponsor_categories'     => $term,
+                'tax_query' => array(
+                        array(
+                            'taxonomy' => 'sponsor_categories',
+                            'field'    => 'slug',
+                            'terms'    => $term,
+                        ),
+                ),
                 'orderby'                => 'menu_order'
             );
             $title = apply_filters('widget_title', $instance['title'] );
