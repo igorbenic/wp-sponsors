@@ -25,16 +25,18 @@
                 'pagination'             => false,
                 'order'                  => 'ASC',
                 'posts_per_page'         => '-1',
-                'tax_query' => array(
-                        array(
-                            'taxonomy' => 'sponsor_categories',
-                            'field'    => 'slug',
-                            'terms'    => $term,
-                        ),
-                ),
                 'orderby'                => 'menu_order'
             );
-            $title = apply_filters('widget_title', $instance['title'] );
+            if($instance['category'] != 'all') {
+                $args['tax_query'] = array(
+                    array(
+                        'taxonomy' => 'sponsor_categories',
+                        'field'    => 'slug',
+                        'terms'    => $term,
+                    )
+                );
+            }
+                $title = apply_filters('widget_title', $instance['title'] );
             $before_title = "<div class='widget-title'>";
             $after_title = "</div>";
             // The Query
