@@ -4,7 +4,7 @@ Donate link: http://onedge.be/donate/
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
 Tested up to: 4.4
-Stable tag: 1.8.2
+Stable tag: 1.8.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,6 +30,9 @@ Ever had to add a bunch of images with links on them for your event/company part
 2. Add the widget to one or more sidebars and the images of your sponsors will show up there. Choose from which category you want to display sponsors (or select all), to show or hide images and the description
 
 == Changelog ==
+
+= 1.8.3 =
+* One last fix to the category selection in the widget, this should have all cases possible now.
 
 = 1.8.2 =
 * Fixes a bug caused in 1.8.1 where widgets that selected all sponsor categories wouldn't display any entries.
