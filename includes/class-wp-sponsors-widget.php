@@ -27,7 +27,7 @@
                 'posts_per_page'         => '-1',
                 'orderby'                => 'menu_order'
             );
-            if($instance['category'] != 'all') {
+            if($instance['category'] != 'all' OR $instance['category'] != '') {
                 $args['tax_query'] = array(
                     array(
                         'taxonomy' => 'sponsor_categories',
@@ -88,7 +88,7 @@
         function form($instance) {
 
             //Set up some default widget settings.
-            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'All', 'display_option' => 'vertical', 'target_blank' => 'on');
+            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'all', 'display_option' => 'vertical', 'target_blank' => 'on');
             $instance = wp_parse_args( (array) $instance, $defaults );
 
             if(empty($instance)) {
