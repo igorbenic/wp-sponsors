@@ -13,12 +13,10 @@
             extract( $args );
             // WP_Query arguments
 
-            if($instance['category'] != 'all') {
+            if($instance['category'] != 'all' && $instance['category'] != '') {
                 $term = $instance['category'];
             }
-            else {
-                $term = '';
-            };
+
             $args = array (
                 'post_type'              => 'sponsor',
                 'post_status'            => 'publish',
@@ -27,7 +25,8 @@
                 'posts_per_page'         => '-1',
                 'orderby'                => 'menu_order'
             );
-            if($instance['category'] != 'all' OR $instance['category'] != '') {
+
+            if($instance['category'] != 'all' && $instance['category'] != '') {
                 $args['tax_query'] = array(
                     array(
                         'taxonomy' => 'sponsor_categories',
@@ -36,7 +35,8 @@
                     )
                 );
             }
-                $title = apply_filters('widget_title', $instance['title'] );
+
+            $title = apply_filters('widget_title', $instance['title'] );
             $before_title = "<div class='widget-title'>";
             $after_title = "</div>";
             // The Query

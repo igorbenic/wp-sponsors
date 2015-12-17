@@ -16,7 +16,7 @@
  * Plugin Name:       Sponsors
  * Plugin URI:        http://onedge.be/plugins
  * Description:       Add links and logo's for your sponsors/partners/etc to your sidebars and posts with our widget and shortcode.
- * Version:           1.8.2
+ * Version:           1.8.3
  * Author:            Jan Henckens
  * Author URI:        http://onedge.be
  * License:           GPL-2.0+
