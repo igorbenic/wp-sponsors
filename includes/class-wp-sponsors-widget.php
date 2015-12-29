@@ -4,9 +4,8 @@
     */
     class sponsors_widget extends WP_Widget {
 
-        /** constructor -- name this the same as the class above */
-        function sponsors_widget() {
-            parent::WP_Widget(false, $name = __( 'Sponsors', 'wp-sponsors' ));
+        function __construct() {
+            parent::__construct(false, $name = __( 'Sponsors', 'wp-sponsors' ));
         }
 
         function widget($args, $instance) {
