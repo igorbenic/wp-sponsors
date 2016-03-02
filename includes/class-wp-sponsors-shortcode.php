@@ -22,8 +22,19 @@
             'pagination'            => false,
             'order'                 => 'ASC',
             'posts_per_page'        => '-1',
-            'sponsor_categories'    => $category,
+            'tax_query'             => array(),
         );
+        
+        if(!empty($category)) {
+          $args['tax_query'] = array(
+            array(
+              'taxonomy'  => 'sponsor_categories',
+              'field'     => 'slug',
+              'terms'     => $category,
+            ),
+          );
+        }
+        
         $sizes = array('small' => '15%', 'medium' => '30%', 'large' => '60%', 'full' => '100%', 'default' => '25%');
         ob_start();
 
