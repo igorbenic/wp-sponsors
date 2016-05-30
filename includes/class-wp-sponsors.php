@@ -308,8 +308,10 @@ class Wp_Sponsors {
             echo '<input type="hidden" name="wp_sponsors_desc_nonce" id="wp_sponsors_desc_nonce" value="' . wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
             // Get the url data if its already been entered
             $meta_value = get_post_meta( get_the_ID(), 'wp_sponsors_desc', true );
+            $meta_value = apply_filters('the_content', $meta_value);
+            $meta_value = str_replace(']]>', ']]>', $meta_value);
             // Checks and displays the retrieved value
-            $editor_settings = array( 'media_buttons' => false, 'textarea_rows' => '8', 'textarea_name' => 'wp_sponsors_desc');
+            $editor_settings = array( 'wpautop' => true, 'media_buttons' => false, 'textarea_rows' => '8', 'textarea_name' => 'wp_sponsors_desc');
             echo wp_editor($meta_value, 'wp_sponsors_desc', $editor_settings);
         }
 
