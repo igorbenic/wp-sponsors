@@ -53,7 +53,7 @@
                         <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                             <?php $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ); ?>
                             <li class="sponsors-item">
-                                <?php if(!empty($link)) { ?><a href="<?php echo $link ?>" target="_blank"><?php }; ?>
+                                <?php if(!empty($link)) { ?><a href="<?php echo $link ?>" target="_blank" rel="nofollow"><?php }; ?>
                                 <?php if($atts['images'] === "yes"){ ?>
                                     <img 
                                     src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" 
@@ -74,7 +74,7 @@
                     <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                     <?php $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ); ?>
                     <div class="sponsor-item <?php echo $size; ?>">
-                        <?php if(!empty($link)) { ?><a href="<?php echo $link ?>" target="_blank"><?php }; ?>
+                        <?php if(!empty($link)) { ?><a href="<?php echo $link ?>" target="_blank" rel="nofollow"><?php }; ?>
                         <?php if($atts['image'] === "yes" OR $atts['images'] === "yes" ){ ?>
                             <img
                                 src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>"

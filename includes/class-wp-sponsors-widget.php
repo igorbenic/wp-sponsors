@@ -49,7 +49,7 @@
                     <?php $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ); ?>
                     <li class="sponsors-item">
                         <?php if(!empty($link)) { ?>
-                        <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" <?php if($instance['target_blank'] === "on"){ ?> target="_blank"<?php }; ?>>
+                        <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" <?php if($instance['target_blank'] === "on"){ ?> target="_blank"<?php }; ?> rel="nofollow">
                         <?php }; ?>
                         <?php if($instance['show_title'] === "on"){ ?>
                             <div class="sponsor-title widget-title"><?php echo the_title(); ?></div>
