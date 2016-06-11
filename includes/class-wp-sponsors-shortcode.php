@@ -26,6 +26,11 @@
             'tax_query'             => array(),
         );
 
+        $nofollow = true;
+        if(false === SPONSORS_NO_FOLLOW) {
+            $nofollow = false;
+        }
+
         if(!empty($category)) {
           $args['tax_query'] = array(
             array(
@@ -53,7 +58,7 @@
                         <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                             <?php $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ); ?>
                             <li class="sponsors-item">
-                                <?php if(!empty($link)) { ?><a href="<?php echo $link ?>" target="_blank" rel="nofollow"><?php }; ?>
+                                <?php if(!empty($link)) { ?><a href="<?php echo $link ?>" target="_blank" <?php if($nofollow) {?>rel="nofollow" <?php } ?>><?php }; ?>
                                 <?php if($atts['images'] === "yes"){ ?>
                                     <img 
                                     src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" 
