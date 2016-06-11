@@ -35,6 +35,11 @@
                 );
             }
 
+            $nofollow = true;
+            if(false === SPONSORS_NO_FOLLOW) {
+                $nofollow = false;
+            }
+
             $title = apply_filters('widget_title', $instance['title'] );
             $before_title = "<div class='widget-title'>";
             $after_title = "</div>";
@@ -49,7 +54,7 @@
                     <?php $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ); ?>
                     <li class="sponsors-item">
                         <?php if(!empty($link)) { ?>
-                        <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" <?php if($instance['target_blank'] === "on"){ ?> target="_blank"<?php }; ?> rel="nofollow">
+                        <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" <?php if($instance['target_blank'] === "on"){ ?> target="_blank"<?php }; ?> <?php if($nofollow) {?>rel="nofollow" <?php } ?>>
                         <?php }; ?>
                         <?php if($instance['show_title'] === "on"){ ?>
                             <div class="sponsor-title widget-title"><?php echo the_title(); ?></div>
