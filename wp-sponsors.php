@@ -17,8 +17,8 @@
  * Plugin URI:        http://studioespresso.co
  * Description:       Add links and logo's for your sponsors/partners/etc to your sidebars and posts with our widget and shortcode.
  * Version:           1.8.5
- * Author:            Jan Henckens
- * Author URI:        http://onedge.be
+ * Author:            Studio Espresso
+ * Author URI:        http://studioespresso.co
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       wp-sponsors
