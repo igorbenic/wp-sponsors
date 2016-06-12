@@ -19,7 +19,7 @@
  *
  * @package    Wp_Sponsors
  * @subpackage Wp_Sponsors/includes
- * @author     Jan Henckens <info@onedge.be>
+ * @author     Jan Henckens <jan@studioespresso.co>
  */
 class Wp_Sponsors_Loader {
 

@@ -18,7 +18,7 @@
  *
  * @package    Wp_Sponsors
  * @subpackage Wp_Sponsors/public
- * @author     Jan Henckens <info@onedge.be>
+ * @author     Jan Henckens <jan@studioespresso.co>
  */
 class Wp_Sponsors_Public {
 
