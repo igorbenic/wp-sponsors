@@ -136,7 +136,7 @@ msgid "Sponsor Logo"
 msgstr "Sponsor Logo"
 
 #. Plugin URI of the plugin/theme
-msgid "http://onedge.be/plugins"
+msgid "http://studioespresso.co"
 msgstr ""
 
 #. Description of the plugin/theme
