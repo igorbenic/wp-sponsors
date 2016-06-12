@@ -115,6 +115,11 @@ class Wp_Sponsors {
      */
     require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-sponsors-admin.php';
 
+    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-extras.php';
+
+    $extra = new WP_Sponsors_extras();
+    $extra->setup();
+
     /**
      * The class responsible for defining all actions that occur in the public-facing
      * side of the site.
