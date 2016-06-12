@@ -3,8 +3,8 @@ Contributors: janhenckens
 Donate link: http://onedge.be/donate/
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
-Tested up to: 4.5
-Stable tag: 1.8.5
+Tested up to: 4.5.2
+Stable tag: 1.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,6 +28,13 @@ Ever had to add a bunch of images with links on them for your event/company part
 == Screenshots ==
 1. After you activate the plugin, a new content type will become available on the your WordPress admin panel. Here you can add a link, a description and an image for each Sponsor.
 2. Add the widget to one or more sidebars and the images of your sponsors will show up there. Choose from which category you want to display sponsors (or select all), to show or hide images and the description
+
+== Shortcode ==
+
+Aside from widget areas, you can use a shortcode to display your sponsors in your content. Here's a short overview of the options the shortcode supports:
+
+- 
+- 
 
 == Changelog ==
 
