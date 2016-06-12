@@ -17,10 +17,10 @@ class Wp_Sponsors_extras {
 
         if ( strpos( $file, 'wp-sponsors.php' ) !== false ) {
             $new_links = array(
-                    'donate' => '<a href="http://studioespresso.co/donate" target="_blank" style="color: brown; font-weight: bold;">Donate</a>',
+                    'donate' => '<a href="http://studioespresso.co/donate?utm_source=plugin&amp;utm_medium=dashboard_link&amp;utm_campaign=wp-sponsors
+                    " target="_blank" style="color: brown; font-weight: bold;">Donate</a>',
                     'support' => '<a href="https://wordpress.org/support/plugin/wp-sponsors" target="_blank" style="color: green; font-weight: bold;">Support</a>'
                     );
-            
             $links = array_merge( $links, $new_links );
         }
         

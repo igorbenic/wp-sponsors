@@ -38,6 +38,11 @@ Aside from widget areas, you can use a shortcode to display your sponsors in you
 
 == Changelog ==
 
+= 1.9.0 =
+* Improved sponsor description saving
+* Added default rel="nofollow" for sponsor links
+* Added support and donate links to plugin description
+
 = 1.8.5 = 
 * In the shortcode, items are now sorted by the menu_order by default.
 
