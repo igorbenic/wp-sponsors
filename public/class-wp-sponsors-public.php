@@ -96,7 +96,7 @@ class Wp_Sponsors_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->wp_sponsors, plugin_dir_url( __FILE__ ) . 'js/wp-sponsors-public.js', array( 'jquery' ), $this->version, false );
+		// wp_enqueue_script( $this->wp_sponsors, plugin_dir_url( __FILE__ ) . 'js/wp-sponsors-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 
