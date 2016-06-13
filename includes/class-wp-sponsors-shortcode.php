@@ -45,8 +45,12 @@
         ob_start();
 
         // Set default options with then shortcode is used without parameters
+        // style options defaults to list
         if ( !isset($atts['style']) ) { $atts['style'] = 'list';}
+        // images options default to yes
         if ( !isset($atts['images']) && $atts['image'] != "no" ) { $atts['images'] = 'yes';}
+        // debug option defaults to false
+        isset($atts['debug']) ? $debug = true : $debug = false;
 
         $query = new WP_Query($args);
         // If we have results, continue:
@@ -74,7 +78,11 @@
                 <div id="wp-sponsors" class="clearfix"> 
                     <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                     <?php $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ); ?>
-                    <div class="sponsor-item <?php echo $size; ?>">
+                    <?php   $class = 'sponsor-item';
+                            $class .= ' ' . $size;
+                            if($debug) { $class .= ' ' . 'debug'; } 
+                    ?>
+                    <div class="<?php echo $class; ?>">
                         <?php if(!empty($link)) { ?><a href="<?php echo $link ?>" target="_blank" rel="nofollow"><?php }; ?>
                         <?php if($atts['image'] === "yes" OR $atts['images'] === "yes" ){ ?>
                             <img src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" alt="<?php the_title(); ?>">
