@@ -31,10 +31,13 @@ Ever had to add a bunch of images with links on them for your event/company part
 
 == Shortcode ==
 
-Aside from widget areas, you can use a shortcode to display your sponsors in your content. Here's a short overview of the options the shortcode supports:
+Aside from widget areas, you can use a shortcode to display your sponsors in your content.
 
-- 
-- 
+The shortcode [sponsors] takes the following options:
+- images (yes|no, default: yes)
+- description (yes|no, default: no)
+- category (category-slug, default: all)
+- size (small|medium|large|full, default: medium)
 
 == Changelog ==
 

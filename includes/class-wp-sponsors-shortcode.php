@@ -60,11 +60,7 @@
                             <li class="sponsors-item">
                                 <?php if(!empty($link)) { ?><a href="<?php echo $link ?>" target="_blank" <?php if($nofollow) {?>rel="nofollow" <?php } ?>><?php }; ?>
                                 <?php if($atts['images'] === "yes"){ ?>
-                                    <img 
-                                    src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" 
-                                    alt="<?php the_title(); ?>" 
-                                    width="<?php echo $sizes[$size]; ?>"
-                                    >
+                                    <img  src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>"  alt="<?php the_title(); ?>"  width="<?php echo $sizes[$size]; ?>">
                                 <?php } else { the_title(); } ?>
                                 <?php if(!empty($link)) { ?></a><?php }; ?>
                             <?php if ( $atts['description'] === "yes" ) { ?> <p><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p> <?php } ?>
@@ -81,10 +77,7 @@
                     <div class="sponsor-item <?php echo $size; ?>">
                         <?php if(!empty($link)) { ?><a href="<?php echo $link ?>" target="_blank" rel="nofollow"><?php }; ?>
                         <?php if($atts['image'] === "yes" OR $atts['images'] === "yes" ){ ?>
-                            <img
-                                src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>"
-                                alt="<?php the_title(); ?>"
-                                >
+                            <img src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" alt="<?php the_title(); ?>">
                         <?php } else { the_title(); } ?>
                         <?php if ( $atts['description'] === "yes" ) { ?> <p><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p> <?php } ?>
                         <?php if(!empty($link)) { ?></a><?php }; ?>
