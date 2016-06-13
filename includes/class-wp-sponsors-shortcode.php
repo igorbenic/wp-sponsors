@@ -71,10 +71,11 @@
                                     if(get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ) != "") {  ?>
                                         <p><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p> 
                              <?php } }  ?>
-                        </li>
-                        <?php endwhile; return ob_get_clean(); ?>
+                            </li>
+                        <?php endwhile; ?> 
                     </ul>
                 </div>
+            <?php return ob_get_clean(); ?>
         <?php };
             // If the style option is set to linear, this view will be used
             if($atts['style'] === "linear") { ?>
@@ -96,8 +97,10 @@
                              <?php } }  ?>                        
                              <?php if(!empty($link)) { ?></a><?php }; ?>
                     </div>
-                    <?php endwhile; return ob_get_clean(); ?>
+                    <?php endwhile; ?>
+
                 </div>
+            <?php return ob_get_clean(); ?>
         <?php };
             }
         }
