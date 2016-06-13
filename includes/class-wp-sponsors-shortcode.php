@@ -67,7 +67,10 @@
                                     <img  src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>"  alt="<?php the_title(); ?>"  width="<?php echo $sizes[$size]; ?>">
                                 <?php } else { the_title(); } ?>
                                 <?php if(!empty($link)) { ?></a><?php }; ?>
-                            <?php if ( $atts['description'] === "yes" ) { ?> <p><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p> <?php } ?>
+                            <?php if ( $atts['description'] === "yes" ) { 
+                                    if(get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ) != "") {  ?>
+                                        <p><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p> 
+                             <?php } }  ?>
                         </li>
                         <?php endwhile; return ob_get_clean(); ?>
                     </ul>
@@ -87,8 +90,11 @@
                         <?php if($atts['image'] === "yes" OR $atts['images'] === "yes" ){ ?>
                             <img src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" alt="<?php the_title(); ?>">
                         <?php } else { the_title(); } ?>
-                        <?php if ( $atts['description'] === "yes" ) { ?> <p><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p> <?php } ?>
-                        <?php if(!empty($link)) { ?></a><?php }; ?>
+                            <?php if ( $atts['description'] === "yes" ) { 
+                                    if(get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ) != "") {  ?>
+                                        <p><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p> 
+                             <?php } }  ?>                        
+                             <?php if(!empty($link)) { ?></a><?php }; ?>
                     </div>
                     <?php endwhile; return ob_get_clean(); ?>
                 </div>
