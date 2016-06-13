@@ -41,7 +41,7 @@
           );
         }
         
-        $sizes = array('small' => '15%', 'medium' => '30%', 'large' => '60%', 'full' => '100%', 'default' => '25%');
+        $sizes = array('small' => '15%', 'medium' => '30%', 'large' => '60%', 'full' => '100%', 'default' => '30%');
         ob_start();
 
         // Set default options with then shortcode is used without parameters
