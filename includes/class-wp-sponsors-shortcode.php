@@ -48,60 +48,72 @@
         // style options defaults to list
         if ( !isset($atts['style']) ) { $atts['style'] = 'list';}
         // images options default to yes
-        if ( !isset($atts['images']) && $atts['image'] != "no" ) { $atts['images'] = 'yes';}
+        $atts['images'] != 'no' ? $images = true : $images = false;
+        $atts['image'] != 'no' ? $images = true : $images = false;
         // debug option defaults to false
         isset($atts['debug']) ? $debug = true : $debug = false;
+        $atts['description'] = 'yes' ? $description = true : $description = false;
 
         $query = new WP_Query($args);
-        // If we have results, continue:
-        if ( $query->have_posts() ) { 
-            // If the style option is set to list or the nothing, list view will be used
-            if($atts['style'] === "list") { ?>
-                <div id="wp-sponsors">
-                    <ul>
-                        <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                            <?php $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ); ?>
-                            <li class="sponsors-item">
-                                <?php if(!empty($link)) { ?><a href="<?php echo $link ?>" target="_blank" <?php if($nofollow) {?>rel="nofollow" <?php } ?>><?php }; ?>
-                                <?php if($atts['images'] === "yes"){ ?>
-                                    <img  src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>"  alt="<?php the_title(); ?>"  width="<?php echo $sizes[$size]; ?>">
-                                <?php } else { the_title(); } ?>
-                                <?php if(!empty($link)) { ?></a><?php }; ?>
-                            <?php if ( $atts['description'] === "yes" ) { 
-                                    if(get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ) != "") {  ?>
-                                        <p><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p> 
-                             <?php } }  ?>
-                            </li>
-                        <?php endwhile; ?> 
-                    </ul>
-                </div>
-            <?php return ob_get_clean(); ?>
-        <?php };
-            // If the style option is set to linear, this view will be used
-            if($atts['style'] === "linear") { ?>
-                <div id="wp-sponsors" class="clearfix"> 
-                    <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                    <?php $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ); ?>
-                    <?php   $class = 'sponsor-item';
-                            $class .= ' ' . $size;
-                            if($debug) { $class .= ' ' . 'debug'; } 
-                    ?>
-                    <div class="<?php echo $class; ?>">
-                        <?php if(!empty($link)) { ?><a href="<?php echo $link ?>" target="_blank" rel="nofollow"><?php }; ?>
-                        <?php if($atts['image'] === "yes" OR $atts['images'] === "yes" ){ ?>
-                            <img src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" alt="<?php the_title(); ?>">
-                        <?php } else { the_title(); } ?>
-                            <?php if ( $atts['description'] === "yes" ) { 
-                                    if(get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ) != "") {  ?>
-                                        <p><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p> 
-                             <?php } }  ?>                        
-                             <?php if(!empty($link)) { ?></a><?php }; ?>
-                    </div>
-                    <?php endwhile; ?>
 
-                </div>
-            <?php return ob_get_clean(); ?>
-        <?php };
+        // Set up the shortcode styles
+        $style = array();
+        $layout = $atts['style'];
+
+        switch ($layout) {
+            case "list":
+                $style['containerPre'] = '<div id="wp-sponsors"><ul>';
+                $style['containerPost'] = '</ul></div>';
+                $style['wrapperClass'] = 'sponsors-item';
+                $style['wrapperPre'] = '<li class="' .  $style["wrapperClass"] . '">';
+                $style['wrapperPost'] = '</li>';
+                break;
+            case "linear":
+                $style['containerPre'] = '<div id="wp-sponsors" class="clearfix">';
+                $style['containerPost'] = '</div>';
+                $style['wrapperClass'] = 'sponsors-item';
+                $style['wrapperPre'] = '<div class="' .  $style["wrapperClass"] . '">';
+                $style['wrapperPost'] = '</div>';
+                break;
+        }
+ 
+        if($atts['test'] === "true") {
+            if ( $query->have_posts() ) { 
+                while ( $query->have_posts() ) : $query->the_post();
+
+                    if($query->current_post === 0) { echo $style['containerPre']; }
+                    // Check if the sponsor was a link
+                    get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) != '' ? $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) : $link = false;
+
+                    $style['wrapperClass'] .= ' ';
+                    if($debug) { $style['wrapperclass'] .= ' debug'; }
+                    echo $style['wrapperPre']; 
+                    $sponsor = '';
+                    // Check if we have a link
+                    if($link) { 
+                        $sponsor .= '<a href=' .$link . ' target="_blank">';
+                    }
+                    // Check if we should do images, just show the title if there's no image set
+                     if($images){
+                        $sponsor .= '<img src=' . get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) . '>';
+                    } else {
+                        $sponsor .= the_title();
+                    }
+                    // Check if we need a description and the description is not empty 
+                    if($description) {
+                        $sponsor .= '<p>' . get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ) . '</p> ';
+                    }
+                    // Close the link tag if we have it
+                    if($link) { 
+                        $sponsor .= '</a>';
+                    }
+                    echo $sponsor;
+                    echo $style['wrapperPost'];
+                    $style['wrapperClass'] = 'sponsor-item';
+                    if( ($query->current_post + 1) === $query->post_count) { echo $style['containerPost']; }
+                endwhile;
+                return ob_get_clean();
             }
         }
+    }
     add_shortcode( 'sponsors', 'sponsors_register_shortcode' );
