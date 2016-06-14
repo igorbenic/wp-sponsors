@@ -13,7 +13,8 @@
             'category' => '',
             'size' => 'default',
             'style' => 'list',
-            'description' => 'no'
+            'description' => 'no',
+            'debug' => NULL
         ), $atts ) );
 
         $args = array (
@@ -50,7 +51,7 @@
         // images options default to yes
         $images != 'no' || $image != 'no'  ? $images = true : $images = false;
         // debug option defaults to false
-        isset($atts['debug']) ? $debug = true : $debug = false;
+        isset($debug) ? $debug = true : $debug = false;
         $description = 'yes' ? $description = true : $description = false;
 
         $query = new WP_Query($args);
@@ -63,16 +64,16 @@
             case "list":
                 $style['containerPre'] = '<div id="wp-sponsors"><ul>';
                 $style['containerPost'] = '</ul></div>';
-                $style['wrapperClass'] = 'sponsors-item';
-                $style['wrapperPre'] = '<li class="' .  $style["wrapperClass"] . '">';
+                $style['wrapperClass'] = 'sponsor-item';
+                $style['wrapperPre'] = 'li';
                 $style['wrapperPost'] = '</li>';
                 break;
             case "linear":
             case "grid":
                 $style['containerPre'] = '<div id="wp-sponsors" class="clearfix">';
                 $style['containerPost'] = '</div>';
-                $style['wrapperClass'] = 'sponsors-item';
-                $style['wrapperPre'] = '<div class="' .  $style["wrapperClass"] . '">';
+                $style['wrapperClass'] = 'sponsor-item';
+                $style['wrapperPre'] = 'div';
                 $style['wrapperPost'] = '</div>';
                 break;
         }
@@ -83,8 +84,11 @@
                 if($query->current_post === 0) { echo $style['containerPre']; }
                 // Check if the sponsor was a link
                 get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) != '' ? $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) : $link = false;
-                if($debug) { $style['wrapperClass'] .= ' debug'; }
-                echo $style['wrapperPre']; 
+                $class = '';
+                $class .= $size;
+                if($debug) { $class .= ' debug'; }
+
+                echo '<' . $style['wrapperPre'] . ' class="' . $style['wrapperClass'] .' ' . $class . '">'; 
                 $sponsor = '';
                 // Check if we have a link
                 if($link) { 
@@ -106,7 +110,6 @@
                 }
                 echo $sponsor;
                 echo $style['wrapperPost'];
-                $style['wrapperClass'] = 'sponsor-item';
                 if( ($query->current_post + 1) === $query->post_count) { echo $style['containerPost']; }
             endwhile;
             return ob_get_clean();
