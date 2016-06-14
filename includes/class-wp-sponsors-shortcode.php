@@ -48,11 +48,10 @@
         // style options defaults to list
         if ( !isset($atts['style']) ) { $atts['style'] = 'list';}
         // images options default to yes
-        $atts['images'] != 'no' ? $images = true : $images = false;
-        $atts['image'] != 'no' ? $images = true : $images = false;
+        $images != 'no' || $image != 'no'  ? $images = true : $images = false;
         // debug option defaults to false
         isset($atts['debug']) ? $debug = true : $debug = false;
-        $atts['description'] = 'yes' ? $description = true : $description = false;
+        $description = 'yes' ? $description = true : $description = false;
 
         $query = new WP_Query($args);
 
@@ -77,43 +76,39 @@
                 break;
         }
  
-        if($atts['test'] === "true") {
-            if ( $query->have_posts() ) { 
-                while ( $query->have_posts() ) : $query->the_post();
+        if ( $query->have_posts() ) { 
+            while ( $query->have_posts() ) : $query->the_post();
 
-                    if($query->current_post === 0) { echo $style['containerPre']; }
-                    // Check if the sponsor was a link
-                    get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) != '' ? $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) : $link = false;
-
-                    $style['wrapperClass'] .= ' ';
-                    if($debug) { $style['wrapperclass'] .= ' debug'; }
-                    echo $style['wrapperPre']; 
-                    $sponsor = '';
-                    // Check if we have a link
-                    if($link) { 
-                        $sponsor .= '<a href=' .$link . ' target="_blank">';
-                    }
-                    // Check if we should do images, just show the title if there's no image set
-                     if($images){
-                        $sponsor .= '<img src=' . get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) . '>';
-                    } else {
-                        $sponsor .= the_title();
-                    }
-                    // Check if we need a description and the description is not empty 
-                    if($description) {
-                        $sponsor .= '<p>' . get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ) . '</p> ';
-                    }
-                    // Close the link tag if we have it
-                    if($link) { 
-                        $sponsor .= '</a>';
-                    }
-                    echo $sponsor;
-                    echo $style['wrapperPost'];
-                    $style['wrapperClass'] = 'sponsor-item';
-                    if( ($query->current_post + 1) === $query->post_count) { echo $style['containerPost']; }
-                endwhile;
-                return ob_get_clean();
-            }
+                if($query->current_post === 0) { echo $style['containerPre']; }
+                // Check if the sponsor was a link
+                get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) != '' ? $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) : $link = false;
+                if($debug) { $style['wrapperClass'] .= ' debug'; }
+                echo $style['wrapperPre']; 
+                $sponsor = '';
+                // Check if we have a link
+                if($link) { 
+                    $sponsor .= '<a href=' .$link . ' target="_blank">';
+                }
+                // Check if we should do images, just show the title if there's no image set
+                 if($images){
+                    $sponsor .= '<img src=' . get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) . ' width=' . $sizes[$size] . '>';
+                } else {
+                    $sponsor .= the_title();
+                }
+                // Check if we need a description and the description is not empty 
+                if($description) {
+                    $sponsor .= '<p>' . get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ) . '</p> ';
+                }
+                // Close the link tag if we have it
+                if($link) { 
+                    $sponsor .= '</a>';
+                }
+                echo $sponsor;
+                echo $style['wrapperPost'];
+                $style['wrapperClass'] = 'sponsor-item';
+                if( ($query->current_post + 1) === $query->post_count) { echo $style['containerPost']; }
+            endwhile;
+            return ob_get_clean();
         }
     }
     add_shortcode( 'sponsors', 'sponsors_register_shortcode' );
