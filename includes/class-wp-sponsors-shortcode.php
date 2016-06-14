@@ -41,7 +41,7 @@
           );
         }
         
-        $sizes = array('small' => '15%', 'medium' => '30%', 'large' => '60%', 'full' => '100%', 'default' => '30%');
+        $sizes = array('small' => '15%', 'medium' => '30%', 'large' => '50%', 'full' => '100%', 'default' => '30%');
         ob_start();
 
         // Set default options with then shortcode is used without parameters
@@ -68,6 +68,7 @@
                 $style['wrapperPost'] = '</li>';
                 break;
             case "linear":
+            case "grid":
                 $style['containerPre'] = '<div id="wp-sponsors" class="clearfix">';
                 $style['containerPost'] = '</div>';
                 $style['wrapperClass'] = 'sponsors-item';
