@@ -26,10 +26,7 @@
             'tax_query'             => array(),
         );
 
-        $nofollow = true;
-        if(false === SPONSORS_NO_FOLLOW) {
-            $nofollow = false;
-        }
+        $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true; 
 
         if(!empty($category)) {
           $args['tax_query'] = array(
