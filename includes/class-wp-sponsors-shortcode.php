@@ -72,6 +72,7 @@
                 $style['wrapperClass'] = 'sponsor-item';
                 $style['wrapperPre'] = 'div';
                 $style['wrapperPost'] = '</div>';
+                $style['imageSize'] = 'full';
                 break;
         }
  
@@ -93,7 +94,8 @@
                 }
                 // Check if we should do images, just show the title if there's no image set
                  if($images){
-                    $sponsor .= '<img src=' . get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) . ' width=' . $sizes[$size] . '>';
+                    $imageSize = isset($style['imageSize']) ? $style['imageSize'] : $sizes[$size];
+                    $sponsor .= '<img src=' . get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) . ' width=' . $imageSize . '>';
                 } else {
                     $sponsor .= the_title();
                 }
