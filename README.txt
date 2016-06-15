@@ -4,7 +4,7 @@ Donate link: http://onedge.be/donate/
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
 Tested up to: 4.5.2
-Stable tag: 1.9.0
+Stable tag: 1.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,9 @@ The shortcode [sponsors] takes the following options:
 - size (small|medium|large|full, default: medium)
 
 == Changelog ==
+
+= 1.9.1 =
+* Bugfix in the nofollow feature
 
 = 1.9.0 =
 * Improved sponsor description saving

@@ -35,10 +35,7 @@
                 );
             }
 
-            $nofollow = true;
-            if(false === SPONSORS_NO_FOLLOW) {
-                $nofollow = false;
-            }
+            $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true; 
 
             $title = apply_filters('widget_title', $instance['title'] );
             $before_title = "<div class='widget-title'>";
