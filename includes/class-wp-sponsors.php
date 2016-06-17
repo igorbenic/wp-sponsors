@@ -256,6 +256,7 @@ class Wp_Sponsors {
             );
             register_post_type( 'sponsor', $args );
         }
+        add_post_type_support( 'sponsor', 'thumbnail' );    
         add_action( 'init', 'sponsors_register' );
 
         /**
