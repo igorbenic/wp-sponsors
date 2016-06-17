@@ -95,7 +95,8 @@
                 // Check if we should do images, just show the title if there's no image set
                  if($images){
                     $imageSize = isset($style['imageSize']) ? $style['imageSize'] : $sizes[$size];
-                    $sponsor .= '<img src=' . get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) . ' width=' . $imageSize . '>';
+                    $sponsor .=  get_the_post_thumbnail( get_the_ID(), 'medium' );
+;
                 } else {
                     $sponsor .= the_title();
                 }
