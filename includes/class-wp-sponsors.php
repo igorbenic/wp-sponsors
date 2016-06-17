@@ -260,21 +260,6 @@ class Wp_Sponsors {
         add_action( 'init', 'sponsors_register' );
 
         /**
-         * Loads the scripts needed for the upload modal
-         */
-        function sponsors_upload_enqueue() {
-            wp_enqueue_media();
-            wp_localize_script( 'wp_sponsors_img-button', 'wp_sponsors_img',
-                array(
-                    'title' => 'Choose or Upload an Image',
-                    'button' => 'Use this image',
-                )
-            );
-            wp_enqueue_script( 'wp_sponsors_img-button' );
-        }
-        add_action( 'admin_enqueue_scripts', 'sponsors_upload_enqueue' );
-
-        /**
          * Register meta box(es).
          */
         function add_sponsor_metabox() {
@@ -286,12 +271,6 @@ class Wp_Sponsors {
             add_meta_box( 'meta-box-desc', __( 'Sponsor Description', 'wp_sponsors' ), 'sponsor_metabox_desc', 'sponsor', 'normal' );
         }
         add_action( 'add_meta_boxes', 'add_sponsor_desc' );
-
-        function add_file_meta_box() {
-            add_meta_box('meta-box-media', __( 'Sponsor Logo', 'wp_sponsors' ), 'sponsors_metabox_image', 'sponsor', 'normal');
-        }
-        add_action( 'add_meta_boxes', 'add_file_meta_box' );
-
 
         /**
          * Meta box display callback.
@@ -321,15 +300,6 @@ class Wp_Sponsors {
             echo wp_editor($meta_value, 'wp_sponsors_desc', $editor_settings);
         }
 
-        function sponsors_metabox_image( $post ) {
-            $meta_value = get_post_meta( $post->ID );
-            if(isset($meta_value['wp_sponsors_img'] ) ){ $image = $meta_value['wp_sponsors_img'][0];  }else {$image = "";}
-            echo '<input type="hidden" name="wp_sponsors_img_nonce" id="wp_sponsors_img_nonce" value="' . wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
-            echo '<div><input type="text" name="wp_sponsors_img" class="widefat" id="wp_sponsors_img" value="'. $image .'" /></div>';
-            echo '<div><img src="' . $image .'" width="200px"></div>';
-            echo '<input type="button" id="wp_sponsors_img-button" class="button" value="Choose or Upload an Image" /></p>';
-
-        }
 
         /**
          * Save meta box content.
@@ -354,11 +324,6 @@ class Wp_Sponsors {
             }
             if( isset( $_POST[ 'wp_sponsors_desc' ] ) ) {
                 update_post_meta( $post_id, 'wp_sponsors_desc', $_POST[ 'wp_sponsors_desc' ] );
-            }
-            $is_valid_nonce = ( isset( $_POST[ 'wp_sponsors_img_nonce' ] ) && wp_verify_nonce( $_POST[ 'wp_sponsors_img_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
-            // Checks for input and sanitizes/saves if needed
-            if( isset( $_POST[ 'wp_sponsors_img' ] ) ) {
-                update_post_meta( $post_id, 'wp_sponsors_img', $_POST[ 'wp_sponsors_img' ] );
             }
         }
         add_action( 'save_post', 'sponsors_save_metabox' );
