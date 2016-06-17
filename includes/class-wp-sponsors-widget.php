@@ -57,7 +57,7 @@
                             <div class="sponsor-title widget-title"><?php echo the_title(); ?></div>
                         <?php }; ?>
                         <?php if($instance['check_images'] === "on"){ ?>
-                            <img src="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) ?>" alt="<?php the_title(); ?>">
+                            <?php echo get_the_post_thumbnail( get_the_ID(), 'medium' ); ?>
                         <?php } else { the_title(); } ?>
                         <?php if($instance['show_description'] === "on"){ ?>
                             <br><p class="sponsor-desc"><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p>
