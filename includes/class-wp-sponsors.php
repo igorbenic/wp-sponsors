@@ -392,8 +392,6 @@ class Wp_Sponsors {
             $plugins = get_plugins();
             $currentVersion = $plugins['wp-sponsors/wp-sponsors.php']['Version'];
 
-            var_dump($currentVersion);
-            var_dump($this->version);
             if(version_compare($currentVersion, $this->version, '<')) {
                 $update = new WP_Sponsors_upgrade( $this->get_wp_sponsors(), $this->get_version() );
                 $update->run();                
