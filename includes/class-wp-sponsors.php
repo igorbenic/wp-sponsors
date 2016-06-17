@@ -332,8 +332,8 @@ class Wp_Sponsors {
          * Adds a new column to the Sponsors overview list in the dashboard
          */
         function sponsors_add_new_column($defaults) {
-            $defaults['wp_sponsors_img'] = 'Sponsor Image';
-            $defaults['menu_order'] = "Order";
+            $defaults['wp_sponsors_logo'] = __('Sponsor logo', 'wp-sponsors');
+            $defaults['menu_order'] = __('Order', 'wp-sponsors');
             return $defaults;
         }
         add_filter('manage_sponsor_posts_columns', 'sponsors_add_new_column');
@@ -342,10 +342,11 @@ class Wp_Sponsors {
          * Adds the sponsors image (if available) to the Sponsors overview list in the dashboard
          */
         function sponsors_column_add_image($column_name, $post_ID) {
-            if ($column_name == 'wp_sponsors_img') {
-                $post_featured_image = get_post_meta( $post_ID, 'wp_sponsors_img', true );
+            if ($column_name == 'wp_sponsors_logo') {
+
+                $post_featured_image = get_the_post_thumbnail( $post_id, 'medium' );
                 if ($post_featured_image) {
-                    echo '<img src="' . $post_featured_image . '" height="80px"/>';
+                    echo $post_featured_image;
                 }
             }
         }
