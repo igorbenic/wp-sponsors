@@ -380,6 +380,30 @@ class Wp_Sponsors {
     }
 
     /**
+     * The function that checks for updates and runs the appropriate upgrade when needed
+     *
+     * @since     2.0.0
+     */
+    public function upgrade() {
+        if(is_admin()) {
+            if ( ! function_exists( 'get_plugins' ) ) {
+                require_once ABSPATH . 'wp-admin/includes/plugin.php';
+            }
+            $plugins = get_plugins();
+            $currentVersion = $plugins['wp-sponsors/wp-sponsors.php']['Version'];
+
+            var_dump($currentVersion);
+            var_dump($this->version);
+            if(version_compare($currentVersion, $this->version, '<')) {
+                $update = new WP_Sponsors_upgrade( $this->get_wp_sponsors(), $this->get_version() );
+                $update->run();                
+            }
+            return;
+        }
+        return;
+    }
+
+    /**
      * The name of the plugin used to uniquely identify it within the context of
      * WordPress and to define internationalization functionality.
      *
