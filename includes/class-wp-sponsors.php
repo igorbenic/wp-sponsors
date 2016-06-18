@@ -75,7 +75,6 @@ class Wp_Sponsors {
         $this->set_locale();
         $this->define_admin_hooks();
         $this->define_public_hooks();
-        $this->upgrade();
 
     }
 
@@ -161,6 +160,7 @@ class Wp_Sponsors {
 
         $plugin_admin = new Wp_Sponsors_Admin( $this->get_wp_sponsors(), $this->get_version() );
 
+        $this->loader->add_action( 'plugins_loaded', $plugin_admin, 'update' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
@@ -377,28 +377,6 @@ class Wp_Sponsors {
                         return $columns;
                 }
                 add_filter('manage_edit-sponsor_sortable_columns','sponsor_order_column');
-    }
-
-    /**
-     * The function that checks for updates and runs the appropriate upgrade when needed
-     *
-     * @since     2.0.0
-     */
-    public function upgrade() {
-        if(is_admin()) {
-            if ( ! function_exists( 'get_plugins' ) ) {
-                require_once ABSPATH . 'wp-admin/includes/plugin.php';
-            }
-            $plugins = get_plugins();
-            $currentVersion = $plugins['wp-sponsors/wp-sponsors.php']['Version'];
-
-            if(version_compare($currentVersion, $this->version, '<')) {
-                $update = new WP_Sponsors_upgrade( $this->get_wp_sponsors(), $this->get_version() );
-                $update->run();                
-            }
-            return;
-        }
-        return;
     }
 
     /**
