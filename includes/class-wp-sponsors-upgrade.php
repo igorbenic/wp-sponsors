@@ -86,6 +86,13 @@ class Wp_Sponsors_upgrade {
                 ),
                 array( '%d', '%s', '%s' )
             );
+            $wpdb->delete('wp_postmeta',
+                array(
+                    'post_id' => $key,
+                    'meta_key' => 'wp_sponsors_img'
+                ),
+                array( '%d','%s')
+            );
         }
         $wpdb->insert('wp_options', array( 'option_name' => 'sponsors_db_version', 'option_value' => 2), array( '%s', '%d' ));
         return;
