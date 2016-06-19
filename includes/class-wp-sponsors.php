@@ -377,6 +377,31 @@ class Wp_Sponsors {
                         return $columns;
                 }
                 add_filter('manage_edit-sponsor_sortable_columns','sponsor_order_column');
+
+                function set_featured_image_filter(){
+                    $screen = get_current_screen();
+                    if( isset($screen->post_type) && $screen->post_type == 'sponsor'){
+                        add_filter( 'admin_post_thumbnail_html', 'change_featured_image_strings', 10, 1);
+                    }
+                }
+
+                function change_featured_image_strings($content) {
+                    $content = str_replace(__('Featured Image'), __('Set sponsor logo', 'wp-sponsors'), $content);
+                    $content = str_replace(__('Set featured image'), __('Set sponsor logo', 'wp-sponsors'), $content);
+                    $content = str_replace(__('Remove featured image'), __('Remove sponsor logo', 'wp-sponsors'), $content);
+
+                    return $content;
+                }
+
+                add_action('current_screen', 'set_featured_image_filter');
+
+                function change_meta_box_title() {
+                    remove_meta_box( 'postimagediv', 'sponsor', 'side' ); //replace post_type from your post type name
+                    add_meta_box('postimagediv', __('Sponsor logo', 'wp-sponsors'), 'post_thumbnail_meta_box', 'sponsor', 'side', 'high');
+                }
+
+                add_action( 'admin_head', 'change_meta_box_title' );
+
     }
 
     /**
