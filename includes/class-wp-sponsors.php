@@ -117,6 +117,7 @@ class Wp_Sponsors {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-upgrade.php';
 
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-extras.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-shame.php';
 
         $extra = new WP_Sponsors_extras();
         $extra->setup();
@@ -344,16 +345,10 @@ class Wp_Sponsors {
                  * Adds the sponsors image (if available) to the Sponsors overview list in the dashboard
                  */
                 function sponsors_column_add_image($column_name, $post_ID) {
+                        $shame = new Wp_Sponsors_Shame();
                         if ($column_name == 'wp_sponsors_logo') {
-
-                                $post_featured_image = get_the_post_thumbnail( $post_id, 'medium' );
-                                $post_custom_image = get_post_meta( $post_ID, 'wp_sponsors_img', true );
-
-                                if ($post_featured_image && !empty($post_featured_image)) {
-                                        echo $post_featured_image;
-                                } elseif (isset($post_custom_image)) {
-                                    echo '<img src="' . $post_custom_image . '" height="80px"/>';
-                                }
+                                $image = $shame->getImage($post_ID);
+                                echo $image;
                         }
                 }
                 add_action('manage_sponsor_posts_custom_column', 'sponsors_column_add_image', 10, 2);
