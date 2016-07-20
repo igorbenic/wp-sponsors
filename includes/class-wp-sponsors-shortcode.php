@@ -49,7 +49,7 @@
         $images != 'no' || $image != 'no'  ? $images = true : $images = false;
         // debug option defaults to false
         isset($debug) ? $debug = true : $debug = false;
-        $description = 'yes' ? $description = true : $description = false;
+        $description === 'yes' ? $description = true : $description = false;
 
         $query = new WP_Query($args);
 
