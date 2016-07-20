@@ -57,6 +57,8 @@
         $style = array();
         $layout = $atts['style'];
 
+        $shame = new Wp_Sponsors_Shame();
+
         switch ($layout) {
             case "list":
                 $style['containerPre'] = '<div id="wp-sponsors"><ul>';
@@ -95,7 +97,7 @@
                 // Check if we should do images, just show the title if there's no image set
                  if($images){
                     $imageSize = isset($style['imageSize']) ? $style['imageSize'] : $sizes[$size];
-                    $sponsor .=  get_the_post_thumbnail( get_the_ID(), 'medium' );
+                    $sponsor .=  $shame->getImage(get_the_ID());
 ;
                 } else {
                     $sponsor .= the_title();

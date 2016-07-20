@@ -42,6 +42,7 @@
             $after_title = "</div>";
             // The Query
             $query = new WP_Query( $args );
+            $shame = new Wp_Sponsors_Shame();
             // The Output
             ?>
             <aside id="wp-sponsors" class="widget wp-sponsors">
@@ -57,7 +58,7 @@
                             <div class="sponsor-title widget-title"><?php echo the_title(); ?></div>
                         <?php }; ?>
                         <?php if($instance['check_images'] === "on"){ ?>
-                            <?php echo get_the_post_thumbnail( get_the_ID(), 'medium' ); ?>
+                            <?php echo $shame->getImage(get_the_ID()) ?>
                         <?php } else { the_title(); } ?>
                         <?php if($instance['show_description'] === "on"){ ?>
                             <br><p class="sponsor-desc"><?php echo get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ); ?></p>
