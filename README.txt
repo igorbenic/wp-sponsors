@@ -42,6 +42,11 @@ The shortcode [sponsors] takes the following options:
 
 == Changelog ==
 
+= 2.0.0 =
+* The plugin now uses the featured image field to save the sponsor's logo
+* Improved shortcode code and added "grid" style option
+* Added debug option to shortcode to better support layout issues
+
 = 1.9.1 =
 * Bugfix in the nofollow feature
 
