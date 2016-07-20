@@ -347,8 +347,12 @@ class Wp_Sponsors {
                         if ($column_name == 'wp_sponsors_logo') {
 
                                 $post_featured_image = get_the_post_thumbnail( $post_id, 'medium' );
-                                if ($post_featured_image) {
+                                $post_custom_image = get_post_meta( $post_ID, 'wp_sponsors_img', true );
+
+                                if ($post_featured_image && !empty($post_featured_image)) {
                                         echo $post_featured_image;
+                                } elseif (isset($post_custom_image)) {
+                                    echo '<img src="' . $post_custom_image . '" height="80px"/>';
                                 }
                         }
                 }
