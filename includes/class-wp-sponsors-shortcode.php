@@ -77,6 +77,7 @@
                 $style['imageSize'] = 'full';
                 break;
         }
+        var_dump($size);
  
         if ( $query->have_posts() ) { 
             while ( $query->have_posts() ) : $query->the_post();
@@ -96,9 +97,7 @@
                 }
                 // Check if we should do images, just show the title if there's no image set
                  if($images){
-                    $imageSize = isset($style['imageSize']) ? $style['imageSize'] : $sizes[$size];
                     $sponsor .=  $shame->getImage(get_the_ID());
-;
                 } else {
                     $sponsor .= the_title();
                 }
