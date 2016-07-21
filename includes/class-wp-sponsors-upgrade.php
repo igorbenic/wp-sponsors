@@ -76,23 +76,17 @@ class Wp_Sponsors_upgrade {
             $data[$sponsor->post_id]['current_image'] = $image[1];
             $data[$sponsor->post_id]['featured_image'] = $imageId->post_id;
         }
-
+        if(isset($data)) {
         foreach($data as $key => $entry) {
-            $wpdb->insert('wp_postmeta', 
-                array( 
-                    'post_id' => $key,
-                    'meta_key' => '_thumbnail_id',
-                    'meta_value' => $entry['featured_image']
-                ),
-                array( '%d', '%s', '%s' )
-            );
-            // $wpdb->delete('wp_postmeta',
-            //     array(
-            //         'post_id' => $key,
-            //         'meta_key' => 'wp_sponsors_img'
-            //     ),
-            //     array( '%d','%s')
-            // );
+                $wpdb->insert('wp_postmeta', 
+                    array( 
+                        'post_id' => $key,
+                        'meta_key' => '_thumbnail_id',
+                        'meta_value' => $entry['featured_image']
+                    ),
+                    array( '%d', '%s', '%s' )
+                );
+            }
         }
         $wpdb->insert('wp_options', array( 'option_name' => 'sponsors_db_version', 'option_value' => 2), array( '%s', '%d' ));
         return;
