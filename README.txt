@@ -8,14 +8,11 @@ Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WP-Sponsors gives your sponsors or partners a separate home where you can add a link and a logo.
+Sponsors makes it easy to add your sponsors and partners to your WordPress website.
 
 == Description ==
 
-WP-Sponsors gives your sponsors or partners a separate home where you can add a link and a logo.
-
-Ever had to add a bunch of images with links on them for your event/company partners? With Sponsors, you won't have to use a text widget for that anymore. The companies and people that support you, your company or your event now get a separate place where you can add a link and an image for each of them. Then you add the Sponsors widget to the sidebar of your choosing and the linked images will show up there.
-
+Ever had to add a bunch of images with links on them for your event/company partners? With Sponsors, you won't have to use a text widget for that anymore. The companies and people that support you, your company or your event now get a separate place in the dashboar where you can add a link and an image for each of them. Then you add the Sponsors widget to the sidebar of your choosing and the linked images will show up there.
 
 == Installation ==
 
