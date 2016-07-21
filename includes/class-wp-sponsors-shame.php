@@ -14,9 +14,9 @@ class Wp_Sponsors_Shame {
         $post_custom_image = get_post_meta( $post_ID, 'wp_sponsors_img', true );
 
         if ($post_thumbnail && !empty($post_thumbnail)) {
-            echo $post_thumbnail;
+            return $post_thumbnail;
         } elseif (isset($post_custom_image)) {
-            echo '<img src="' . $post_custom_image . '" height="80px"/>';
+            return '<img src="' . $post_custom_image . '" height="80px"/>';
         }
     }
     
