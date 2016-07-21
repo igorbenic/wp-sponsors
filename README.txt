@@ -4,7 +4,7 @@ Donate link: http://onedge.be/donate/
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
 Tested up to: 4.5.2
-Stable tag: 1.9.1
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,11 @@ The shortcode [sponsors] takes the following options:
 - style (list|grid, default: list)
 
 == Changelog ==
+
+= 2.0.0 =
+* The plugin now uses the featured image field to save the sponsor's logo
+* Improved shortcode code and added "grid" style option
+* Added debug option to shortcode to better support layout issues
 
 = 1.9.1 =
 * Bugfix in the nofollow feature

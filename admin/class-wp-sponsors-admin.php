@@ -104,4 +104,20 @@ class Wp_Sponsors_Admin {
 
 	}
 
+    /**
+     * The function that checks for updates and runs the appropriate upgrade when needed
+     *
+     * @since     2.0.0
+     */
+    public function update() {
+        if(is_admin()) {
+        	if(get_option( 'sponsors_db_version') < 2 ) {
+                $update = new WP_Sponsors_upgrade( $this->version );
+                $update->run( 'upgrade200' );
+        	}
+            return;
+        }
+        return;
+    }
+
 }

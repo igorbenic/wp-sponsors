@@ -49,13 +49,15 @@
         $images != 'no' || $image != 'no'  ? $images = true : $images = false;
         // debug option defaults to false
         isset($debug) ? $debug = true : $debug = false;
-        $description = 'yes' ? $description = true : $description = false;
+        $description === 'yes' ? $description = true : $description = false;
 
         $query = new WP_Query($args);
 
         // Set up the shortcode styles
         $style = array();
         $layout = $atts['style'];
+
+        $shame = new Wp_Sponsors_Shame();
 
         switch ($layout) {
             case "list":
@@ -94,8 +96,7 @@
                 }
                 // Check if we should do images, just show the title if there's no image set
                  if($images){
-                    $imageSize = isset($style['imageSize']) ? $style['imageSize'] : $sizes[$size];
-                    $sponsor .= '<img src=' . get_post_meta( get_the_ID(), 'wp_sponsors_img', true ) . ' width=' . $imageSize . '>';
+                    $sponsor .=  $shame->getImage(get_the_ID());
                 } else {
                     $sponsor .= the_title();
                 }
