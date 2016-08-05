@@ -1,22 +1,23 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Sponsors\n"
-"POT-Creation-Date: 2015-11-23 18:52+0100\n"
-"PO-Revision-Date: 2015-11-23 20:02+0100\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-sponsors\n"
+"POT-Creation-Date: 2016-08-05 13:41+0200\n"
+"PO-Revision-Date: 2016-08-05 13:43+0200\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: wp-sponsors.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;"
-"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
-"esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"Last-Translator: \n"
-"Language: nl\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
@@ -29,126 +30,157 @@ msgid "Add image"
 msgstr "Afbeelding toevoegen"
 
 #. Plugin Name of the plugin/theme
-#: includes/class-wp-sponsors-widget.php:9
+#: includes/class-wp-sponsors-widget.php:8
 msgid "Sponsors"
 msgstr "Sponsors"
 
-#: includes/class-wp-sponsors-widget.php:83
+#: includes/class-wp-sponsors-widget.php:8
+msgid "List your sponsors, per category, with or without images"
+msgstr ""
+"Toon een lijst van je sponsors, per categorie, met of zonder afbeelding"
+
+#: includes/class-wp-sponsors-widget.php:91
 msgid "Our sponsors"
 msgstr "Onze sponsors"
 
-#: includes/class-wp-sponsors-widget.php:92
+#: includes/class-wp-sponsors-widget.php:100
 msgid "Title"
 msgstr "Titel"
 
-#: includes/class-wp-sponsors-widget.php:97
+#: includes/class-wp-sponsors-widget.php:105
 msgid "Category"
 msgstr "Categorie"
 
-#: includes/class-wp-sponsors-widget.php:99
+#: includes/class-wp-sponsors-widget.php:107
 msgid "All"
 msgstr "Alle"
 
-#: includes/class-wp-sponsors-widget.php:107
+#: includes/class-wp-sponsors-widget.php:115
 msgid "Display"
 msgstr "Weergave"
 
-#: includes/class-wp-sponsors-widget.php:109
+#: includes/class-wp-sponsors-widget.php:117
 msgid "Vertical (best for sidebars)"
 msgstr "Verticaal (beste voor sidebars)"
 
-#: includes/class-wp-sponsors-widget.php:110
+#: includes/class-wp-sponsors-widget.php:118
 msgid "Horizontal (best for footers)"
 msgstr "Horizontaal (beste optie voor voetteksten)"
 
-#: includes/class-wp-sponsors-widget.php:116
+#: includes/class-wp-sponsors-widget.php:124
 msgid "Show sponsor title"
 msgstr "Sponsor naam weergeven"
 
-#: includes/class-wp-sponsors-widget.php:120
+#: includes/class-wp-sponsors-widget.php:128
 msgid "Show sponsor logo"
 msgstr "Sponsor logo weergeven"
 
-#: includes/class-wp-sponsors-widget.php:124
+#: includes/class-wp-sponsors-widget.php:132
 msgid "Show sponsor description"
 msgstr "Sponsor beschrijving weergeven"
 
-#: includes/class-wp-sponsors-widget.php:128
+#: includes/class-wp-sponsors-widget.php:136
 msgid "Open links in a new window"
 msgstr "Links openen in een nieuw venster"
 
-#: includes/class-wp-sponsors.php:199
+#: includes/class-wp-sponsors.php:207
 msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr "Categorieën"
 
-#: includes/class-wp-sponsors.php:200
+#: includes/class-wp-sponsors.php:208
 msgctxt "taxonomy singular name"
 msgid "Category"
 msgstr "Categorie"
 
-#: includes/class-wp-sponsors.php:201
+#: includes/class-wp-sponsors.php:209
 msgid "Search categories"
 msgstr "Zoek in categorieën"
 
-#: includes/class-wp-sponsors.php:202
+#: includes/class-wp-sponsors.php:210
 msgid "All categories"
 msgstr "Alle categorieën"
 
-#: includes/class-wp-sponsors.php:203
+#: includes/class-wp-sponsors.php:211
 msgid "Parent category"
 msgstr "Hoofdcategorie"
 
-#: includes/class-wp-sponsors.php:204
+#: includes/class-wp-sponsors.php:212
 msgid "Parent category:"
 msgstr "Hoofdcategorie:"
 
-#: includes/class-wp-sponsors.php:205
+#: includes/class-wp-sponsors.php:213
 msgid "Edit category"
 msgstr "Categorie bewerken"
 
-#: includes/class-wp-sponsors.php:206
+#: includes/class-wp-sponsors.php:214
 msgid "Update category"
 msgstr "Categorie bijwerken"
 
-#: includes/class-wp-sponsors.php:207
+#: includes/class-wp-sponsors.php:215
 msgid "Add New category"
 msgstr "Nieuwe categorie toevoegen"
 
-#: includes/class-wp-sponsors.php:208
+#: includes/class-wp-sponsors.php:216
 msgid "New category"
 msgstr "Nieuwe categorie"
 
-#: includes/class-wp-sponsors.php:209
+#: includes/class-wp-sponsors.php:217
 msgid "Categories"
 msgstr "Categorieën"
 
-#: includes/class-wp-sponsors.php:275
+#: includes/class-wp-sponsors.php:269
 msgid "Sponsor Website"
 msgstr "Sponsor website"
 
-#: includes/class-wp-sponsors.php:280
+#: includes/class-wp-sponsors.php:274
 msgid "Sponsor Description"
 msgstr "Sponsor beschrijving"
 
-#: includes/class-wp-sponsors.php:285
-msgid "Sponsor Logo"
-msgstr "Sponsor Logo"
+#: includes/class-wp-sponsors.php:338 includes/class-wp-sponsors.php:399
+msgid "Sponsor logo"
+msgstr "Sponsor logo"
+
+#: includes/class-wp-sponsors.php:339
+msgid "Order"
+msgstr "Volgorde"
+
+#: includes/class-wp-sponsors.php:388
+msgid "Featured Image"
+msgstr "Uitgelichte Afbeelding"
+
+#: includes/class-wp-sponsors.php:388 includes/class-wp-sponsors.php:389
+msgid "Set sponsor logo"
+msgstr "Kies een sponsor logo"
+
+#: includes/class-wp-sponsors.php:389
+msgid "Set featured image"
+msgstr "Kies een sponsor logo"
+
+#: includes/class-wp-sponsors.php:390
+msgid "Remove featured image"
+msgstr "Verwijder uitgelichte afbeelding"
+
+#: includes/class-wp-sponsors.php:390
+msgid "Remove sponsor logo"
+msgstr "Verwijder sponsor logo"
 
 #. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
 msgid "http://studioespresso.co"
-msgstr ""
+msgstr "http://studioespresso.co"
 
 #. Description of the plugin/theme
 msgid ""
 "Add links and logo's for your sponsors/partners/etc to your sidebars and "
 "posts with our widget and shortcode."
 msgstr ""
+"Voeg links en logo's toe voor je sponsors/partners/etc in de sidebar en op "
+"je pagina's met onze widget en shortcode"
 
 #. Author of the plugin/theme
-msgid "Jan Henckens"
-msgstr ""
+msgid "Studio Espresso"
+msgstr "Studio Espresso"
 
-#. Author URI of the plugin/theme
-msgid "http://onedge.be"
-msgstr ""
+#~ msgid "Sponsor Logo"
+#~ msgstr "Sponsor Logo"
