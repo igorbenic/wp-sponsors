@@ -10,6 +10,7 @@
         extract( shortcode_atts( array (
             'type' => 'post',
             'image' => 'yes',
+            'images' => 'yes',
             'category' => '',
             'size' => 'default',
             'style' => 'list',
@@ -46,7 +47,7 @@
         // style options defaults to list
         if ( !isset($atts['style']) ) { $atts['style'] = 'list';}
         // images options default to yes
-        $images != 'no' || $image != 'no'  ? $images = true : $images = false;
+        $images != 'no' && $image != 'no' ? $images = true : $images = false;
         // debug option defaults to false
         isset($debug) ? $debug = true : $debug = false;
         $description === 'yes' ? $description = true : $description = false;

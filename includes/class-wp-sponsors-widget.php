@@ -5,7 +5,7 @@
     class sponsors_widget extends WP_Widget {
 
         function __construct() {
-            parent::__construct(false, $name = __( 'Sponsors', 'wp-sponsors' ));
+            parent::__construct(false, $name = __( 'Sponsors', 'wp-sponsors' ), array( 'description' => __('List your sponsors, per category, with or without images', 'wp-sponsors')));
         }
 
         function widget($args, $instance) {
@@ -38,14 +38,12 @@
             $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true; 
 
             $title = apply_filters('widget_title', $instance['title'] );
-            $before_title = "<div class='widget-title'>";
-            $after_title = "</div>";
             // The Query
             $query = new WP_Query( $args );
             $shame = new Wp_Sponsors_Shame();
             // The Output
             ?>
-            <aside id="wp-sponsors" class="widget wp-sponsors">
+                <?php echo $before_widget; ?>
                 <?php if ( $title ) echo $before_title . $title . $after_title; ?>
                 <ul class="<?php echo $instance['display_option']; ?>">
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
@@ -69,7 +67,7 @@
                     </li>
                 <?php endwhile; wp_reset_postdata(); ?>
                 </ul>
-            </aside>
+                <?php echo $after_widget; ?>
             <?php
         }
 
