@@ -5,7 +5,7 @@
     class sponsors_widget extends WP_Widget {
 
         function __construct() {
-            parent::__construct(false, $name = __( 'Sponsors', 'wp-sponsors' ));
+            parent::__construct(false, $name = __( 'Sponsors', 'wp-sponsors' ), array( 'description' => __('List your sponsors, per category, with or without images', 'wp-sponsors')));
         }
 
         function widget($args, $instance) {
