@@ -99,7 +99,7 @@
                  if($images){
                     $sponsor .=  $shame->getImage(get_the_ID());
                 } else {
-                    $sponsor .= the_title();
+                    $sponsor .= get_the_title();
                 }
                 // Check if we need a description and the description is not empty 
                 if($description) {
