@@ -3,8 +3,8 @@ Contributors: janhenckens
 Donate link: http://onedge.be/donate/
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
-Tested up to: 4.5.2
-Stable tag: 2.0.2
+Tested up to: 4.6
+Stable tag: 2.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,9 @@ The shortcode [sponsors] takes the following options:
 * style (list|grid, default: list)
 
 == Changelog ==
+
+= 2.0.3 = 
+* Fixed a problem where the sponsor link wouldn't be shown when using no images in the shortcode
 
 = 2.0.2 =
 * The "no images" options in the shortcode now actually works
