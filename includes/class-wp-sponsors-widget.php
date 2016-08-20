@@ -11,6 +11,8 @@
         function widget($args, $instance) {
             extract( $args );
             // WP_Query arguments
+            var_dump($instance);
+
 
             if($instance['category'] != 'all' && $instance['category'] != '') {
                 $term = $instance['category'];
@@ -53,7 +55,7 @@
                         <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" <?php if($instance['target_blank'] === "on"){ ?> target="_blank"<?php }; ?> <?php if($nofollow) {?>rel="nofollow" <?php } ?>>
                         <?php }; ?>
                         <?php if($instance['show_title'] === "on"){ ?>
-                            <div class="sponsor-title widget-title"><?php echo the_title(); ?></div>
+                            <div class="sponsor-title widget-title"><?php echo the_title(j); ?></div>
                         <?php }; ?>
                         <?php if($instance['check_images'] === "on"){ ?>
                             <?php echo $shame->getImage(get_the_ID()) ?>
@@ -78,6 +80,7 @@
             $instance['show_title'] = $new_instance['show_title'];
             $instance['check_images'] = $new_instance['check_images'];
             $instance['target_blank'] = $new_instance['target_blank'];
+            $instance['order_by'] = $new_instance['order_by'];
             $instance['category'] = $new_instance['category'];
             $instance['display_option'] = $new_instance['display_option'];
             $instance['title'] = strip_tags( $new_instance['title'] );
@@ -88,7 +91,7 @@
         function form($instance) {
 
             //Set up some default widget settings.
-            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'all', 'display_option' => 'vertical', 'target_blank' => 'on');
+            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'all', 'display_option' => 'vertical', 'order_by' => 'menu', 'target_blank' => 'on');
             $instance = wp_parse_args( (array) $instance, $defaults );
 
             if(empty($instance)) {
@@ -118,6 +121,13 @@
                     <option <?php selected( $instance['display_option'], 'horizontal' ); ?> value="horizontal"><?php echo _e('Horizontal (best for footers)', 'wp-sponsors'); ?></option>
                 </select>
 
+            </p>
+    		<p>
+              <label for="<?php echo $this->get_field_id('order_by'); ?>"> <?php echo __('Order by', 'wp-sponsors')?></label>
+                <select id="<?php echo $this->get_field_id('order_by'); ?>" name="<?php echo $this->get_field_name('order_by'); ?>" class="widefat" style="width:100%;">
+                    <option <?php selected( $instance['order_by'], 'menu' ); ?> value="menu"><?php echo _e('Weight', 'wp-sponsors'); ?></option>
+                    <option <?php selected( $instance['order_by'], 'random' ); ?> value="random"><?php echo _e('Random', 'wp-sponsors'); ?></option>
+                </select>
             </p>
             <p>
                 <input type="checkbox" id="<?php echo $this->get_field_id('show_title'); ?>" name="<?php echo $this->get_field_name('show_title'); ?>" <?php checked($instance['show_title'], 'on'); ?> />
