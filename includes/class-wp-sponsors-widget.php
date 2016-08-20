@@ -11,9 +11,6 @@
         function widget($args, $instance) {
             extract( $args );
             // WP_Query arguments
-            var_dump($instance);
-
-
             if($instance['category'] != 'all' && $instance['category'] != '') {
                 $term = $instance['category'];
             }
@@ -24,7 +21,7 @@
                 'pagination'             => false,
                 'order'                  => 'ASC',
                 'posts_per_page'         => '-1',
-                'orderby'                => 'menu_order'
+                'orderby'                => $instance['order_by']
             );
 
             if($instance['category'] != 'all' && $instance['category'] != '') {
@@ -91,7 +88,7 @@
         function form($instance) {
 
             //Set up some default widget settings.
-            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'all', 'display_option' => 'vertical', 'order_by' => 'menu', 'target_blank' => 'on');
+            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'all', 'display_option' => 'vertical', 'order_by' => 'menu_order', 'target_blank' => 'on');
             $instance = wp_parse_args( (array) $instance, $defaults );
 
             if(empty($instance)) {
@@ -125,8 +122,8 @@
     		<p>
               <label for="<?php echo $this->get_field_id('order_by'); ?>"> <?php echo __('Order by', 'wp-sponsors')?></label>
                 <select id="<?php echo $this->get_field_id('order_by'); ?>" name="<?php echo $this->get_field_name('order_by'); ?>" class="widefat" style="width:100%;">
-                    <option <?php selected( $instance['order_by'], 'menu' ); ?> value="menu"><?php echo _e('Weight', 'wp-sponsors'); ?></option>
-                    <option <?php selected( $instance['order_by'], 'random' ); ?> value="random"><?php echo _e('Random', 'wp-sponsors'); ?></option>
+                    <option <?php selected( $instance['order_by'], 'menu_order' ); ?> value="menu_order"><?php echo _e('Weight', 'wp-sponsors'); ?></option>
+                    <option <?php selected( $instance['order_by'], 'rand' ); ?> value="rand"><?php echo _e('Random', 'wp-sponsors'); ?></option>
                 </select>
             </p>
             <p>
