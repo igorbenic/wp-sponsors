@@ -15,6 +15,7 @@
             'size' => 'default',
             'style' => 'list',
             'description' => 'no',
+            'orderby' => 'menu_order',
             'debug' => NULL
         ), $atts ) );
 
@@ -28,7 +29,15 @@
             'tax_query'             => array(),
         );
 
-        $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true; 
+        if ( isset($atts['orderby']) ) {
+            $args['orderby'] = $atts['orderby'];
+        }
+
+        if ( isset($atts['max']) ) {
+            $args['posts_per_page'] = $atts['max'];
+        }
+
+        $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true;
 
         if(!empty($category)) {
           $args['tax_query'] = array(
@@ -39,7 +48,7 @@
             ),
           );
         }
-        
+
         $sizes = array('small' => '15%', 'medium' => '30%', 'large' => '50%', 'full' => '100%', 'default' => '30%');
         ob_start();
 
@@ -78,8 +87,8 @@
                 $style['imageSize'] = 'full';
                 break;
         }
- 
-        if ( $query->have_posts() ) { 
+
+        if ( $query->have_posts() ) {
             while ( $query->have_posts() ) : $query->the_post();
 
                 if($query->current_post === 0) { echo $style['containerPre']; }
@@ -89,10 +98,10 @@
                 $class .= $size;
                 if($debug) { $class .= ' debug'; }
 
-                echo '<' . $style['wrapperPre'] . ' class="' . $style['wrapperClass'] .' ' . $class . '">'; 
+                echo '<' . $style['wrapperPre'] . ' class="' . $style['wrapperClass'] .' ' . $class . '">';
                 $sponsor = '';
                 // Check if we have a link
-                if($link) { 
+                if($link) {
                     $sponsor .= '<a href=' .$link . ' target="_blank">';
                 }
                 // Check if we should do images, just show the title if there's no image set
@@ -101,12 +110,12 @@
                 } else {
                     $sponsor .= get_the_title();
                 }
-                // Check if we need a description and the description is not empty 
+                // Check if we need a description and the description is not empty
                 if($description) {
                     $sponsor .= '<p>' . get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ) . '</p> ';
                 }
                 // Close the link tag if we have it
-                if($link) { 
+                if($link) {
                     $sponsor .= '</a>';
                 }
                 echo $sponsor;
