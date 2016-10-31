@@ -93,7 +93,7 @@
         function form($instance) {
 
             //Set up some default widget settings.
-            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'all', 'display_option' => 'vertical', 'order_by' => 'menu_order', 'target_blank' => 'on', max => -1);
+            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'all', 'display_option' => 'vertical', 'order_by' => 'menu_order', 'target_blank' => 'on', max => '');
             $instance = wp_parse_args( (array) $instance, $defaults );
 
             if(empty($instance)) {
