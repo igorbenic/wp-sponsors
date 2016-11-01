@@ -17,6 +17,7 @@
             'description' => 'no',
             'orderby' => 'menu_order',
             'title' => 'no',
+            'max' => '-1',
             'debug' => NULL
         ), $atts ) );
 
@@ -25,19 +26,11 @@
             'post_status'           => 'publish',
             'pagination'            => false,
             'order'                 => 'ASC',
-            'orderby'               => 'menu_order',
-            'posts_per_page'        => '-1',
+            'orderby'               => $atts['orderby'],
+            'posts_per_page'        => $atts['max'],
             'tax_query'             => array(),
         );
-
-        if ( isset($atts['orderby']) ) {
-            $args['orderby'] = $atts['orderby'];
-        }
-
-        if ( isset($atts['max']) ) {
-            $args['posts_per_page'] = $atts['max'];
-        }
-
+        
         $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true;
 
         if(!empty($category)) {
