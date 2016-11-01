@@ -30,7 +30,7 @@
             'posts_per_page'        => $atts['max'],
             'tax_query'             => array(),
         );
-        
+
         $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true;
 
         if(!empty($category)) {
@@ -68,7 +68,7 @@
             case "list":
                 $style['containerPre'] = '<div id="wp-sponsors"><ul>';
                 $style['containerPost'] = '</ul></div>';
-                $style['wrapperClass'] = 'sponsor-item tcol-md-3 tcol-sm-4 tcol-xs-6 tcol-ss-120';
+                $style['wrapperClass'] = 'sponsor-item';
                 $style['wrapperPre'] = 'li';
                 $style['wrapperPost'] = '</li>';
                 break;
@@ -76,7 +76,7 @@
             case "grid":
                 $style['containerPre'] = '<div id="wp-sponsors" class="clearfix">';
                 $style['containerPost'] = '</div>';
-                $style['wrapperClass'] = 'sponsor-item ';
+                $style['wrapperClass'] = 'sponsor-item';
                 $style['wrapperPre'] = 'div';
                 $style['wrapperPost'] = '</div>';
                 $style['imageSize'] = 'full';
