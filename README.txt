@@ -33,6 +33,8 @@ Ever had to add a bunch of images with links on them for your event/company part
 The shortcode [sponsors] takes the following options:
 * images (yes|no, default: yes)
 * description (yes|no, default: no)
+* max (number, default: none, showing all entries)
+* title (yes|no, default: no)
 * category (category-slug, default: all)
 * size (small|medium|large|full, default: medium)
 * style (list|grid, default: list)
