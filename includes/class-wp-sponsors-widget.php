@@ -133,6 +133,10 @@
                 </select>
             </p>
             <p>
+                <label for="<?php echo $this->get_field_id( 'max' ); ?>"><?php _e('Number of sponsors to show  (leave to show all)', 'wp-sponsors'); ?></label>
+                <input id="<?php echo $this->get_field_id( 'max' ); ?>" name="<?php echo $this->get_field_name( 'max' ); ?>" value="<?php echo $instance['max']; ?>" style="width:100%;"  type="number"/>
+            </p>
+            <p>
                 <input type="checkbox" id="<?php echo $this->get_field_id('show_title'); ?>" name="<?php echo $this->get_field_name('show_title'); ?>" <?php checked($instance['show_title'], 'on'); ?> />
                 <label for="<?php echo $this->get_field_id('show_title'); ?>"><?php echo __( 'Show sponsor title', 'wp-sponsors' )?></label>
             </p>
@@ -147,10 +151,6 @@
             <p>
                 <input type="checkbox" id="<?php echo $this->get_field_id('target_blank'); ?>" name="<?php echo $this->get_field_name('target_blank'); ?>" <?php checked($instance['target_blank'], 'on'); ?> />
                 <label for="<?php echo $this->get_field_id('target_blank'); ?>"><?php echo __( 'Open links in a new window', 'wp-sponsors' )?></label>
-            </p>
-            <p>
-                <label for="<?php echo $this->get_field_id( 'max' ); ?>"><?php _e('Max (empty for all sponsors)', 'wp-sponsors'); ?></label>
-                <input id="<?php echo $this->get_field_id( 'max' ); ?>" name="<?php echo $this->get_field_name( 'max' ); ?>" value="<?php echo $instance['max']; ?>" style="width:100%;" />
             </p>
             <?php }
         }
