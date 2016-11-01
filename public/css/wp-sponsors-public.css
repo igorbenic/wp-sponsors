@@ -33,7 +33,7 @@ p.sponsor-desc {
  * Styling the for the linear shortcode option
  */
 div#wp-sponsors {margin-bottom: 50px;}
-
+div#wp-sponsors ul li { list-style: none;}
 #wp-sponsors div.sponsor-item {margin: 0 20px 20px 0; float: left;}
 #wp-sponsors div.sponsor-item.debug {border: solid 1px red;}
 
@@ -53,10 +53,10 @@ div#wp-sponsors {margin-bottom: 50px;}
  * Other styling
  */
 
-.clearfix:after { 
-   content: "."; 
-   visibility: hidden; 
-   display: block; 
-   height: 0; 
+.clearfix:after {
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
    clear: both;
 }

@@ -11,7 +11,6 @@
         function widget($args, $instance) {
             extract( $args );
             // WP_Query arguments
-
             if($instance['category'] != 'all' && $instance['category'] != '') {
                 $term = $instance['category'];
             }
@@ -22,7 +21,7 @@
                 'pagination'             => false,
                 'order'                  => 'ASC',
                 'posts_per_page'         => '-1',
-                'orderby'                => 'menu_order'
+                'orderby'                => $instance['order_by']
             );
 
             if($instance['category'] != 'all' && $instance['category'] != '') {
@@ -35,7 +34,11 @@
                 );
             }
 
-            $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true; 
+            if($instance['max']) {
+                $args['posts_per_page'] = $instance['max'];
+            }
+
+            $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true;
 
             $title = apply_filters('widget_title', $instance['title'] );
             // The Query
@@ -53,7 +56,7 @@
                         <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" <?php if($instance['target_blank'] === "on"){ ?> target="_blank"<?php }; ?> <?php if($nofollow) {?>rel="nofollow" <?php } ?>>
                         <?php }; ?>
                         <?php if($instance['show_title'] === "on"){ ?>
-                            <div class="sponsor-title widget-title"><?php echo the_title(); ?></div>
+                            <div class="sponsor-title widget-title"><?php echo the_title(j); ?></div>
                         <?php }; ?>
                         <?php if($instance['check_images'] === "on"){ ?>
                             <?php echo $shame->getImage(get_the_ID()) ?>
@@ -78,9 +81,11 @@
             $instance['show_title'] = $new_instance['show_title'];
             $instance['check_images'] = $new_instance['check_images'];
             $instance['target_blank'] = $new_instance['target_blank'];
+            $instance['order_by'] = $new_instance['order_by'];
             $instance['category'] = $new_instance['category'];
             $instance['display_option'] = $new_instance['display_option'];
             $instance['title'] = strip_tags( $new_instance['title'] );
+            $instance['max'] = $new_instance['max'];
             return $instance;
         }
 
@@ -88,7 +93,7 @@
         function form($instance) {
 
             //Set up some default widget settings.
-            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'all', 'display_option' => 'vertical', 'target_blank' => 'on');
+            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'all', 'display_option' => 'vertical', 'order_by' => 'menu_order', 'target_blank' => 'on', max => '');
             $instance = wp_parse_args( (array) $instance, $defaults );
 
             if(empty($instance)) {
@@ -118,6 +123,18 @@
                     <option <?php selected( $instance['display_option'], 'horizontal' ); ?> value="horizontal"><?php echo _e('Horizontal (best for footers)', 'wp-sponsors'); ?></option>
                 </select>
 
+            </p>
+    		<p>
+              <label for="<?php echo $this->get_field_id('order_by'); ?>"> <?php echo __('Order by', 'wp-sponsors')?></label>
+                <select id="<?php echo $this->get_field_id('order_by'); ?>" name="<?php echo $this->get_field_name('order_by'); ?>" class="widefat" style="width:100%;">
+                    <option <?php selected( $instance['order_by'], 'menu_order' ); ?> value="menu_order"><?php echo _e('Weight', 'wp-sponsors'); ?></option>
+                    <option <?php selected( $instance['order_by'], 'title' ); ?> value="title"><?php echo _e('Title', 'wp-sponsors'); ?></option>
+                    <option <?php selected( $instance['order_by'], 'rand' ); ?> value="rand"><?php echo _e('Random', 'wp-sponsors'); ?></option>
+                </select>
+            </p>
+            <p>
+                <label for="<?php echo $this->get_field_id( 'max' ); ?>"><?php _e('Number of sponsors to show  (leave to show all)', 'wp-sponsors'); ?></label>
+                <input id="<?php echo $this->get_field_id( 'max' ); ?>" name="<?php echo $this->get_field_name( 'max' ); ?>" value="<?php echo $instance['max']; ?>" style="width:100%;"  type="number"/>
             </p>
             <p>
                 <input type="checkbox" id="<?php echo $this->get_field_id('show_title'); ?>" name="<?php echo $this->get_field_name('show_title'); ?>" <?php checked($instance['show_title'], 'on'); ?> />

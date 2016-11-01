@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sponsors\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-sponsors\n"
-"POT-Creation-Date: 2016-08-05 13:41+0200\n"
-"PO-Revision-Date: 2016-08-05 13:43+0200\n"
+"POT-Creation-Date: 2016-11-01 12:39+0100\n"
+"PO-Revision-Date: 2016-11-01 12:39+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: wp-sponsors.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -39,47 +39,64 @@ msgid "List your sponsors, per category, with or without images"
 msgstr ""
 "Toon een lijst van je sponsors, per categorie, met of zonder afbeelding"
 
-#: includes/class-wp-sponsors-widget.php:91
+#: includes/class-wp-sponsors-widget.php:96
 msgid "Our sponsors"
 msgstr "Onze sponsors"
 
-#: includes/class-wp-sponsors-widget.php:100
+#: includes/class-wp-sponsors-widget.php:105
+#: includes/class-wp-sponsors-widget.php:131
 msgid "Title"
 msgstr "Titel"
 
-#: includes/class-wp-sponsors-widget.php:105
+#: includes/class-wp-sponsors-widget.php:110
 msgid "Category"
 msgstr "Categorie"
 
-#: includes/class-wp-sponsors-widget.php:107
+#: includes/class-wp-sponsors-widget.php:112
 msgid "All"
 msgstr "Alle"
 
-#: includes/class-wp-sponsors-widget.php:115
+#: includes/class-wp-sponsors-widget.php:120
 msgid "Display"
 msgstr "Weergave"
 
-#: includes/class-wp-sponsors-widget.php:117
+#: includes/class-wp-sponsors-widget.php:122
 msgid "Vertical (best for sidebars)"
 msgstr "Verticaal (beste voor sidebars)"
 
-#: includes/class-wp-sponsors-widget.php:118
+#: includes/class-wp-sponsors-widget.php:123
 msgid "Horizontal (best for footers)"
 msgstr "Horizontaal (beste optie voor voetteksten)"
 
-#: includes/class-wp-sponsors-widget.php:124
+#: includes/class-wp-sponsors-widget.php:128
+msgid "Order by"
+msgstr "Sorteren op"
+
+#: includes/class-wp-sponsors-widget.php:130
+msgid "Weight"
+msgstr "Gewicht"
+
+#: includes/class-wp-sponsors-widget.php:132
+msgid "Random"
+msgstr "Willekeurig"
+
+#: includes/class-wp-sponsors-widget.php:136
+msgid "Number of sponsors to show  (leave to show all)"
+msgstr "Aantal sponsors (laat leeg om alles te tonen)"
+
+#: includes/class-wp-sponsors-widget.php:141
 msgid "Show sponsor title"
 msgstr "Sponsor naam weergeven"
 
-#: includes/class-wp-sponsors-widget.php:128
+#: includes/class-wp-sponsors-widget.php:145
 msgid "Show sponsor logo"
 msgstr "Sponsor logo weergeven"
 
-#: includes/class-wp-sponsors-widget.php:132
+#: includes/class-wp-sponsors-widget.php:149
 msgid "Show sponsor description"
 msgstr "Sponsor beschrijving weergeven"
 
-#: includes/class-wp-sponsors-widget.php:136
+#: includes/class-wp-sponsors-widget.php:153
 msgid "Open links in a new window"
 msgstr "Links openen in een nieuw venster"
 

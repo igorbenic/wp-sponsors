@@ -15,6 +15,9 @@
             'size' => 'default',
             'style' => 'list',
             'description' => 'no',
+            'orderby' => 'menu_order',
+            'title' => 'no',
+            'max' => '-1',
             'debug' => NULL
         ), $atts ) );
 
@@ -23,12 +26,12 @@
             'post_status'           => 'publish',
             'pagination'            => false,
             'order'                 => 'ASC',
-            'orderby'               => 'menu_order',
-            'posts_per_page'        => '-1',
+            'orderby'               => $atts['orderby'],
+            'posts_per_page'        => (int)$atts['max'],
             'tax_query'             => array(),
         );
 
-        $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true; 
+        $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true;
 
         if(!empty($category)) {
           $args['tax_query'] = array(
@@ -39,18 +42,20 @@
             ),
           );
         }
-        
-        $sizes = array('small' => '15%', 'medium' => '30%', 'large' => '50%', 'full' => '100%', 'default' => '30%');
+
+        // $sizes = array('small' => '15%', 'medium' => '30%', 'large' => '50%', 'full' => '100%', 'default' => '30%');
         ob_start();
 
         // Set default options with then shortcode is used without parameters
         // style options defaults to list
         if ( !isset($atts['style']) ) { $atts['style'] = 'list';}
         // images options default to yes
+
         $images != 'no' && $image != 'no' ? $images = true : $images = false;
         // debug option defaults to false
         isset($debug) ? $debug = true : $debug = false;
         $description === 'yes' ? $description = true : $description = false;
+        $title === 'yes' ? $title = true : $title = false;
 
         $query = new WP_Query($args);
 
@@ -78,8 +83,8 @@
                 $style['imageSize'] = 'full';
                 break;
         }
- 
-        if ( $query->have_posts() ) { 
+
+        if ( $query->have_posts() ) {
             while ( $query->have_posts() ) : $query->the_post();
 
                 if($query->current_post === 0) { echo $style['containerPre']; }
@@ -89,10 +94,14 @@
                 $class .= $size;
                 if($debug) { $class .= ' debug'; }
 
-                echo '<' . $style['wrapperPre'] . ' class="' . $style['wrapperClass'] .' ' . $class . '">'; 
+                echo '<' . $style['wrapperPre'] . ' class="' . $style['wrapperClass'] .' ' . $class . '">';
                 $sponsor = '';
+                // Check if we have a title
+                if($title) {
+                    $sponsor .= '<h3>'.get_the_title().'</h3>';
+                }
                 // Check if we have a link
-                if($link) { 
+                if($link) {
                     $sponsor .= '<a href=' .$link . ' target="_blank">';
                 }
                 // Check if we should do images, just show the title if there's no image set
@@ -101,12 +110,12 @@
                 } else {
                     $sponsor .= get_the_title();
                 }
-                // Check if we need a description and the description is not empty 
+                // Check if we need a description and the description is not empty
                 if($description) {
                     $sponsor .= '<p>' . get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ) . '</p> ';
                 }
                 // Close the link tag if we have it
-                if($link) { 
+                if($link) {
                     $sponsor .= '</a>';
                 }
                 echo $sponsor;
@@ -114,6 +123,6 @@
                 if( ($query->current_post + 1) === $query->post_count) { echo $style['containerPost']; }
             endwhile;
             return ob_get_clean();
-        }
+        };
     }
     add_shortcode( 'sponsors', 'sponsors_register_shortcode' );
