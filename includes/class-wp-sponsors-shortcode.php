@@ -27,7 +27,7 @@
             'pagination'            => false,
             'order'                 => 'ASC',
             'orderby'               => $atts['orderby'],
-            'posts_per_page'        => $atts['max'],
+            'posts_per_page'        => (int)$atts['max'],
             'tax_query'             => array(),
         );
 
