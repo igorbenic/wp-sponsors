@@ -128,6 +128,7 @@
               <label for="<?php echo $this->get_field_id('order_by'); ?>"> <?php echo __('Order by', 'wp-sponsors')?></label>
                 <select id="<?php echo $this->get_field_id('order_by'); ?>" name="<?php echo $this->get_field_name('order_by'); ?>" class="widefat" style="width:100%;">
                     <option <?php selected( $instance['order_by'], 'menu_order' ); ?> value="menu_order"><?php echo _e('Weight', 'wp-sponsors'); ?></option>
+                    <option <?php selected( $instance['order_by'], 'title' ); ?> value="title"><?php echo _e('Title', 'wp-sponsors'); ?></option>
                     <option <?php selected( $instance['order_by'], 'rand' ); ?> value="rand"><?php echo _e('Random', 'wp-sponsors'); ?></option>
                 </select>
             </p>
