@@ -4,7 +4,7 @@ Donate link: http://onedge.be/donate/
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
 Tested up to: 4.6
-Stable tag: 2.0.3
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,7 +41,12 @@ The shortcode [sponsors] takes the following options:
 
 == Changelog ==
 
-= 2.0.3 = 
+= 2.1 =
+* Added number of entries and title options to the shortcode
+* Added number of entries option to the widget
+* Added orderby title and random options to the widget
+
+= 2.0.3 =
 * Fixed a problem where the sponsor link wouldn't be shown when using no images in the shortcode
 
 = 2.0.2 =
@@ -65,7 +70,7 @@ The shortcode [sponsors] takes the following options:
 * Added default rel="nofollow" for sponsor links
 * Added support and donate links to plugin description
 
-= 1.8.5 = 
+= 1.8.5 =
 * In the shortcode, items are now sorted by the menu_order by default.
 
 = 1.8.4 =
