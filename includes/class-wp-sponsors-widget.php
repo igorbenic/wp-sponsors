@@ -34,7 +34,11 @@
                 );
             }
 
-            $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true; 
+            if($instance['max']) {
+                $args['posts_per_page'] = $instance['max'];
+            }
+
+            $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true;
 
             $title = apply_filters('widget_title', $instance['title'] );
             // The Query
@@ -81,6 +85,7 @@
             $instance['category'] = $new_instance['category'];
             $instance['display_option'] = $new_instance['display_option'];
             $instance['title'] = strip_tags( $new_instance['title'] );
+            $instance['max'] = $new_instance['max'];
             return $instance;
         }
 
@@ -88,7 +93,7 @@
         function form($instance) {
 
             //Set up some default widget settings.
-            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'all', 'display_option' => 'vertical', 'order_by' => 'menu_order', 'target_blank' => 'on');
+            $defaults = array( 'title' => __('Our sponsors', 'wp-sponsors'), 'check_images' => 'on' , 'category' => 'all', 'display_option' => 'vertical', 'order_by' => 'menu_order', 'target_blank' => 'on', max => '');
             $instance = wp_parse_args( (array) $instance, $defaults );
 
             if(empty($instance)) {
@@ -141,6 +146,10 @@
             <p>
                 <input type="checkbox" id="<?php echo $this->get_field_id('target_blank'); ?>" name="<?php echo $this->get_field_name('target_blank'); ?>" <?php checked($instance['target_blank'], 'on'); ?> />
                 <label for="<?php echo $this->get_field_id('target_blank'); ?>"><?php echo __( 'Open links in a new window', 'wp-sponsors' )?></label>
+            </p>
+            <p>
+                <label for="<?php echo $this->get_field_id( 'max' ); ?>"><?php _e('Max (empty for all sponsors)', 'wp-sponsors'); ?></label>
+                <input id="<?php echo $this->get_field_id( 'max' ); ?>" name="<?php echo $this->get_field_name( 'max' ); ?>" value="<?php echo $instance['max']; ?>" style="width:100%;" />
             </p>
             <?php }
         }
