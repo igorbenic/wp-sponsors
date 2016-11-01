@@ -50,6 +50,7 @@
         // style options defaults to list
         if ( !isset($atts['style']) ) { $atts['style'] = 'list';}
         // images options default to yes
+
         $images != 'no' && $image != 'no' ? $images = true : $images = false;
         // debug option defaults to false
         isset($debug) ? $debug = true : $debug = false;
@@ -122,6 +123,6 @@
                 if( ($query->current_post + 1) === $query->post_count) { echo $style['containerPost']; }
             endwhile;
             return ob_get_clean();
-        }
+        };
     }
     add_shortcode( 'sponsors', 'sponsors_register_shortcode' );
