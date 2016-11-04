@@ -21,7 +21,8 @@
                 'pagination'             => false,
                 'order'                  => 'ASC',
                 'posts_per_page'         => '-1',
-                'orderby'                => $instance['order_by']
+                'orderby'                => $instance['order_by'],
+                'sponsor-class'          => $instance['sponsor-class']
             );
 
             if($instance['category'] != 'all' && $instance['category'] != '') {
@@ -51,7 +52,7 @@
                 <ul class="<?php echo $instance['display_option']; ?>">
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                     <?php $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ); ?>
-                    <li class="sponsors-item">
+                    <li class="sponsors-item <?php echo $instance['sponsor-class']; ?>">
                         <?php if(!empty($link)) { ?>
                         <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" <?php if($instance['target_blank'] === "on"){ ?> target="_blank"<?php }; ?> <?php if($nofollow) {?>rel="nofollow" <?php } ?>>
                         <?php }; ?>
@@ -86,6 +87,7 @@
             $instance['display_option'] = $new_instance['display_option'];
             $instance['title'] = strip_tags( $new_instance['title'] );
             $instance['max'] = $new_instance['max'];
+            $instance['sponsor-class'] = $new_instance['sponsor-class'];
             return $instance;
         }
 
@@ -135,6 +137,10 @@
             <p>
                 <label for="<?php echo $this->get_field_id( 'max' ); ?>"><?php _e('Number of sponsors to show  (leave to show all)', 'wp-sponsors'); ?></label>
                 <input id="<?php echo $this->get_field_id( 'max' ); ?>" name="<?php echo $this->get_field_name( 'max' ); ?>" value="<?php echo $instance['max']; ?>" style="width:100%;"  type="number"/>
+            </p>
+            <p>
+                <label for="<?php echo $this->get_field_id( 'sponsor-class' ); ?>"><?php _e('Class applied to each sponsor', 'wp-sponsors'); ?></label>
+                <input id="<?php echo $this->get_field_id( 'sponsor-class' ); ?>" name="<?php echo $this->get_field_name( 'sponsor-class' ); ?>" value="<?php echo $instance['sponsor-class']; ?>" style="width:100%;"/>
             </p>
             <p>
                 <input type="checkbox" id="<?php echo $this->get_field_id('show_title'); ?>" name="<?php echo $this->get_field_name('show_title'); ?>" <?php checked($instance['show_title'], 'on'); ?> />

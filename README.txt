@@ -38,6 +38,7 @@ The shortcode [sponsors] takes the following options:
 * category (category-slug, default: all)
 * size (small|medium|large|full, default: medium)
 * style (list|grid, default: list)
+* sponsor-class (default: none)
 
 == Changelog ==
 

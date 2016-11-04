@@ -18,6 +18,7 @@
             'orderby' => 'menu_order',
             'title' => 'no',
             'max' => '-1',
+            'sponsor-class' => '',
             'debug' => NULL
         ), $atts ) );
 
@@ -69,7 +70,7 @@
             case "list":
                 $style['containerPre'] = '<div id="wp-sponsors"><ul>';
                 $style['containerPost'] = '</ul></div>';
-                $style['wrapperClass'] = 'sponsor-item';
+                $style['wrapperClass'] = 'sponsor-item ';
                 $style['wrapperPre'] = 'li';
                 $style['wrapperPost'] = '</li>';
                 break;
@@ -93,6 +94,7 @@
                 $class = '';
                 $class .= $size;
                 if($debug) { $class .= ' debug'; }
+                if($atts['sponsor-class']) { $class .= ' '.$atts['sponsor-class']; }
 
                 echo '<' . $style['wrapperPre'] . ' class="' . $style['wrapperClass'] .' ' . $class . '">';
                 $sponsor = '';

@@ -201,3 +201,6 @@ msgstr "Studio Espresso"
 
 #~ msgid "Sponsor Logo"
 #~ msgstr "Sponsor Logo"
+
+msgid "Class applied to each sponsor"
+msgstr "Classe ajoutée à chaque sponsor"
