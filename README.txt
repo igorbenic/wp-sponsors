@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: janhenckens
-Donate link: http://onedge.be/donate/
+Donate link: http://studioespresso.co/donate/
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
 Tested up to: 4.6
