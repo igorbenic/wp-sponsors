@@ -41,6 +41,10 @@
             $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true;
 
             $title = apply_filters('widget_title', $instance['title'] );
+
+            // filter for the wrapper and item classes
+            $sponsorStyling = apply_filters('sponsors_widget_styling', 'sponsors-item');
+
             // The Query
             $query = new WP_Query( $args );
             $shame = new Wp_Sponsors_Shame();
@@ -51,7 +55,7 @@
                 <ul class="<?php echo $instance['display_option']; ?>">
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                     <?php $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ); ?>
-                    <li class="sponsors-item">
+                    <li class="<?php echo $sponsorStyling ?>">
                         <?php if(!empty($link)) { ?>
                         <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" <?php if($instance['target_blank'] === "on"){ ?> target="_blank"<?php }; ?> <?php if($nofollow) {?>rel="nofollow" <?php } ?>>
                         <?php }; ?>

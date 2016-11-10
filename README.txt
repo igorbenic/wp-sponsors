@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: janhenckens
-Donate link: http://onedge.be/donate/
+Donate link: http://studioespresso.co/donate/
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
-Tested up to: 4.6
-Stable tag: 2.1.0
+Tested up to: 4.7
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,10 @@ The shortcode [sponsors] takes the following options:
 * style (list|grid, default: list)
 
 == Changelog ==
+
+= 2.2 =
+* Added translations for fr_BE and fr_FR
+* Added a filter called "sponsors_widget_styling" to add a css class to each sponsor item from your theme
 
 = 2.1 =
 * Added number of entries and title options to the shortcode
