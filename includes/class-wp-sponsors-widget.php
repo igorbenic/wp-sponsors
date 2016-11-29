@@ -60,7 +60,7 @@
                         <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" <?php if($instance['target_blank'] === "on"){ ?> target="_blank"<?php }; ?> <?php if($nofollow) {?>rel="nofollow" <?php } ?>>
                         <?php }; ?>
                         <?php if($instance['show_title'] === "on"){ ?>
-                            <div class="sponsor-title widget-title"><?php echo the_title(j); ?></div>
+                            <div class="sponsor-title widget-title"><?php echo the_title(); ?></div>
                         <?php }; ?>
                         <?php if($instance['check_images'] === "on"){ ?>
                             <?php echo $shame->getImage(get_the_ID()) ?>
