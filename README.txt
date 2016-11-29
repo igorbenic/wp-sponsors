@@ -4,7 +4,7 @@ Donate link: http://studioespresso.co/donate/
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
 Tested up to: 4.7
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,9 @@ The shortcode [sponsors] takes the following options:
 * style (list|grid, default: list)
 
 == Changelog ==
+
+= 2.2.1 = 
+* Bugfix
 
 = 2.2 =
 * Added translations for fr_BE and fr_FR
