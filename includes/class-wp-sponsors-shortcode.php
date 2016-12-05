@@ -96,26 +96,35 @@
 
                 echo '<' . $style['wrapperPre'] . ' class="' . $style['wrapperClass'] .' ' . $class . '">';
                 $sponsor = '';
+                // Check if we have a link
+                if($link && !$images) {
+                    $sponsor .= '<a href=' .$link . ' target="_blank">';
+                }
                 // Check if we have a title
                 if($title) {
                     $sponsor .= '<h3>'.get_the_title().'</h3>';
                 }
+                // Close the link tag if we have it
+                if($link && !$images) {
+                    $sponsor .= '</a>';
+                }
                 // Check if we have a link
-                if($link) {
+                if($link && $images) {
                     $sponsor .= '<a href=' .$link . ' target="_blank">';
                 }
                 // Check if we should do images, just show the title if there's no image set
                  if($images){
                     $sponsor .=  $shame->getImage(get_the_ID());
-                } else {
-                    $sponsor .= get_the_title();
+                 } elseif ($title === false) {
+                     $sponsor .= '<h3>' . get_the_title() . '</h3>';
                 }
+
                 // Check if we need a description and the description is not empty
                 if($description) {
                     $sponsor .= '<p>' . get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ) . '</p> ';
                 }
                 // Close the link tag if we have it
-                if($link) {
+                if($link && $images) {
                     $sponsor .= '</a>';
                 }
                 echo $sponsor;
@@ -123,6 +132,6 @@
                 if( ($query->current_post + 1) === $query->post_count) { echo $style['containerPost']; }
             endwhile;
             return ob_get_clean();
-        };
+        }
     }
     add_shortcode( 'sponsors', 'sponsors_register_shortcode' );

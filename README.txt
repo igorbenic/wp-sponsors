@@ -4,7 +4,7 @@ Donate link: http://studioespresso.co/donate/
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
 Tested up to: 4.7
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,7 +41,10 @@ The shortcode [sponsors] takes the following options:
 
 == Changelog ==
 
-= 2.2.1 = 
+= 2.2.2 =
+* Changed how sponsors are links in the shortcode. No using the no-images option, the title will be linked and the description won't be. With images, the image will link and the title won't.
+
+= 2.2.1 =
 * Bugfix
 
 = 2.2 =
