@@ -132,6 +132,6 @@
                 if( ($query->current_post + 1) === $query->post_count) { echo $style['containerPost']; }
             endwhile;
             return ob_get_clean();
-        };
+        }
     }
     add_shortcode( 'sponsors', 'sponsors_register_shortcode' );
