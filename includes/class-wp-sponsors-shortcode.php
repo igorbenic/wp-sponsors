@@ -131,6 +131,7 @@
                 echo $style['wrapperPost'];
                 if( ($query->current_post + 1) === $query->post_count) { echo $style['containerPost']; }
             endwhile;
+            wp_reset_postdata();
             return ob_get_clean();
         }
     }
