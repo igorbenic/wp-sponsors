@@ -309,6 +309,7 @@ class Wp_Sponsors {
 
                 function sponsor_metabox_link_behaviour($post) {
                     $meta_value = get_post_meta( get_the_ID(), 'wp_sponsor_link_behaviour', true );
+                    $meta_value = $meta_value == "" ? "1" : $meta_value;
                     echo '<label><input type="checkbox" id="wp_sponsor_link_behaviour" name="wp_sponsor_link_behaviour" value="1" ' . checked($meta_value, '1', false) . '>' . __('Open link in a new window', 'wp-sponsors') . '</label>';
                 }
 
@@ -337,7 +338,7 @@ class Wp_Sponsors {
                         if( isset( $_POST[ 'wp_sponsors_desc' ] ) ) {
                                 update_post_meta( $post_id, 'wp_sponsors_desc', $_POST[ 'wp_sponsors_desc' ] );
                         }
-                        $link_behaviour = $_POST['wp_sponsor_link_behaviour'] ? true : false;
+                        $link_behaviour = $_POST['wp_sponsor_link_behaviour'] ? '1' : '0';
                         update_post_meta( $post_id, 'wp_sponsor_link_behaviour', $link_behaviour );
                 }
                 add_action( 'save_post', 'sponsors_save_metabox' );
