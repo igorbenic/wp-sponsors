@@ -259,7 +259,7 @@ class Wp_Sponsors {
                         );
                         register_post_type( 'sponsor', $args );
                 }
-                add_post_type_support( 'sponsor', 'thumbnail' );    
+                add_post_type_support( 'sponsor', 'thumbnail' );
                 add_action( 'init', 'sponsors_register' );
 
                 /**
@@ -274,6 +274,11 @@ class Wp_Sponsors {
                         add_meta_box( 'meta-box-desc', __( 'Sponsor Description', 'wp_sponsors' ), 'sponsor_metabox_desc', 'sponsor', 'normal' );
                 }
                 add_action( 'add_meta_boxes', 'add_sponsor_desc' );
+
+                function add_sponsor_link_behaviour_metabox() {
+                        add_meta_box( 'meta-box-link-behaviour', __( 'Sponsor link behaviour', 'wp_sponsors' ), 'sponsor_metabox_link_behaviour', 'sponsor', 'normal' );
+                }
+                add_action( 'add_meta_boxes', 'add_sponsor_link_behaviour_metabox' );
 
                 /**
                  * Meta box display callback.
@@ -301,6 +306,10 @@ class Wp_Sponsors {
                         // Checks and displays the retrieved value
                         $editor_settings = array( 'wpautop' => true, 'media_buttons' => false, 'textarea_rows' => '8', 'textarea_name' => 'wp_sponsors_desc');
                         echo wp_editor($meta_value, 'wp_sponsors_desc', $editor_settings);
+                }
+
+                function sponsor_metabox_link_behaviour($post) {
+
                 }
 
 
@@ -340,7 +349,7 @@ class Wp_Sponsors {
                         return $defaults;
                 }
                 add_filter('manage_sponsor_posts_columns', 'sponsors_add_new_column');
-                 
+
                 /**
                  * Adds the sponsors image (if available) to the Sponsors overview list in the dashboard
                  */
