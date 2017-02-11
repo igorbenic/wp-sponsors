@@ -286,30 +286,30 @@ class Wp_Sponsors {
                  * @param WP_Post $post Current post object.
                  */
                 function sponsor_metabox_url( $post ) {
-                        // Display code/markup goes here. Don't forget to include nonces!
-                        // Noncename needed to verify where the data originated
-                        echo '<input type="hidden" name="wp_sponsors_nonce" id="wp_sponsors_nonce" value="' . wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
-                        // Get the url data if its already been entered
-                        $meta_value = get_post_meta( get_the_ID(), 'wp_sponsors_url', true );
-                        // Checks and displays the retrieved value
-                        echo '<input type="url" name="wp_sponsors_url" value="' . $meta_value  . '" class="widefat" />';
+                    // Display code/markup goes here. Don't forget to include nonces!
+                    // Noncename needed to verify where the data originated
+                    echo '<input type="hidden" name="wp_sponsors_nonce" id="wp_sponsors_nonce" value="' . wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
+                    // Get the url data if its already been entered
+                    $meta_value = get_post_meta( get_the_ID(), 'wp_sponsors_url', true );
+                    // Checks and displays the retrieved value
+                    echo '<input type="url" name="wp_sponsors_url" value="' . $meta_value  . '" class="widefat" />';
                 }
 
                 function sponsor_metabox_desc( $post ) {
-                        // Display code/markup goes here. Don't forget to include nonces!
-                        // Noncename needed to verify where the data originated
-                        echo '<input type="hidden" name="wp_sponsors_desc_nonce" id="wp_sponsors_desc_nonce" value="' . wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
-                        // Get the url data if its already been entered
-                        $meta_value = get_post_meta( get_the_ID(), 'wp_sponsors_desc', true );
-                        $meta_value = apply_filters('the_content', $meta_value);
-                        $meta_value = str_replace(']]>', ']]>', $meta_value);
-                        // Checks and displays the retrieved value
-                        $editor_settings = array( 'wpautop' => true, 'media_buttons' => false, 'textarea_rows' => '8', 'textarea_name' => 'wp_sponsors_desc');
-                        echo wp_editor($meta_value, 'wp_sponsors_desc', $editor_settings);
+                    // Display code/markup goes here. Don't forget to include nonces!
+                    // Noncename needed to verify where the data originated
+                    // Get the url data if its already been entered
+                    $meta_value = get_post_meta( get_the_ID(), 'wp_sponsors_desc', true );
+                    $meta_value = apply_filters('the_content', $meta_value);
+                    $meta_value = str_replace(']]>', ']]>', $meta_value);
+                    // Checks and displays the retrieved value
+                    $editor_settings = array( 'wpautop' => true, 'media_buttons' => false, 'textarea_rows' => '8', 'textarea_name' => 'wp_sponsors_desc');
+                    echo wp_editor($meta_value, 'wp_sponsors_desc', $editor_settings);
                 }
 
                 function sponsor_metabox_link_behaviour($post) {
-
+                    $meta_value = get_post_meta( get_the_ID(), 'wp_sponsor_link_behaviour', true );
+                    echo '<label><input type="checkbox" id="wp_sponsor_link_behaviour" name="wp_sponsor_link_behaviour" value="1" ' . checked($meta_value, '1', false) . '>' . __('Open link in a new window', 'wp-sponsors') . '</label>';
                 }
 
 
@@ -337,6 +337,8 @@ class Wp_Sponsors {
                         if( isset( $_POST[ 'wp_sponsors_desc' ] ) ) {
                                 update_post_meta( $post_id, 'wp_sponsors_desc', $_POST[ 'wp_sponsors_desc' ] );
                         }
+                        $link_behaviour = $_POST['wp_sponsor_link_behaviour'] ? true : false;
+                        update_post_meta( $post_id, 'wp_sponsor_link_behaviour', $link_behaviour );
                 }
                 add_action( 'save_post', 'sponsors_save_metabox' );
 
