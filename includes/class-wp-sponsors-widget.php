@@ -41,6 +41,7 @@
             $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true;
 
             $title = apply_filters('widget_title', $instance['title'] );
+            $widget_target = $instance['target_blank'] == "on" ? true : false;
 
             // filter for the wrapper and item classes
             $sponsorStyling = apply_filters('sponsors_widget_styling', 'sponsors-item');
@@ -54,10 +55,14 @@
                 <?php if ( $title ) echo $before_title . $title . $after_title; ?>
                 <ul class="<?php echo $instance['display_option']; ?>">
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                    <?php $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ); ?>
+                    <?php
+                        $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true );
+                        $link_target = get_post_meta( get_the_ID(), 'wp_sponsor_link_behaviour', true );
+                        $target = ($link_target == 1 OR $widget_target == true) ? true : false;
+                    ?>
                     <li class="<?php echo $sponsorStyling ?>">
                         <?php if(!empty($link)) { ?>
-                        <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" <?php if($instance['target_blank'] === "on"){ ?> target="_blank"<?php }; ?> <?php if($nofollow) {?>rel="nofollow" <?php } ?>>
+                        <a href="<?php echo get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) ?>" <?php if($target){ ?> target="_blank"<?php }; ?> <?php if($nofollow) {?>rel="nofollow" <?php } ?>>
                         <?php }; ?>
                         <?php if($instance['show_title'] === "on"){ ?>
                             <div class="sponsor-title widget-title"><?php echo the_title(); ?></div>
@@ -155,6 +160,7 @@
             <p>
                 <input type="checkbox" id="<?php echo $this->get_field_id('target_blank'); ?>" name="<?php echo $this->get_field_name('target_blank'); ?>" <?php checked($instance['target_blank'], 'on'); ?> />
                 <label for="<?php echo $this->get_field_id('target_blank'); ?>"><?php echo __( 'Open links in a new window', 'wp-sponsors' )?></label>
+
             </p>
             <?php }
         }
