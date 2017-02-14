@@ -42,7 +42,6 @@
 
             $title = apply_filters('widget_title', $instance['title'] );
             $widget_target = $instance['target_blank'] == "on" ? true : false;
-            var_dump($widget_target);
 
             // filter for the wrapper and item classes
             $sponsorStyling = apply_filters('sponsors_widget_styling', 'sponsors-item');
