@@ -6,3 +6,8 @@
 td.column-wp_sponsors_img {
     width: 100%;
 }
+
+td.column-wp_sponsors_logo img {
+    width: auto;
+    max-height: 80px;
+}
