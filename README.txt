@@ -41,6 +41,9 @@ The shortcode [sponsors] takes the following options:
 
 == Changelog ==
 
+= 2.3.2 =
+* Sort by menu_order by default in the shortcode
+
 = 2.3.1 =
 * Fixed a critical issue where we assumed your table prefix was 'wp_'
 * Fixed the max settings in the shortcode
