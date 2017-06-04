@@ -26,7 +26,7 @@
             'post_status'           => 'publish',
             'pagination'            => false,
             'order'                 => 'ASC',
-            'orderby'               => $atts['orderby'],
+            'orderby'               => $atts['orderby'] ? $atts['orderby'] : 'menu_order',
             'posts_per_page'        => (int)$atts['max'] ? $atts['max'] : '-1',
             'tax_query'             => array(),
         );

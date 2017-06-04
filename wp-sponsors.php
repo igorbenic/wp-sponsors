@@ -16,7 +16,7 @@
  * Plugin Name:       Sponsors
  * Plugin URI:        http://studioespresso.co
  * Description:       Add links and logo's for your sponsors/partners/etc to your sidebars and posts with our widget and shortcode.
- * Version:           2.3.1
+ * Version:           2.3.2
  * Author:            Studio Espresso
  * Author URI:        http://studioespresso.co
  * License:           GPL-2.0+
