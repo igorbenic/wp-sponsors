@@ -90,6 +90,8 @@
                 if($query->current_post === 0) { echo $style['containerPre']; }
                 // Check if the sponsor was a link
                 get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) != '' ? $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) : $link = false;
+                $link_target = get_post_meta( get_the_ID(), 'wp_sponsor_link_behaviour', true );
+                $target = ($link_target == 1) ? 'target="_blank"' : '';
                 $class = '';
                 $class .= $size;
                 if($debug) { $class .= ' debug'; }
@@ -98,7 +100,7 @@
                 $sponsor = '';
                 // Check if we have a link
                 if($link && !$images) {
-                    $sponsor .= '<a href=' .$link . ' target="_blank">';
+                    $sponsor .= '<a href=' .$link. ' ' .$target. '>';
                 }
                 // Check if we have a title
                 if($title) {
@@ -110,7 +112,7 @@
                 }
                 // Check if we have a link
                 if($link && $images) {
-                    $sponsor .= '<a href=' .$link . ' target="_blank">';
+                    $sponsor .= '<a href=' .$link. ' ' .$target. '>';
                 }
                 // Check if we should do images, just show the title if there's no image set
                  if($images){
