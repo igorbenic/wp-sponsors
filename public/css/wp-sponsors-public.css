@@ -61,3 +61,12 @@ div#wp-sponsors ul li { list-style: none;}
    height: 0;
    clear: both;
 }
+
+
+@media only screen and (max-width: 900px) {
+    #wp-sponsors div.sponsor-item.small {max-width: 40%; width: 40%; }
+    #wp-sponsors div.sponsor-item.medium {max-width: 40%; width: 40%; }
+    #wp-sponsors div.sponsor-item.large {max-width: 100%; width: 100%; }
+
+
+}
