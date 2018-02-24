@@ -26,10 +26,12 @@
             'post_status'           => 'publish',
             'pagination'            => false,
             'order'                 => 'ASC',
-            'orderby'               => $atts['orderby'] ? $atts['orderby'] : 'menu_order',
-            'posts_per_page'        => (int)$atts['max'] ? $atts['max'] : '-1',
+            'orderby'               => isset($atts['orderby']) ? $atts['orderby'] : 'menu_order',
+            'posts_per_page'        => isset($atts['max']) ? $atts['max'] : '-1',
             'tax_query'             => array(),
         );
+
+		if(!$atts) { $atts = array(); };
 
         $nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true;
 
@@ -48,7 +50,7 @@
 
         // Set default options with then shortcode is used without parameters
         // style options defaults to list
-        if ( !isset($atts['style']) ) { $atts['style'] = 'list';}
+        if ( empty($atts['style']) ) { $atts['style'] = 'list'; }
         // images options default to yes
 
         $images != 'no' && $image != 'no' ? $images = true : $images = false;
