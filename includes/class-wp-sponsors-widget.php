@@ -198,4 +198,4 @@ class sponsors_widget extends WP_Widget {
 }
 
 // end class sponsors_widget
-add_action( 'widgets_init', create_function( '', 'return register_widget("sponsors_widget");' ) );
+add_action( 'widgets_init', function() { return register_widget("sponsors_widget");} );
