@@ -3,9 +3,9 @@ Contributors: janhenckens
 Donate link: http://studioespresso.co/donate/
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
-Tested up to: 4.9.4
+Tested up to: 4.9.7
 Requires PHP: 7.0
-Stable tag: 2.4.1
+Stable tag: 2.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,9 @@ The shortcode [sponsors] takes the following options:
 * style (list|grid, default: list)
 
 == Changelog ==
+
+= 2.5.0 =
+* Fixed a small error and the plugin now works with Gutenburg!
 
 = 2.4.1 =
 * Fixed php errors when using the shortcode without any options

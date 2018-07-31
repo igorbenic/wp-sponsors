@@ -331,7 +331,7 @@ class Wp_Sponsors {
 			if ( isset( $_POST['wp_sponsors_desc'] ) ) {
 				update_post_meta( $post_id, 'wp_sponsors_desc', $_POST['wp_sponsors_desc'] );
 			}
-			$link_behaviour = $_POST['wp_sponsor_link_behaviour'] ? '1' : '0';
+			$link_behaviour = isset($_POST['wp_sponsor_link_behaviour']) ? '1' : '0';
 			update_post_meta( $post_id, 'wp_sponsor_link_behaviour', $link_behaviour );
 		}
 
