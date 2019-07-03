@@ -14,11 +14,11 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Sponsors
- * Plugin URI:        http://studioespresso.co
+ * Plugin URI:        https://www.ibenic.com
  * Description:       Add links and logo's for your sponsors/partners/etc to your sidebars and posts with our widget and shortcode.
  * Version:           2.5.1
- * Author:            Studio Espresso
- * Author URI:        http://studioespresso.co
+ * Author:            Igor Benić
+ * Author URI:        https://www.ibenic.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       wp-sponsors
