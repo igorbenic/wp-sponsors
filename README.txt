@@ -1,6 +1,6 @@
 === Plugin Name ===
-Contributors: janhenckens
-Donate link: http://studioespresso.co/donate/
+Contributors: ibenic
+Donate link: https://www.ibenic.com
 Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
 Tested up to: 4.9.7
