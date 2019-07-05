@@ -20,7 +20,7 @@
  * @subpackage Wp_Sponsors/public
  * @author     Jan Henckens <jan@studioespresso.co>
  */
-class Wp_Sponsors_Public {
+class WP_Sponsors_Public {
 
 	/**
 	 * The ID of this plugin.

@@ -20,7 +20,7 @@
  * @subpackage Wp_Sponsors/admin
  * @author     Jan Henckens <jan@studioespresso.co>
  */
-class Wp_Sponsors_Admin {
+class WP_Sponsors_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -104,7 +104,107 @@ class Wp_Sponsors_Admin {
 
 	}
 
-    /**
+	/**
+	 * Save Metaboxes.
+	 *
+	 * @param $post_id
+	 */
+	public function save_meta_boxes( $post_id ) {
+		// verify this came from the our screen and with proper authorization,
+		// because save_post can be triggered at other times
+
+		// Checks save status
+		$is_autosave    = wp_is_post_autosave( $post_id );
+		$is_revision    = wp_is_post_revision( $post_id );
+		$is_valid_nonce = ( isset( $_POST['wp_sponsors_nonce'] ) && wp_verify_nonce( $_POST['wp_sponsors_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false';
+		// Exits script depending on save status
+		if ( $is_autosave || $is_revision || ! $is_valid_nonce ) {
+			return;
+		}
+		// Checks for input and sanitizes/saves if needed
+		if ( isset( $_POST['wp_sponsors_url'] ) ) {
+			update_post_meta( $post_id, 'wp_sponsors_url', sanitize_text_field( $_POST['wp_sponsors_url'] ) );
+		}
+		if ( isset( $_POST['wp_sponsors_desc'] ) ) {
+			update_post_meta( $post_id, 'wp_sponsors_desc', $_POST['wp_sponsors_desc'] );
+		}
+		$link_behaviour = isset($_POST['wp_sponsor_link_behaviour']) ? '1' : '0';
+		update_post_meta( $post_id, 'wp_sponsor_link_behaviour', $link_behaviour );
+	}
+
+	/**
+	 * Sponsors metaboxes
+	 */
+	public function add_meta_boxes() {
+		add_meta_box( 'wp-sponsor-info', __( 'Sponsor', 'wp_sponsors' ), array( $this, 'sponsors_info_metabox' ), 'sponsors', 'normal', 'high' );
+		remove_meta_box( 'postimagediv', 'sponsors', 'side' ); //replace post_type from your post type name
+		add_meta_box( 'postimagediv', __( 'Sponsor logo', 'wp-sponsors' ), 'post_thumbnail_meta_box', 'sponsors', 'side', 'high' );
+		if ( ! class_exists('\Simple_Sponsorships\Plugin' ) ) {
+			add_meta_box( 'ss-metabox-info', __( 'Simple Sponsorships', 'wp-sponsors' ), array( $this, 'ss_info_metabox' ), 'sponsors', 'side', 'low' );
+		}
+	}
+
+	public function sponsors_info_metabox( $post ) {
+		include_once 'partials/meta-boxes/sponsor-info.php';
+	}
+
+	public function ss_info_metabox() {
+		include_once 'partials/meta-boxes/ss-info.php';
+	}
+
+
+	/**
+	 * Adds a new column to the Sponsors overview list in the dashboard
+	 *
+	 * @param array $defaults
+	 */
+	public function add_new_sponsors_column( $defaults ) {
+		$defaults['wp_sponsors_logo'] = __( 'Sponsor logo', 'wp-sponsors' );
+		$defaults['menu_order']       = __( 'Order', 'wp-sponsors' );
+
+		return $defaults;
+	}
+
+	/**
+	 * Adds the sponsors image (if available) to the Sponsors overview list in the dashboard
+	 *
+	 * @param string $column_name
+	 * @param integer $post_id
+	 */
+	public function sponsors_custom_columns( $column_name, $post_id ) {
+		global $post;
+
+		switch ( $column_name ) {
+			case 'wp_sponsors_logo':
+				$shame = new Wp_Sponsors_Shame();
+				if ( $column_name == 'wp_sponsors_logo' ) {
+					$image = $shame->getImage( $post_id );
+					echo $image;
+				}
+				break;
+			case 'menu_order':
+				$order = $post->menu_order;
+				echo $order;
+				break;
+			default:
+				break;
+		}
+	}
+
+	/**
+	 * Order Column
+	 *
+	 * @param $columns
+	 *
+	 * @return mixed
+	 */
+	public function sponsor_order_column( $columns ) {
+		$columns['menu_order'] = 'menu_order';
+
+		return $columns;
+	}
+
+	/**
      * The function that checks for updates and runs the appropriate upgrade when needed
      *
      * @since     2.0.0

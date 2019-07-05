@@ -17,7 +17,7 @@ class sponsors_widget extends WP_Widget {
 		}
 
 		$args = array(
-			'post_type'      => 'sponsor',
+			'post_type'      => array( 'sponsors', 'sponsor' ), // Allowing 'sponsor' in case the update does not work.
 			'post_status'    => 'publish',
 			'pagination'     => false,
 			'order'          => 'ASC',

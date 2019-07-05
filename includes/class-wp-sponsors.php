@@ -27,7 +27,7 @@
  * @subpackage Wp_Sponsors/includes
  * @author     Jan Henckens <jan@studioespresso.co>
  */
-class Wp_Sponsors {
+class WP_Sponsors {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -69,13 +69,21 @@ class Wp_Sponsors {
 	public function __construct() {
 
 		$this->wp_sponsors = 'wp-sponsors';
-		$this->version     = '2.0.0';
+		$this->version     = '3.0.0';
 
+		$this->define_constants();
 		$this->load_dependencies();
 		$this->set_locale();
+		$this->define_general_hooks();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
+	}
+
+	private function define_constants() {
+		if ( ! defined( 'WP_SPONSORS_VERSION' ) ) {
+			define( 'WP_SPONSORS_VERSION', $this->version );
+		}
 	}
 
 	/**
@@ -108,13 +116,13 @@ class Wp_Sponsors {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-i18n.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-widget.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-shortcode.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-shortcodes.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-installer.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the Dashboard.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-sponsors-admin.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-upgrade.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-extras.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-shame.php';
@@ -143,7 +151,7 @@ class Wp_Sponsors {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Wp_Sponsors_i18n();
+		$plugin_i18n = new WP_Sponsors_i18n();
 		$plugin_i18n->set_domain( $this->get_wp_sponsors() );
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
@@ -158,12 +166,18 @@ class Wp_Sponsors {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
+		if ( ! is_admin() ) { return; }
+		$plugin_admin = new WP_Sponsors_Admin( $this->get_wp_sponsors(), $this->get_version() );
 
-		$plugin_admin = new Wp_Sponsors_Admin( $this->get_wp_sponsors(), $this->get_version() );
-
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin,'add_meta_boxes' );
+		$this->loader->add_action( 'save_post', $plugin_admin,'save_meta_boxes' );
 		$this->loader->add_action( 'plugins_loaded', $plugin_admin, 'update' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'manage_sponsors_posts_custom_column', $plugin_admin, 'sponsors_custom_columns', 10, 2 );
+
+		$this->loader->add_filter( 'manage_edit-sponsors_sortable_columns', $plugin_admin,'sponsor_order_column' );
+		$this->loader->add_filter( 'manage_sponsors_posts_columns', $plugin_admin, 'add_new_sponsors_column' );
 
 	}
 
@@ -176,12 +190,26 @@ class Wp_Sponsors {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Wp_Sponsors_Public( $this->get_wp_sponsors(), $this->get_version() );
+		$plugin_public = new WP_Sponsors_Public( $this->get_wp_sponsors(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 
+	}
+
+	/**
+	 * Define General Hooks used for anything else.
+	 * Some both on public and admin.
+	 */
+	private function define_general_hooks() {
+		register_activation_hook( WP_SPONSORS_FILE, array( 'WP_Sponsors_Installer', 'install' ) );
+
+		$installer  = new WP_Sponsors_Installer();
+		$shortcodes = new WP_Sponsors_Shortcodes();
+		$this->loader->add_action( 'init', $installer, 'register', 0 );
+		$this->loader->add_action( 'init', $installer, 'check_version' );
+		$this->loader->add_action( 'init', $shortcodes, 'register_shortcodes', 0 );
 	}
 
 	/**
@@ -191,228 +219,6 @@ class Wp_Sponsors {
 	 */
 	public function run() {
 		$this->loader->run();
-
-		/**
-		 * Trigger create_sponsor_taxonomies on init
-		 */
-		add_action( 'init', 'create_sponsor_taxonomies', 0 );
-
-		/**
-		 * Creates a categories taxonomy for the sponsors post type
-		 */
-		function create_sponsor_taxonomies() {
-			// Labels for the sponsor categories
-			$labels = array(
-				'name'              => _x( 'Categories', 'taxonomy general name' ),
-				'singular_name'     => _x( 'Category', 'taxonomy singular name' ),
-				'search_items'      => __( 'Search categories' ),
-				'all_items'         => __( 'All categories' ),
-				'parent_item'       => __( 'Parent category' ),
-				'parent_item_colon' => __( 'Parent category:' ),
-				'edit_item'         => __( 'Edit category' ),
-				'update_item'       => __( 'Update category' ),
-				'add_new_item'      => __( 'Add New category' ),
-				'new_item_name'     => __( 'New category' ),
-				'menu_name'         => __( 'Categories' ),
-			);
-			// Arguments for the sponsor categories (public = false means it don't have a url)
-			$args = array(
-				'hierarchical'      => true,
-				'public'            => false,
-				'rewrite'           => false,
-				'labels'            => $labels,
-				'show_ui'           => true,
-				'show_admin_column' => true,
-				'query_var'         => true
-			);
-			// Register the sponsors taxonomy
-			register_taxonomy( 'sponsor_categories', array( 'sponsor' ), $args );
-		}
-
-		/**
-		 * Registers the Sponsors custom post type
-		 */
-		function sponsors_register() {
-			$args = array(
-				'public'               => true,
-				'label'                => 'Sponsors',
-				'public'               => false,
-				'exclude_from_search'  => true,
-				'publicly_queryable'   => false,
-				'show_ui'              => true,
-				'show_in_menu'         => true,
-				'show_in_admin_bar'    => false,
-				'menu_position'        => 5,
-				'menu_icon'            => 'dashicons-format-image',
-				'query_var'            => true,
-				'rewrite'              => false,
-				'capability_type'      => 'post',
-				'has_archive'          => false,
-				'hierarchical'         => false,
-				'can_export'           => true,
-				'query_var'            => false,
-				'capability_type'      => 'post',
-				'supports'             => array( 'title', 'page-attributes' ),
-				'taxonomies'           => array( 'sponsor_categories' ),
-				'register_meta_box_cb' => 'add_sponsor_metabox'
-			);
-			register_post_type( 'sponsor', $args );
-		}
-
-		add_post_type_support( 'sponsor', 'thumbnail' );
-		add_action( 'init', 'sponsors_register' );
-
-		/**
-		 * Register meta box(es).
-		 */
-		function add_sponsor_metabox() {
-			add_meta_box( 'meta-box-id', __( 'Sponsor', 'wp_sponsors' ), 'sponsor_metabox_url', 'sponsor', 'normal', 'high' );
-		}
-
-		add_action( 'add_meta_boxes', 'add_sponsor_metabox' );
-
-
-		/**
-		 * Meta box display callback.
-		 *
-		 * @param WP_Post $post Current post object.
-		 */
-		function sponsor_metabox_url( $post ) {
-			// Display code/markup goes here. Don't forget to include nonces!
-			// Noncename needed to verify where the data originated
-			echo '<input type="hidden" name="wp_sponsors_nonce" id="wp_sponsors_nonce" value="' . wp_create_nonce( plugin_basename( __FILE__ ) ) . '" />';
-			// Get the url data if its already been entered
-			$meta_value = get_post_meta( get_the_ID(), 'wp_sponsors_url', true );
-			// Checks and displays the retrieved value
-			echo '<p class="post-attributes-label-wrapper"><label for="wp_sponsors_url" class="post-attributes-label">' . __( 'Link', 'wp-sponsors' ) . '</label></p>';
-			echo '<input type="url" name="wp_sponsors_url" value="' . $meta_value . '" class="widefat" />';
-			// Display code/markup goes here. Don't forget to include nonces!
-			// Noncename needed to verify where the data originated
-			// Get the url data if its already been entered
-			$meta_value = get_post_meta( get_the_ID(), 'wp_sponsors_desc', true );
-			$meta_value = apply_filters( 'the_content', $meta_value );
-			$meta_value = str_replace( ']]>', ']]>', $meta_value );
-			// Checks and displays the retrieved value
-			$editor_settings = array( 'wpautop'       => true,
-			                          'media_buttons' => false,
-			                          'textarea_rows' => '8',
-			                          'textarea_name' => 'wp_sponsors_desc'
-			);
-			echo '<p class="post-attributes-label-wrapper"><label for="wp_sponsors_desc" class="post-attributes-label">' . __( 'Description', 'wp-sponsors' ) . '</label></p>';
-			echo wp_editor( $meta_value, 'wp_sponsors_desc', $editor_settings );
-			$meta_value = get_post_meta( get_the_ID(), 'wp_sponsor_link_behaviour', true );
-			echo '<p class="post-attributes-label-wrapper"><label for="wp_sponsor_link_behaviour" class="post-attributes-label">' . __( 'Link behaviour', 'wp-sponsors' ) . '</label></p>';
-			$meta_value = $meta_value == "" ? "1" : $meta_value;
-			echo '<label><input type="checkbox" id="wp_sponsor_link_behaviour" name="wp_sponsor_link_behaviour" value="1" ' . checked( $meta_value, '1', false ) . '>' . __( 'Open link in a new window', 'wp-sponsors' ) . '</label>';
-		}
-
-
-		/**
-		 * Save meta box content.
-		 *
-		 * @param int $post_id Post ID
-		 */
-		function sponsors_save_metabox( $post_id ) {
-			// verify this came from the our screen and with proper authorization,
-			// because save_post can be triggered at other times
-
-			// Checks save status
-			$is_autosave    = wp_is_post_autosave( $post_id );
-			$is_revision    = wp_is_post_revision( $post_id );
-			$is_valid_nonce = ( isset( $_POST['wp_sponsors_nonce'] ) && wp_verify_nonce( $_POST['wp_sponsors_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false';
-			// Exits script depending on save status
-			if ( $is_autosave || $is_revision || ! $is_valid_nonce ) {
-				return;
-			}
-			// Checks for input and sanitizes/saves if needed
-			if ( isset( $_POST['wp_sponsors_url'] ) ) {
-				update_post_meta( $post_id, 'wp_sponsors_url', sanitize_text_field( $_POST['wp_sponsors_url'] ) );
-			}
-			if ( isset( $_POST['wp_sponsors_desc'] ) ) {
-				update_post_meta( $post_id, 'wp_sponsors_desc', $_POST['wp_sponsors_desc'] );
-			}
-			$link_behaviour = isset($_POST['wp_sponsor_link_behaviour']) ? '1' : '0';
-			update_post_meta( $post_id, 'wp_sponsor_link_behaviour', $link_behaviour );
-		}
-
-		add_action( 'save_post', 'sponsors_save_metabox' );
-
-		/**
-		 * Adds a new column to the Sponsors overview list in the dashboard
-		 */
-		function sponsors_add_new_column( $defaults ) {
-			$defaults['wp_sponsors_logo'] = __( 'Sponsor logo', 'wp-sponsors' );
-			$defaults['menu_order']       = __( 'Order', 'wp-sponsors' );
-
-			return $defaults;
-		}
-
-		add_filter( 'manage_sponsor_posts_columns', 'sponsors_add_new_column' );
-
-		/**
-		 * Adds the sponsors image (if available) to the Sponsors overview list in the dashboard
-		 */
-		function sponsors_column_add_image( $column_name, $post_ID ) {
-			$shame = new Wp_Sponsors_Shame();
-			if ( $column_name == 'wp_sponsors_logo' ) {
-				$image = $shame->getImage( $post_ID );
-				echo $image;
-			}
-		}
-
-		add_action( 'manage_sponsor_posts_custom_column', 'sponsors_column_add_image', 10, 2 );
-
-		/**
-		 * show custom order column values
-		 */
-		function sponsors_column_add_order( $name ) {
-			global $post;
-
-			switch ( $name ) {
-				case 'menu_order':
-					$order = $post->menu_order;
-					echo $order;
-					break;
-				default:
-					break;
-			}
-		}
-
-		add_action( 'manage_sponsor_posts_custom_column', 'sponsors_column_add_order' );
-
-
-		function sponsor_order_column( $columns ) {
-			$columns['menu_order'] = 'menu_order';
-
-			return $columns;
-		}
-
-		add_filter( 'manage_edit-sponsor_sortable_columns', 'sponsor_order_column' );
-
-		function set_featured_image_filter() {
-			$screen = get_current_screen();
-			if ( isset( $screen->post_type ) && $screen->post_type == 'sponsor' ) {
-				add_filter( 'admin_post_thumbnail_html', 'change_featured_image_strings', 10, 1 );
-			}
-		}
-
-		function change_featured_image_strings( $content ) {
-			$content = str_replace( __( 'Featured Image' ), __( 'Set sponsor logo', 'wp-sponsors' ), $content );
-			$content = str_replace( __( 'Set featured image' ), __( 'Set sponsor logo', 'wp-sponsors' ), $content );
-			$content = str_replace( __( 'Remove featured image' ), __( 'Remove sponsor logo', 'wp-sponsors' ), $content );
-
-			return $content;
-		}
-
-		add_action( 'current_screen', 'set_featured_image_filter' );
-
-		function change_meta_box_title() {
-			remove_meta_box( 'postimagediv', 'sponsor', 'side' ); //replace post_type from your post type name
-			add_meta_box( 'postimagediv', __( 'Sponsor logo', 'wp-sponsors' ), 'post_thumbnail_meta_box', 'sponsor', 'side', 'high' );
-		}
-
-		add_action( 'admin_head', 'change_meta_box_title' );
-
 	}
 
 	/**
