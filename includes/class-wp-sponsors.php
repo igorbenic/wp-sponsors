@@ -125,9 +125,8 @@ class WP_Sponsors {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-sponsors-admin.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-extras.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-shame.php';
 
-		$extra = new WP_Sponsors_extras();
+		$extra = new WP_Sponsors_Extras();
 		$extra->setup();
 
 		/**

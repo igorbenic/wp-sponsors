@@ -10,74 +10,67 @@ class WP_Sponsors_Shortcodes {
 	}
 
 	/**
+	 * Shortcode for showing sponsors
+	 *
 	 * @param $atts
 	 *
 	 * @return string
 	 */
-	public static function sponsors_shortcode( $atts ) {
+	public static function sponsors_shortcode( $atts = array() ) {
 
-		// define attributes and their defaults
-		extract( shortcode_atts( array (
+		$atts = shortcode_atts( array (
 			'type' => 'post',
 			'image' => 'yes',
 			'images' => 'yes',
 			'category' => '',
 			'size' => 'default',
+			'image_size' => 'medium',
 			'style' => 'list',
 			'description' => 'no',
 			'orderby' => 'menu_order',
+			'order' => 'ASC',
 			'title' => 'no',
 			'max' => '-1',
 			'debug' => NULL
-		), $atts ) );
+		), $atts, 'wp_sponsors' );
 
 		$args = array (
 			'post_type'      => array( 'sponsors', 'sponsor' ), // Allowing 'sponsor' in case the update does not work.
-			'post_status'           => 'publish',
-			'pagination'            => false,
-			'order'                 => 'ASC',
-			'orderby'               => isset($atts['orderby']) ? $atts['orderby'] : 'menu_order',
-			'posts_per_page'        => isset($atts['max']) ? $atts['max'] : '-1',
-			'tax_query'             => array(),
+			'post_status'    => 'publish',
+			'pagination'     => false,
+			'order'          => $atts['order'],
+			'orderby'        => isset( $atts['orderby'] ) ? $atts['orderby'] : 'menu_order',
+			'posts_per_page' => isset( $atts['max'] ) ? $atts['max'] : '-1',
+			'tax_query'      => array(),
 		);
-
-		if(!$atts) { $atts = array(); };
 
 		$nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true;
 
-		if(!empty($category)) {
+		if( $atts['category'] ) {
+			$atts['category'] = explode( ',', $atts['category'] );
 			$args['tax_query'] = array(
 				array(
 					'taxonomy'  => 'sponsor_categories',
 					'field'     => 'slug',
-					'terms'     => $category,
+					'terms'     => $atts['category'],
 				),
 			);
 		}
 
+		$images      = 'no' !== $atts['images'] && 'no' !== $atts['image'] ? true : false;
+		$debug       = $atts['debug'] ? true : false;
+		$description = 'yes' === $atts['description'] ? true : false;
+		$title       = 'yes' === $atts['title'] ? true : false;
 		// $sizes = array('small' => '15%', 'medium' => '30%', 'large' => '50%', 'full' => '100%', 'default' => '30%');
 		ob_start();
 
-		// Set default options with then shortcode is used without parameters
-		// style options defaults to list
-		if ( empty($atts['style']) ) { $atts['style'] = 'list'; }
-		// images options default to yes
-
-		$images != 'no' && $image != 'no' ? $images = true : $images = false;
-		// debug option defaults to false
-		isset($debug) ? $debug = true : $debug = false;
-		$description === 'yes' ? $description = true : $description = false;
-		$title === 'yes' ? $title = true : $title = false;
-
-		$query = new WP_Query($args);
+		$query = new WP_Query( $args );
 
 		// Set up the shortcode styles
 		$style = array();
 		$layout = $atts['style'];
 
-		$shame = new Wp_Sponsors_Shame();
-
-		switch ($layout) {
+		switch ( $layout ) {
 			case "list":
 				$style['containerPre'] = '<div id="wp-sponsors"><ul>';
 				$style['containerPost'] = '</ul></div>';
@@ -87,7 +80,7 @@ class WP_Sponsors_Shortcodes {
 				break;
 			case "linear":
 			case "grid":
-				$style['containerPre'] = '<div id="wp-sponsors" class="clearfix">';
+				$style['containerPre'] = '<div id="wp-sponsors" class="clearfix grid">';
 				$style['containerPost'] = '</div>';
 				$style['wrapperClass'] = 'sponsor-item';
 				$style['wrapperPre'] = 'div';
@@ -97,54 +90,69 @@ class WP_Sponsors_Shortcodes {
 		}
 
 		if ( $query->have_posts() ) {
+			echo $style['containerPre'];
 			while ( $query->have_posts() ) : $query->the_post();
 
-				if($query->current_post === 0) { echo $style['containerPre']; }
-				// Check if the sponsor was a link
-				get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) != '' ? $link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true ) : $link = false;
-				$link_target = get_post_meta( get_the_ID(), 'wp_sponsor_link_behaviour', true );
-				$target = ($link_target == 1) ? 'target="_blank"' : '';
-				$class = '';
-				$class .= $size;
-				if($debug) { $class .= ' debug'; }
+				$sponsor_id  = get_the_ID();
+				$link        = get_post_meta( $sponsor_id, 'wp_sponsors_url', true );
+				$link_target = get_post_meta( $sponsor_id, 'wp_sponsor_link_behaviour', true );
+				$target      = 1 === absint( $link_target ) ? 'target="_blank"' : '';
+				$class       = '';
+				$class      .= $atts['size'];
+				$image       = false;
+
+				if( $debug ) {
+					$class .= ' debug';
+				}
 
 				echo '<' . $style['wrapperPre'] . ' class="' . $style['wrapperClass'] .' ' . $class . '">';
 				$sponsor = '';
+
 				// Check if we have a link
-				if($link && !$images) {
-					$sponsor .= '<a href=' .$link. ' ' .$target. '>';
-				}
-				// Check if we have a title
-				if($title) {
-					$sponsor .= '<h3>'.get_the_title().'</h3>';
-				}
-				// Close the link tag if we have it
-				if($link && !$images) {
+				if( $link && ! $images && $title ) {
+					$sponsor .= '<a href=' . esc_attr( $link ) . ' ' . $target . '>';
+					$sponsor .= '<h3>' . get_the_title() . '</h3>';
 					$sponsor .= '</a>';
 				}
-				// Check if we have a link
-				if($link && $images) {
-					$sponsor .= '<a href=' .$link. ' ' .$target. '>';
-				}
-				// Check if we should do images, just show the title if there's no image set
-				if($images){
-					$sponsor .=  $shame->getImage(get_the_ID());
-				} elseif ($title === false) {
-					$sponsor .= '<h3>' . get_the_title() . '</h3>';
+
+				if ( $images ) {
+					// Check if we should do images, just show the title if there's no image set
+					$image = get_the_post_thumbnail( $sponsor_id, $atts['image_size'] );
+
+					// We did not want title, but we don't have an image. Show the title then.
+					if ( ! $image && ! $title ) {
+						$image = '<h3>' . get_the_title() . '</h3>';
+					}
+
+					if ( $image ) {
+						// Check if we have a link
+						if( $link ) {
+							$sponsor .= '<a href=' . esc_attr( $link ) . ' ' .$target. '>';
+						}
+
+						$sponsor .= $image;
+
+						// Close the link tag if we have it
+						if( $link ) {
+							$sponsor .= '</a>';
+						}
+					}
 				}
 
 				// Check if we need a description and the description is not empty
-				if($description) {
-					$sponsor .= '<p>' . get_post_meta( get_the_ID(), 'wp_sponsors_desc', true ) . '</p> ';
+				if( $description ) {
+					$desc = get_post_meta( get_the_ID(), 'wp_sponsors_desc', true );
+
+					if ( $desc ) {
+						$sponsor .= '<p>' . $desc . '</p> ';
+					}
 				}
-				// Close the link tag if we have it
-				if($link && $images) {
-					$sponsor .= '</a>';
-				}
+
 				echo $sponsor;
 				echo $style['wrapperPost'];
-				if( ($query->current_post + 1) === $query->post_count) { echo $style['containerPost']; }
+
 			endwhile;
+			echo $style['containerPost'];
 			wp_reset_postdata();
 			return ob_get_clean();
 		}

@@ -176,11 +176,7 @@ class WP_Sponsors_Admin {
 
 		switch ( $column_name ) {
 			case 'wp_sponsors_logo':
-				$shame = new Wp_Sponsors_Shame();
-				if ( $column_name == 'wp_sponsors_logo' ) {
-					$image = $shame->getImage( $post_id );
-					echo $image;
-				}
+				echo get_the_post_thumbnail( $post_id, array( 0, 50 ) );
 				break;
 			case 'menu_order':
 				$order = $post->menu_order;
