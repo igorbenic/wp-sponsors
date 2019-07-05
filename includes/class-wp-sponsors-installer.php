@@ -173,8 +173,18 @@ class WP_Sponsors_Installer {
 	 * @return boolean
 	 */
 	public static function needs_db_update() {
+		global $wpdb;
 		$current_db_version = get_option( 'sponsors_db_version', null );
 		$updates            = self::get_db_update_callbacks();
+
+		// Delete in future 3.x versions.
+		if ( is_null( 'sponsors_db_version' ) ) {
+			// No Version, but maybe coming from 1.x?
+			$count = $wpdb->get_var( $wpdb->prepare( 'SELECT count(*) FROM ' . $wpdb->postmeta . ' WHERE meta_key=%s', 'wp_sponsors_url' ) );
+			if ( absint( $count ) ) {
+				return true;
+			}
+		}
 
 		return ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( $updates ) ), '<' );
 	}
@@ -182,7 +192,7 @@ class WP_Sponsors_Installer {
 	/**
 	 * See if we need to show or run database updates during install.
 	 *
-	 * @since 3.2.0
+	 * @since 3.0.0
 	 */
 	private static function maybe_update_db_version() {
 		if ( self::needs_db_update() ) {

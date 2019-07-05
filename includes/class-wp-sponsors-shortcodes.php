@@ -141,8 +141,10 @@ class WP_Sponsors_Shortcodes {
 
 				// Check if we need a description and the description is not empty
 				if( $description ) {
-					$desc = get_post_meta( get_the_ID(), 'wp_sponsors_desc', true );
-
+					$desc = do_shortcode( wpautop( get_the_content( get_the_ID() ) ) );
+					if ( ! $desc ) {
+						$desc = get_post_meta( get_the_ID(), 'wp_sponsors_desc', true );
+					}
 					if ( $desc ) {
 						$sponsor .= '<p>' . $desc . '</p> ';
 					}

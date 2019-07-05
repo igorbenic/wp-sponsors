@@ -97,7 +97,10 @@ class WP_Sponsors_Widget extends WP_Widget {
                     }
 
                     if ( isset( $instance['show_description'] ) && $instance['show_description'] === "on" ) {
-                        $desc = get_post_meta( get_the_ID(), 'wp_sponsors_desc', true );
+                        $desc = do_shortcode( wpautop( get_the_content( get_the_ID() ) ) );
+                        if ( ! $desc ) {
+	                        $desc = get_post_meta( get_the_ID(), 'wp_sponsors_desc', true );
+                        }
                         if ( $desc ) {
                             echo '<br/>';
                             echo '<p class="sponsor-desc">' . $desc . '</p>';

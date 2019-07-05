@@ -49,7 +49,10 @@ function wp_sponsors_update_post_type_300() {
 		foreach ( $descriptions as $description ) {
 			$text    = $description['meta_value'];
 			$post_id = $description['post_id'];
-			$wpdb->update( $wpdb->posts, array( 'post_content' => $text ), array( 'ID' => $post_id ) );
+			$ret     = $wpdb->update( $wpdb->posts, array( 'post_content' => $text ), array( 'ID' => $post_id ) );
+			if ( false !== $ret ) {
+				delete_post_meta( $post_id, 'wp_sponsors_desc' );
+			}
 		}
 	}
 }

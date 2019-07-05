@@ -8,6 +8,8 @@ $meta_value = get_post_meta( get_the_ID(), 'wp_sponsors_url', true );
 // Checks and displays the retrieved value
 echo '<p class="post-attributes-label-wrapper"><label for="wp_sponsors_url" class="post-attributes-label">' . __( 'Link', 'wp-sponsors' ) . '</label></p>';
 echo '<input type="url" name="wp_sponsors_url" value="' . $meta_value . '" class="widefat" />';
+
+
 // Display code/markup goes here. Don't forget to include nonces!
 // Noncename needed to verify where the data originated
 // Get the url data if its already been entered
@@ -21,7 +23,9 @@ $editor_settings = array( 'wpautop'       => true,
                           'textarea_name' => 'wp_sponsors_desc'
 );
 echo '<p class="post-attributes-label-wrapper"><label for="wp_sponsors_desc" class="post-attributes-label">' . __( 'Description', 'wp-sponsors' ) . '</label></p>';
+echo '<p><strong>Description field will be deleted in 3.1.0. Please move all the content in the default content area above (if it did not move automatically).</strong></p>';
 echo wp_editor( $meta_value, 'wp_sponsors_desc', $editor_settings );
+
 $meta_value = get_post_meta( get_the_ID(), 'wp_sponsor_link_behaviour', true );
 echo '<p class="post-attributes-label-wrapper"><label for="wp_sponsor_link_behaviour" class="post-attributes-label">' . __( 'Link behaviour', 'wp-sponsors' ) . '</label></p>';
 $meta_value = $meta_value == "" ? "1" : $meta_value;
