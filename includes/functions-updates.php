@@ -43,4 +43,13 @@ function wp_sponsors_update_post_type_300() {
 	global $wpdb;
 
 	$wpdb->update( $wpdb->posts, array( 'post_type' => 'sponsors' ), array( 'post_type' => 'sponsor' ) );
+
+	$descriptions = $wpdb->get_results( $wpdb->prepare( 'SELECT post_id, meta_value FROM ' . $wpdb->postmeta . ' WHERE meta_key=%s', 'wp_sponsors_desc' ), ARRAY_A );
+	if ( $descriptions ) {
+		foreach ( $descriptions as $description ) {
+			$text    = $description['meta_value'];
+			$post_id = $description['post_id'];
+			$wpdb->update( $wpdb->posts, array( 'post_content' => $text ), array( 'ID' => $post_id ) );
+		}
+	}
 }

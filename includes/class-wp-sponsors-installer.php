@@ -95,9 +95,8 @@ class WP_Sponsors_Installer {
 		);
 
 		$args = array(
-			//'public'               => true,
 			'labels'               => $labels,
-			'public'               => false,
+			'public'               => true,
 			'exclude_from_search'  => true,
 			'publicly_queryable'   => false,
 			'show_ui'              => true,
@@ -105,14 +104,13 @@ class WP_Sponsors_Installer {
 			'show_in_admin_bar'    => false,
 			'menu_position'        => 5,
 			'menu_icon'            => 'dashicons-format-image',
-			//'query_var'            => true,
 			'rewrite'              => false,
 			'capability_type'      => 'post',
 			'has_archive'          => false,
 			'hierarchical'         => false,
 			'can_export'           => true,
-			'query_var'            => false,
-			'supports'             => array( 'title', 'page-attributes' ),
+			'query_var'            => true,
+			'supports'             => array( 'title', 'page-attributes', 'editor' ),
 			'taxonomies'           => array( 'sponsor_categories' ),
 		);
 

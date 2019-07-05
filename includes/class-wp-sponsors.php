@@ -135,7 +135,7 @@ class WP_Sponsors {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wp-sponsors-public.php';
 
-		$this->loader = new Wp_Sponsors_Loader();
+		$this->loader = new WP_Sponsors_Loader();
 
 	}
 
