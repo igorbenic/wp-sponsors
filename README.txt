@@ -54,6 +54,7 @@ Each Sponsor entered with that form will become a Draft so they won't be display
 You can publish them, or send them an email to get their logo as well.
 
 Shortcode [sponsors_acquisition_form] will allow it. Fields that are used here are:
+
 * Name
 * Email (so you can email them about their submission)
 * Description
@@ -68,6 +69,7 @@ Here are some of the features planned for future versions:
 * Category ordering
 * Documentation Page
 * Front optimizations
+* Elementor Blocks
 
 == Upgrade Notice ==
 
@@ -84,7 +86,7 @@ Here are some of the features planned for future versions:
 * Refactor: CSS for horizontal widget display has been enabled.
 * New: Image sizes can be defined in shortcode and in widget.
 * New: Sponsors can be display under appropriate categories in shortcode.
-* New: Sponsor Acquisition Form shortcode for front end information submission.
+* New: Sponsor Acquisition Form shortcode [sponsors_acquisition_form] for front end information submission.
 * New: Simple Sponsorships compatibility.
 
 = 2.5.1 =
