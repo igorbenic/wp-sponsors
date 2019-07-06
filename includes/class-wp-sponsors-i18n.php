@@ -24,7 +24,7 @@
  * @subpackage Wp_Sponsors/includes
  * @author     Jan Henckens <jan@studioespresso.co>
  */
-class Wp_Sponsors_i18n {
+class WP_Sponsors_i18n {
 
 	/**
 	 * The domain specified for this plugin.

@@ -1,24 +1,12 @@
 <?php
 
 /**
- * The plugin bootstrap file
- *
- * This file is read by WordPress to generate the plugin information in the plugin
- * Dashboard. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
- *
- * @link              http://studioespresso.co
- * @since             1.0.0
- * @package           Wp_Sponsors
- *
- * @wordpress-plugin
  * Plugin Name:       Sponsors
- * Plugin URI:        https://www.ibenic.com
+ * Plugin URI:        http://www.wpsimplesponsorships.com
  * Description:       Add links and logo's for your sponsors/partners/etc to your sidebars and posts with our widget and shortcode.
- * Version:           2.5.1
- * Author:            Igor Benić
- * Author URI:        https://www.ibenic.com
+ * Version:           3.0.0
+ * Author:            Simple Sponsorships
+ * Author URI:        http://www.wpsimplesponsorships.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       wp-sponsors
@@ -30,26 +18,20 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+if ( ! defined( 'WP_SPONSORS_FILE' ) ) {
+	define( 'WP_SPONSORS_FILE', __FILE__ );
+}
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-wp-sponsors-activator.php
  */
 function activate_wp_sponsors() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-sponsors-activator.php';
-	Wp_Sponsors_Activator::activate();
-}
-
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-wp-sponsors-deactivator.php
- */
-function deactivate_wp_sponsors() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-sponsors-deactivator.php';
-	Wp_Sponsors_Deactivator::deactivate();
+	WP_Sponsors_Activator::activate();
 }
 
 register_activation_hook( __FILE__, 'activate_wp_sponsors' );
-register_deactivation_hook( __FILE__, 'deactivate_wp_sponsors' );
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -68,7 +50,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-wp-sponsors.php';
  */
 function run_wp_sponsors() {
 
-	$plugin = new Wp_Sponsors();
+	$plugin = new WP_Sponsors();
 	$plugin->run();
 
 }

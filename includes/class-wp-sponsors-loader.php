@@ -21,7 +21,7 @@
  * @subpackage Wp_Sponsors/includes
  * @author     Jan Henckens <jan@studioespresso.co>
  */
-class Wp_Sponsors_Loader {
+class WP_Sponsors_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

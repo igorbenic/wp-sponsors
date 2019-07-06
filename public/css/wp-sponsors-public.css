@@ -15,8 +15,12 @@
 }
 
 .widget_sponsors_widget ul.horizontal {
-    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row;
+    flex-wrap: wrap;
 }
+.widget_sponsors_widget ul.horizontal li.sponsors-item { width: 32%; }
 .widget_sponsors_widget ul.horizontal li.sponsors-item a img {
     max-height: 100px;
     padding-bottom: 15px;
@@ -32,7 +36,16 @@ p.sponsor-desc {
 /*
  * Styling the for the linear shortcode option
  */
-div#wp-sponsors { margin-bottom: 50px; display: flex; flex-wrap: wrap; }
+div#wp-sponsors {
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+div#wp-sponsors.grid {
+    text-align: center;
+}
 div#wp-sponsors ul li { list-style: none;}
 #wp-sponsors div.sponsor-item {margin: 0 20px 20px 0; }
 #wp-sponsors div.sponsor-item.debug {border: solid 1px red;}
@@ -70,3 +83,30 @@ div#wp-sponsors ul li { list-style: none;}
 
 
 }
+
+/** Form **/
+.wp-sponsors-form-field {
+    margin-bottom: 1em;
+}
+
+.wp-sponsors-form-field label {
+    display: block;
+}
+
+.wp-sponsors-form-field textarea,
+.wp-sponsors-form-field input:not([type=checkbox]):not([type=radio]) {
+    display: block;
+    width: 100%;
+}
+
+.wp-sponsors-form-notice {
+    padding: 1em;
+    text-align: center;
+    background: rgba(60, 206, 81, 0.05);
+}
+
+.wp-sponsors-form-notice.wp-sponsors-form-error {
+    background: rgba(218, 52, 52, 0.05);
+    color: #b52020;
+}
+

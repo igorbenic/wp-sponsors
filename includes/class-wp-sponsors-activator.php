@@ -1,36 +1,18 @@
 <?php
 
 /**
- * Fired during plugin activation
- *
- * @link       http://example.com
- * @since      1.0.0
- *
- * @package    Wp_Sponsors
- * @subpackage Wp_Sponsors/includes
+ * Class WP_Sponsors_Activator
  */
-
-/**
- * Fired during plugin activation.
- *
- * This class defines all code necessary to run during the plugin's activation.
- *
- * @since      1.0.0
- * @package    Wp_Sponsors
- * @subpackage Wp_Sponsors/includes
- * @author     Jan Henckens <jan@studioespresso.co>
- */
-class Wp_Sponsors_Activator {
+class WP_Sponsors_Activator {
 
 	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
-	 *
-	 * @since    1.0.0
+	 * Done on Activation.
 	 */
 	public static function activate() {
+		if ( ! class_exists( 'WP_Sponsors_Installer') ) {
+			include 'class-wp-sponsors-installer.php';
+		}
 
+		WP_Sponsors_Installer::install();
 	}
-
 }
