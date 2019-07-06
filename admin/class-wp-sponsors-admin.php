@@ -122,12 +122,18 @@ class WP_Sponsors_Admin {
 			return;
 		}
 		// Checks for input and sanitizes/saves if needed
-		if ( isset( $_POST['wp_sponsors_url'] ) ) {
-			update_post_meta( $post_id, 'wp_sponsors_url', sanitize_text_field( $_POST['wp_sponsors_url'] ) );
+		if ( isset( $_POST['_website'] ) ) {
+			update_post_meta( $post_id, '_website', sanitize_text_field( $_POST['_website'] ) );
 		}
+
+		if ( isset( $_POST['_email'] ) ) {
+			update_post_meta( $post_id, '_email', sanitize_text_field( $_POST['_email'] ) );
+		}
+
 		if ( isset( $_POST['wp_sponsors_desc'] ) ) {
 			update_post_meta( $post_id, 'wp_sponsors_desc', $_POST['wp_sponsors_desc'] );
 		}
+
 		$link_behaviour = isset($_POST['wp_sponsor_link_behaviour']) ? '1' : '0';
 		update_post_meta( $post_id, 'wp_sponsor_link_behaviour', $link_behaviour );
 	}

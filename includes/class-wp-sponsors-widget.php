@@ -67,7 +67,11 @@ class WP_Sponsors_Widget extends WP_Widget {
 			<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 				<?php
                 $image_size  = isset( $instance['display_option'] ) && 'horizontal' ===  $instance['display_option'] ? array( 0, 100 ) : $instance['image_size'];
-				$link        = get_post_meta( get_the_ID(), 'wp_sponsors_url', true );
+				$link        = get_post_meta( get_the_ID(), '_website', true );
+
+				if ( ! $link ) {
+					$link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true );
+				}
 				$link_target = get_post_meta( get_the_ID(), 'wp_sponsor_link_behaviour', true );
 				$target      = ( $link_target == 1 OR $widget_target == true ) ? true : false;
 				$use_image   = isset( $instance['check_images'] ) && 'on' === $instance['check_images'] ? true : false;

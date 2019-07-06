@@ -83,3 +83,30 @@ div#wp-sponsors ul li { list-style: none;}
 
 
 }
+
+/** Form **/
+.wp-sponsors-form-field {
+    margin-bottom: 1em;
+}
+
+.wp-sponsors-form-field label {
+    display: block;
+}
+
+.wp-sponsors-form-field textarea,
+.wp-sponsors-form-field input:not([type=checkbox]):not([type=radio]) {
+    display: block;
+    width: 100%;
+}
+
+.wp-sponsors-form-notice {
+    padding: 1em;
+    text-align: center;
+    background: rgba(60, 206, 81, 0.05);
+}
+
+.wp-sponsors-form-notice.wp-sponsors-form-error {
+    background: rgba(218, 52, 52, 0.05);
+    color: #b52020;
+}
+

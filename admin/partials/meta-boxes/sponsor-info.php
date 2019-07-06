@@ -4,10 +4,20 @@
 // Noncename needed to verify where the data originated
 echo '<input type="hidden" name="wp_sponsors_nonce" id="wp_sponsors_nonce" value="' . wp_create_nonce( plugin_basename( __FILE__ ) ) . '" />';
 // Get the url data if its already been entered
-$meta_value = get_post_meta( get_the_ID(), 'wp_sponsors_url', true );
+$meta_value = get_post_meta( get_the_ID(), '_website', true );
+if ( ! $meta_value ) {
+	$meta_value = get_post_meta( get_the_ID(), 'wp_sponsors_url', true );
+}
 // Checks and displays the retrieved value
 echo '<p class="post-attributes-label-wrapper"><label for="wp_sponsors_url" class="post-attributes-label">' . __( 'Link', 'wp-sponsors' ) . '</label></p>';
-echo '<input type="url" name="wp_sponsors_url" value="' . $meta_value . '" class="widefat" />';
+echo '<input type="url" name="_website" value="' . $meta_value . '" class="widefat" />';
+
+
+// Get the url data if its already been entered
+$meta_value = get_post_meta( get_the_ID(), '_email', true );
+// Checks and displays the retrieved value
+echo '<p class="post-attributes-label-wrapper"><label for="wp_sponosrs_email" class="post-attributes-label">' . __( 'Email', 'wp-sponsors' ) . '</label></p>';
+echo '<input type="email" id="wp_sponosrs_email" name="_email" value="' . $meta_value . '" class="widefat" />';
 
 
 // Display code/markup goes here. Don't forget to include nonces!

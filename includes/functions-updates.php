@@ -32,7 +32,6 @@ function wp_sponsors_update_200() {
 			);
 		}
 	}
-	$wpdb->insert($wpdb->prefix . 'options', array( 'option_name' => 'sponsors_db_version', 'option_value' => 2), array( '%s', '%d' ));
 	return;
 }
 
@@ -53,6 +52,10 @@ function wp_sponsors_update_post_type_300() {
 			if ( false !== $ret ) {
 				delete_post_meta( $post_id, 'wp_sponsors_desc' );
 			}
+
+			$url = get_post_meta( $post_id, 'wp_sponsors_url', true );
+			update_post_meta( $post_id, '_website', $url );
+			delete_post_meta( $post_id, 'wp_sponsors_url' );
 		}
 	}
 }

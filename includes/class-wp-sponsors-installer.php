@@ -66,7 +66,7 @@ class WP_Sponsors_Installer {
 			'query_var'         => true
 		);
 		// Register the sponsors taxonomy
-		register_taxonomy( 'sponsor_categories', array( 'sponsor' ), $args );
+		register_taxonomy( 'sponsor_categories', array( 'sponsors' ), $args );
 	}
 
 	/**

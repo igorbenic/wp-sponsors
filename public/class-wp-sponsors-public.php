@@ -41,6 +41,21 @@ class WP_Sponsors_Public {
 	private $version;
 
 	/**
+	 * Form Errors
+	 *
+	 * @var array
+	 */
+	public $form_errors = array();
+
+
+	/**
+	 * Form Notices
+	 *
+	 * @var array
+	 */
+	public $form_notices = array();
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -98,6 +113,79 @@ class WP_Sponsors_Public {
 
 		// wp_enqueue_script( $this->wp_sponsors, plugin_dir_url( __FILE__ ) . 'js/wp-sponsors-public.js', array( 'jquery' ), $this->version, false );
 
+	}
+
+	/**
+	 * Show Errors and notices on the Submission form.
+	 */
+	public function show_errors_and_notices() {
+		if ( $this->form_errors ) {
+			foreach ( $this->form_errors as $error ) {
+				echo '<div class="wp-sponsors-form-notice wp-sponsors-form-error">' . $error . '</div>';
+			}
+		}
+
+		if ( $this->form_notices ) {
+			foreach ( $this->form_notices as $notice ) {
+				echo '<div class="wp-sponsors-form-notice">' . $notice . '</div>';
+			}
+		}
+	}
+
+	/**
+	 * Form Submission for Sponsors.
+	 */
+	public function sponsors_acquisition_form_submit() {
+		if ( ! isset( $_POST['sponsors_acquisition_form_nonce'] ) ) {
+			return;
+		}
+
+		if ( ! $_POST['sponsors_acquisition_form_nonce'] || ! wp_verify_nonce( $_POST['sponsors_acquisition_form_nonce'], 'sponsors_acquisition_form' ) ) {
+			return;
+		}
+
+		$posted_data = isset( $_POST['wp_sponsors_form'] ) ? $_POST['wp_sponsors_form'] : array();
+
+		if ( ! $posted_data ) {
+			return;
+		}
+
+		$name = isset( $posted_data['name'] ) ? $posted_data['name'] : '';
+
+		if ( ! $name ) {
+			$this->form_errors[] = __( 'Sponsor Name is required', 'wp-sponsors' );
+		}
+
+		$email = isset( $posted_data['email'] ) ? $posted_data['email'] : '';
+
+		if ( ! $email ) {
+			$this->form_errors[] = __( 'Sponsor Email is required', 'wp-sponsors' );
+		}
+
+		$desc  = isset( $posted_data['desc'] ) ? $posted_data['desc'] : '';
+		$url   = isset( $posted_data['website'] ) ? $posted_data['website'] : '';
+
+		do_action( 'sponsors_acquisition_form_before_submit', $this, $posted_data );
+
+		if ( ! $this->form_errors ) {
+			$post = wp_insert_post(
+				array(
+					'post_title'   => $name,
+					'post_content' => $desc,
+					'post_type'    => 'sponsors'
+				),
+				true
+			);
+
+			if ( ! is_wp_error( $post ) ) {
+				$this->form_notices[] = __( 'Sponsor Information submitted.', 'wp-sponsors' );
+				update_post_meta( $post, '_website', $url );
+				update_post_meta( $post, '_email', $email );
+				do_action( 'sponsors_acquisition_form_submitted', $post );
+			}
+		}
+
+		add_action( 'wp_sponsors_acquisition_form_fields_before', array( $this, 'show_errors_and_notices' ) );
 	}
 
 }
