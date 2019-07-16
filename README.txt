@@ -5,7 +5,7 @@ Tags: post type, images, partners, sponsors
 Requires at least: 3.0.1
 Tested up to: 5.2.2
 Requires PHP: 7.0
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,12 +71,10 @@ Here are some of the features planned for future versions:
 * Front optimizations
 * Elementor Blocks
 
-== Upgrade Notice ==
-
-= 3.0.0 =
-3.0.0 is a big update. Make a full site backup.
-
 == Changelog ==
+
+= 3.0.1 - 2019-07-16 =
+* Widget was showing all sponsors instead of the number of sponsors that was entered.
 
 = 3.0.0 =
 * Big Code refactor.

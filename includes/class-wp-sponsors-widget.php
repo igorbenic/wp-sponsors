@@ -44,7 +44,7 @@ class WP_Sponsors_Widget extends WP_Widget {
 		}
 
 		if ( $instance['max'] ) {
-			$args['posts_per_page'] = $instance['max'];
+			$query_args['posts_per_page'] = $instance['max'];
 		}
 
 		$nofollow = ( defined( 'SPONSORS_NO_FOLLOW' ) ) ? SPONSORS_NO_FOLLOW : true;
