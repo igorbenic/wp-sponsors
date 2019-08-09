@@ -2,10 +2,10 @@
 Contributors: ibenic
 Donate link: http://www.wpsimplesponsorships.com
 Tags: post type, images, partners, sponsors
-Requires at least: 3.0.1
+Requires at least: 3.1.0
 Tested up to: 5.2.2
 Requires PHP: 7.0
-Stable tag: 3.0.1
+Stable tag: 3.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -72,6 +72,10 @@ Here are some of the features planned for future versions:
 * Elementor Blocks
 
 == Changelog ==
+
+= 3.1.0 - 2019-08-06 =
+* Widget - Image size is now respected even in horizontal, although resized to 100px in height through CSS.
+* Widget/Shortcode - Sponsors have category slugs applied as classes on each sponsor item.
 
 = 3.0.1 - 2019-07-16 =
 * Widget was showing all sponsors instead of the number of sponsors that was entered.

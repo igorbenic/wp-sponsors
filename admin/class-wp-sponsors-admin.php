@@ -73,7 +73,7 @@ class WP_Sponsors_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->wp_sponsors, plugin_dir_url( __FILE__ ) . 'css/wp-sponsors-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->wp_sponsors, WP_SPONSORS_URL . 'assets/dist/css/admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -96,7 +96,7 @@ class WP_Sponsors_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->wp_sponsors, plugin_dir_url( __FILE__ ) . 'js/wp-sponsors-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->wp_sponsors, WP_SPONSORS_URL . 'assets/dist/js/admin.js', array( 'jquery' ), $this->version, false );
 		wp_localize_script($this->wp_sponsors, 'objectL10n', array(
 			'title' => __('Select a sponsor logo', 'wp-sponsors'),
 			'button' => __('Add image', 'wp-sponsors')

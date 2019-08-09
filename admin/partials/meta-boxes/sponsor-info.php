@@ -26,15 +26,6 @@ echo '<input type="email" id="wp_sponosrs_email" name="_email" value="' . $meta_
 $meta_value = get_post_meta( get_the_ID(), 'wp_sponsors_desc', true );
 $meta_value = apply_filters( 'the_content', $meta_value );
 $meta_value = str_replace( ']]>', ']]>', $meta_value );
-// Checks and displays the retrieved value
-$editor_settings = array( 'wpautop'       => true,
-                          'media_buttons' => false,
-                          'textarea_rows' => '8',
-                          'textarea_name' => 'wp_sponsors_desc'
-);
-echo '<p class="post-attributes-label-wrapper"><label for="wp_sponsors_desc" class="post-attributes-label">' . __( 'Description', 'wp-sponsors' ) . '</label></p>';
-echo '<p><strong>Description field will be deleted in 3.1.0. Please move all the content in the default content area above (if it did not move automatically).</strong></p>';
-echo wp_editor( $meta_value, 'wp_sponsors_desc', $editor_settings );
 
 $meta_value = get_post_meta( get_the_ID(), 'wp_sponsor_link_behaviour', true );
 echo '<p class="post-attributes-label-wrapper"><label for="wp_sponsor_link_behaviour" class="post-attributes-label">' . __( 'Link behaviour', 'wp-sponsors' ) . '</label></p>';

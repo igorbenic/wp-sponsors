@@ -9,7 +9,7 @@ class WP_Sponsors_Extras {
 	* @uses   get_intermediate_image_sizes()
 	* @return array $sizes Data for all currently-registered image sizes.
 	*/
-	static function get_image_sizes() {
+	public static function get_image_sizes() {
 		global $_wp_additional_image_sizes;
 
 		$sizes = array();

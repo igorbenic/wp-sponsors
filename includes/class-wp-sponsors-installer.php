@@ -63,7 +63,8 @@ class WP_Sponsors_Installer {
 			'labels'            => $labels,
 			'show_ui'           => true,
 			'show_admin_column' => true,
-			'query_var'         => true
+			'query_var'         => true,
+			'show_in_rest'      => true,
 		);
 		// Register the sponsors taxonomy
 		register_taxonomy( 'sponsor_categories', array( 'sponsors' ), $args );

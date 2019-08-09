@@ -170,6 +170,7 @@ class WP_Sponsors_Shortcodes {
 						if ( ! isset( $categories[ $term->term_id ] ) ) {
 							$categories[ $term->term_id ] = array(
 								'title' => $term->name,
+								'slug'  => $term->slug,
 								'sponsors' => array()
 							);
 						}
@@ -179,7 +180,7 @@ class WP_Sponsors_Shortcodes {
 			}
 		} else {
 			// Get all under one category so we can iterate through them.
-			$categories[0] = array( 'title' => '', 'sponsors' => $sponsors );
+			$categories[0] = array( 'title' => '', 'slug' => '',  'sponsors' => $sponsors );
 		}
 
 		ob_start();
@@ -223,6 +224,10 @@ class WP_Sponsors_Shortcodes {
 					$class       = '';
 					$class       .= $atts['size'];
 
+					if ( $category['slug'] ) {
+						$class .= ' ' . $category['slug'];
+					}
+
 					if ( $debug ) {
 						$class .= ' debug';
 					}
@@ -230,11 +235,16 @@ class WP_Sponsors_Shortcodes {
 					echo '<' . $style['wrapperPre'] . ' class="' . $style['wrapperClass'] . ' ' . $class . '">';
 					$sponsor_html = '';
 
-					// Check if we have a link
-					if ( $link && ! $images && $title ) {
-						$sponsor_html .= '<a href=' . esc_attr( $link ) . ' ' . $target . ' ' . ( $nofollow ? 'rel="nofollow"' : '' ) . '>';
+					if ( $title ) {
+						// Check if we have a link
+						if ( $link ) {
+							$sponsor_html .= '<a href=' . esc_attr( $link ) . ' ' . $target . ' ' . ( $nofollow ? 'rel="nofollow"' : '' ) . '>';
+						}
+
 						$sponsor_html .= '<h3>' . $sponsor['title'] . '</h3>';
-						$sponsor_html .= '</a>';
+						if ( $link ) {
+							$sponsor_html .= '</a>';
+						}
 					}
 
 					if ( $images ) {

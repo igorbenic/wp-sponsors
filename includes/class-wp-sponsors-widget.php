@@ -66,7 +66,7 @@ class WP_Sponsors_Widget extends WP_Widget {
         <ul class="<?php echo $instance['display_option']; ?>">
 			<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 				<?php
-                $image_size  = isset( $instance['display_option'] ) && 'horizontal' ===  $instance['display_option'] ? array( 0, 100 ) : $instance['image_size'];
+                $image_size  = $instance['image_size'];
 				$link        = get_post_meta( get_the_ID(), '_website', true );
 
 				if ( ! $link ) {
@@ -77,7 +77,11 @@ class WP_Sponsors_Widget extends WP_Widget {
 				$use_image   = isset( $instance['check_images'] ) && 'on' === $instance['check_images'] ? true : false;
 				$use_title   = isset( $instance['show_title'] ) && 'on' === $instance['show_title'] ? true : false;
 				$image       = $use_image ? get_the_post_thumbnail( get_the_ID(), $image_size ) : '';
-
+				$categories  = get_the_terms( get_the_ID(), 'sponsor_categories' );
+				if ( $categories ) {
+					$category_slugs = wp_list_pluck( $categories, 'slug' );
+					$sponsorStyling .= ' ' . implode( ' ', $category_slugs );
+				}
 				?>
                 <li class="<?php echo $sponsorStyling ?>">
                     <?php
@@ -243,7 +247,6 @@ class WP_Sponsors_Widget extends WP_Widget {
                     }
                 ?>
             </select>
-            <div class="description"><?php esc_html_e( 'Used for Vertical display', 'wp-sponsors' ); ?></div>
         </p>
         <p>
             <input type="checkbox" id="<?php echo $this->get_field_id( 'show_description' ); ?>"

@@ -69,7 +69,7 @@ class WP_Sponsors {
 	public function __construct() {
 
 		$this->wp_sponsors = 'wp-sponsors';
-		$this->version     = '3.0.1';
+		$this->version     = '3.1.0';
 
 		$this->define_constants();
 		$this->load_dependencies();
@@ -83,6 +83,14 @@ class WP_Sponsors {
 	private function define_constants() {
 		if ( ! defined( 'WP_SPONSORS_VERSION' ) ) {
 			define( 'WP_SPONSORS_VERSION', $this->version );
+		}
+
+		if ( ! defined( 'WP_SPONSORS_URL' ) ) {
+			define( 'WP_SPONSORS_URL', plugin_dir_url( WP_SPONSORS_FILE ) );
+		}
+
+		if ( ! defined( 'WP_SPONSORS_PATH' ) ) {
+			define( 'WP_SPONSORS_PATH', plugin_dir_path( WP_SPONSORS_FILE ) );
 		}
 	}
 
@@ -118,7 +126,8 @@ class WP_Sponsors {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-widget.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-shortcodes.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-installer.php';
-
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-blocks.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-sponsors-ajax.php';
 		/**
 		 * The class responsible for defining all actions that occur in the Dashboard.
 		 */
@@ -128,6 +137,8 @@ class WP_Sponsors {
 
 		$extra = new WP_Sponsors_Extras();
 		$extra->setup();
+
+		new WP_Sponsors_Blocks();
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -166,6 +177,7 @@ class WP_Sponsors {
 	 */
 	private function define_admin_hooks() {
 		if ( ! is_admin() ) { return; }
+
 		$plugin_admin = new WP_Sponsors_Admin( $this->get_wp_sponsors(), $this->get_version() );
 
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin,'add_meta_boxes' );
@@ -178,6 +190,8 @@ class WP_Sponsors {
 		$this->loader->add_filter( 'manage_edit-sponsors_sortable_columns', $plugin_admin,'sponsor_order_column' );
 		$this->loader->add_filter( 'manage_sponsors_posts_columns', $plugin_admin, 'add_new_sponsors_column' );
 
+		$plugin_ajax = new WP_Sponsors_AJAX();
+		$this->loader->add_action( 'wp_ajax_wp_sponsors_get_categories', $plugin_ajax, 'get_categories' );
 	}
 
 	/**

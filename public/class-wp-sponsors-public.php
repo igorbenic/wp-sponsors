@@ -88,7 +88,7 @@ class WP_Sponsors_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->wp_sponsors, plugin_dir_url( __FILE__ ) . 'css/wp-sponsors-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->wp_sponsors, WP_SPONSORS_URL . 'assets/dist/css/public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -111,7 +111,7 @@ class WP_Sponsors_Public {
 		 * class.
 		 */
 
-		// wp_enqueue_script( $this->wp_sponsors, plugin_dir_url( __FILE__ ) . 'js/wp-sponsors-public.js', array( 'jquery' ), $this->version, false );
+		// wp_enqueue_script( $this->wp_sponsors, WP_SPONSORS_URL . 'js/wp-sponsors-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 

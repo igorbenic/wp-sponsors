@@ -21,8 +21,9 @@
     flex-wrap: wrap;
 }
 .widget_sponsors_widget ul.horizontal li.sponsors-item { width: 32%; }
-.widget_sponsors_widget ul.horizontal li.sponsors-item a img {
+.widget_sponsors_widget ul.horizontal li.sponsors-item img {
     max-height: 100px;
+    width: auto;
     padding-bottom: 15px;
 }
 .sponsors-item {
