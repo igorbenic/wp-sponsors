@@ -76,7 +76,7 @@ Here are some of the features planned for future versions:
 = 3.1.0 - 2019-08-11 =
 * Widget - Image size is now respected even in horizontal, although resized to 100px in height through CSS.
 * Widget/Shortcode - Sponsors have category slugs applied as classes on each sponsor item.
-* Sponsors Block - a block is available for Gutenberg Editor
+* Sponsors Block - a block is available for Gutenberg Editor.
 * Refactor: All assets placed under one single folder for better maintenance.
 * Refactor: Title showing in shortcode even without link.
 
