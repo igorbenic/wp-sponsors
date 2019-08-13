@@ -149,15 +149,12 @@ class WP_Sponsors_Shortcodes {
 			$sponsor['link_target'] = get_post_meta( $sponsor_post->ID, 'wp_sponsor_link_behaviour', true );
 			$sponsor['logo']        = get_the_post_thumbnail( $sponsor_post->ID, $atts['image_size'] );
 			$sponsor['title']       = get_the_title( $sponsor_post );
-			$sponsor['categories']  = array();
+			$sponsor['categories']  = get_the_terms( $sponsor_post, 'sponsor_categories');
 			$desc = do_shortcode( wpautop( $sponsor_post->post_content ) );
 			if ( ! $desc ) {
 				$desc = get_post_meta( $sponsor_post->ID, 'wp_sponsors_desc', true );
 			}
 
-			if( 'yes' === $atts['with_categories'] ) {
-				$sponsor['categories'] = get_the_terms( $sponsor_post, 'sponsor_categories');
-			}
 
 			$sponsor['desc'] = $desc;
 			$sponsors[] = $sponsor;
@@ -214,6 +211,7 @@ class WP_Sponsors_Shortcodes {
 				if ( isset( $category['title'] ) && $category['title'] ) {
 					echo '<' . $atts['category_title'] . '>' . $category['title'] . '</' . $atts['category_title'] . '>';
 				}
+				
 				$_sponsors = $category['sponsors'];
 				echo $style['containerPre'];
 				foreach ( $_sponsors as $sponsor ) {
@@ -224,9 +222,10 @@ class WP_Sponsors_Shortcodes {
 					$class       = '';
 					$class       .= $atts['size'];
 
-					if ( $category['slug'] ) {
-						$class .= ' ' . $category['slug'];
-					}
+					if ( $sponsor['categories'] ) {
+					    $class .= ' ' . implode( ' ', wp_list_pluck( $sponsor['categories'], 'slug' ) );
+                    }
+
 
 					if ( $debug ) {
 						$class .= ' debug';
