@@ -78,12 +78,13 @@ class WP_Sponsors_Widget extends WP_Widget {
 				$use_title   = isset( $instance['show_title'] ) && 'on' === $instance['show_title'] ? true : false;
 				$image       = $use_image ? get_the_post_thumbnail( get_the_ID(), $image_size ) : '';
 				$categories  = get_the_terms( get_the_ID(), 'sponsor_categories' );
+				$classes     = $sponsorStyling;
 				if ( $categories ) {
 					$category_slugs = wp_list_pluck( $categories, 'slug' );
-					$sponsorStyling .= ' ' . implode( ' ', $category_slugs );
+					$classes .= ' ' . implode( ' ', $category_slugs );
 				}
 				?>
-                <li class="<?php echo $sponsorStyling ?>">
+                <li class="<?php echo esc_attr( $classes ); ?>">
                     <?php
                     if ( $link ) {
                         ?>

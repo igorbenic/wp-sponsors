@@ -111,7 +111,7 @@ class WP_Sponsors_Public {
 		 * class.
 		 */
 
-		// wp_enqueue_script( $this->wp_sponsors, WP_SPONSORS_URL . 'js/wp-sponsors-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->wp_sponsors, WP_SPONSORS_URL . 'assets/dist/js/public.js', array( 'jquery' ), $this->version, false );
 
 	}
 

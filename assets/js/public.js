@@ -1,5 +1,16 @@
+import '../../node_modules/slick-carousel/slick/slick.min.js';
+
+
 (function( $ ) {
 	'use strict';
+
+	$(function(){
+		if ( $('.wp-sponsors.slider').length ) {
+			$('.wp-sponsors.slider').each(function(){
+                $(this).slick();
+			});
+        }
+	});
 
 	/**
 	 * All of the code for your public-facing JavaScript source

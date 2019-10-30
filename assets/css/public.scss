@@ -56,7 +56,7 @@ div#wp-sponsors ul li { list-style: none;}
 #wp-sponsors div.sponsor-item.medium {max-width: 30%; width: 30%; }
 #wp-sponsors div.sponsor-item.large {max-width: 45%; width: 45%; }
 #wp-sponsors div.sponsor-item.full {max-width: 100%; width: 100%; }
-#wp-sponsors div.sponsor-item a img { width: 100%; }
+#wp-sponsors div.sponsor-item a img { max-width: 100%; height: auto; }
 
 #wp-sponsors div.sponsor-item.default p, #wp-sponsors div.sponsor-item.default a img {width:100%;}
 #wp-sponsors div.sponsor-item.default p, #wp-sponsors div.sponsor-item.default a img {width:100%;}
@@ -111,3 +111,5 @@ div#wp-sponsors ul li { list-style: none;}
     color: #b52020;
 }
 
+/** Sliders **/
+@import '~slick-carousel/slick/slick.scss';

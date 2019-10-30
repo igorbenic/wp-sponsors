@@ -19,7 +19,8 @@
     "@wordpress/hooks": "^2.0.5",
     "npm": "^5.7.1",
     "query-string": "^5.1.1",
-    "script-loader": "^0.7.2"
+    "script-loader": "^0.7.2",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.2.6",

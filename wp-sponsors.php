@@ -4,7 +4,7 @@
  * Plugin Name:       Sponsors
  * Plugin URI:        http://www.wpsimplesponsorships.com
  * Description:       Add links and logo's for your sponsors/partners/etc to your sidebars and posts with our widget and shortcode.
- * Version:           3.1.1
+ * Version:           3.2.0
  * Author:            Simple Sponsorships
  * Author URI:        http://www.wpsimplesponsorships.com
  * License:           GPL-2.0+

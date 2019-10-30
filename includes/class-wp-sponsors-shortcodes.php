@@ -101,6 +101,15 @@ class WP_Sponsors_Shortcodes {
 			'order' => 'ASC',
 			'title' => 'no',
 			'max' => '-1',
+			'adaptiveheight' => '1',
+			'autoplay' => '1',
+			'autoplayspeed' => '3000',
+			'arrows' => '1',
+			'centermode' => '0',
+			'dots' => '0',
+			'infinite' => '1',
+			'slidestoshow' => '1',
+			'slidestoscroll' => '1',
 			'debug' => NULL
 		), $atts, 'wp_sponsors' );
 
@@ -135,6 +144,7 @@ class WP_Sponsors_Shortcodes {
 		$sponsor_posts = get_posts( $args );
 		$sponsors      = array();
 		$categories    = array();
+		$slickSettings = array();
 
 		foreach ( $sponsor_posts as $sponsor_post ) {
 			$link = get_post_meta( $sponsor_post->ID, '_website', true );
@@ -201,7 +211,22 @@ class WP_Sponsors_Shortcodes {
 				$style['wrapperClass'] = 'sponsor-item';
 				$style['wrapperPre'] = 'div';
 				$style['wrapperPost'] = '</div>';
-				$style['imageSize'] = 'full';
+				break;
+			case "slider":
+				$slickSettings['adaptiveHeight'] = $atts['adaptiveheight'] === '1' ? true : false;
+				$slickSettings['autoplay']       = $atts['autoplay'] === '1' ? true : false;
+				$slickSettings['autoplaySpeed']  = $atts['autoplayspeed'];
+				$slickSettings['arrows']         = $atts['arrows'] === '1' ? true : false;
+				$slickSettings['centerMode']     = $atts['centermode'] === '1' ? true : false;
+				$slickSettings['dots']           = $atts['dots'] === '1' ? true : false;
+				$slickSettings['infinite']       = $atts['infinite'] === '1' ? true : false;
+				$slickSettings['slidesToShow']   = absint( $atts['slidestoshow'] );
+				$slickSettings['slidesToScroll'] = absint( $atts['slidestoscroll'] );
+				$style['containerPre'] = '<div id="wp-sponsors" class="clearfix slider wp-sponsors" data-slick="' . esc_attr( wp_json_encode( $slickSettings ) ) . '">';
+				$style['containerPost'] = '</div>';
+				$style['wrapperClass'] = 'sponsor-item';
+				$style['wrapperPre'] = 'div';
+				$style['wrapperPost'] = '</div>';
 				break;
 		}
 
@@ -274,7 +299,7 @@ class WP_Sponsors_Shortcodes {
 					if ( $description ) {
 						$desc = $sponsor['desc'];
 						if ( $desc ) {
-							$sponsor_html .= '<p>' . $desc . '</p> ';
+							$sponsor_html .= $desc;
 						}
 					}
 

@@ -5,7 +5,7 @@ Tags: post type, images, partners, sponsors
 Requires at least: 3.1.0
 Tested up to: 5.2.2
 Requires PHP: 7.0
-Stable tag: 3.1.1
+Stable tag: 3.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -72,6 +72,10 @@ Here are some of the features planned for future versions:
 * Elementor Blocks
 
 == Changelog ==
+
+
+= 3.2.0 - 2019-10-X =
+* Fix: Additional paragraphs in HTML in shortcode.
 
 = 3.1.1 - 2019-08-13 =
 * Refactor: Each sponsor in shortcode has all their assigned categories.
