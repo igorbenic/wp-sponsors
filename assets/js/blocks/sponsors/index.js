@@ -47,6 +47,42 @@ registerBlockType( 'wp-sponsors/sponsors', {
         max: {
             type: 'string',
             default: '-1'
+        },
+        adaptiveheight: {
+            type: 'string',
+            default: '1'
+        },
+        autoplay: {
+            type: 'string',
+            default: '1'
+        },
+        autoplayspeed: {
+            type: 'string',
+            default: '3000'
+        },
+        arrows: {
+            type: 'string',
+            default: '1'
+        },
+        centermode: {
+            type: 'string',
+            default: '0'
+        },
+        dots: {
+            type: 'string',
+            default: '0'
+        },
+        infinite: {
+            type: 'string',
+            default: '1'
+        },
+        slidestoshow: {
+            type: 'string',
+            default: '1'
+        },
+        slidestoscroll: {
+            type: 'string',
+            default: '1'
         }
     },
     edit: SponsorsEdit,

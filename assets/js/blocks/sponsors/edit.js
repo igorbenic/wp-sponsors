@@ -47,6 +47,16 @@ export default class Edit extends Component {
         let image_sizes = [];
         const { type, loading } = this.state;
         const { attributes, setAttributes } = this.props;
+
+        function startSliderAfterRender() {
+            setTimeout( () => {
+                if ( $('.wp-sponsors.slider').length ) {
+                    $('.wp-sponsors.slider').each(function(){
+                        $(this).slick();
+                    });
+                }
+            }, 2000 );
+        }
         
         if ( wp_sponsors_blocks.image_sizes && wp_sponsors_blocks.image_sizes.length ) {
             for( var i = 0; i < wp_sponsors_blocks.image_sizes.length; i++ ) {
@@ -131,12 +141,15 @@ export default class Edit extends Component {
                             options={
                                 [
                                     { label: __( 'List' ), value: 'list' },
-                                    { label: __( 'Grid' ), value: 'grid' }
+                                    { label: __( 'Grid' ), value: 'grid' },
+                                    { label: __( 'Slider' ), value: 'slider' }
                                 ]
                             }
                             selected={ attributes.style }
                             onChange={ ( value ) => {
-
+                                if ( value === 'slider' ) {
+                                    startSliderAfterRender();
+                                }
                                 setAttributes({ style: value });
 
                             }}
@@ -180,6 +193,130 @@ export default class Edit extends Component {
                             }}
                         />
                     </PanelBody>
+                    { attributes.style === 'slider' && <PanelBody
+                        title={ __( 'Slider Options' ) }
+                        initialOpen={ false }>
+                        <RadioControl
+                            label={ __( 'Adaptive Height' ) }
+                            options={
+                                [
+                                    { label: __( 'No' ), value: '0' },
+                                    { label: __( 'Yes' ), value: '1' }
+                                ]
+                            }
+                            selected={ attributes.adaptiveheight }
+                            onChange={ ( value ) => {
+                                startSliderAfterRender();
+                                setAttributes({ adaptiveheight: value });
+
+                            }}
+                        />
+                        <RadioControl
+                            label={ __( 'Autoplay' ) }
+                            options={
+                                [
+                                    { label: __( 'No' ), value: '0' },
+                                    { label: __( 'Yes' ), value: '1' }
+                                ]
+                            }
+                            selected={ attributes.autoplay }
+                            onChange={ ( value ) => {
+                                startSliderAfterRender();
+                                setAttributes({ autoplay: value });
+
+                            }}
+                        />
+                        <TextControl
+                            label={ __( 'Autoplay Speed' ) }
+                            type='number'
+                            value={ attributes.autoplayspeed }
+                            onChange={ ( value ) => {
+                                startSliderAfterRender();
+                                setAttributes({ autoplayspeed: value });
+
+                            }}
+                        />
+                        <RadioControl
+                            label={ __( 'Arrows' ) }
+                            options={
+                                [
+                                    { label: __( 'No' ), value: '0' },
+                                    { label: __( 'Yes' ), value: '1' }
+                                ]
+                            }
+                            selected={ attributes.arrows }
+                            onChange={ ( value ) => {
+                                startSliderAfterRender();
+                                setAttributes({ arrows: value });
+
+                            }}
+                        />
+                        <RadioControl
+                            label={ __( 'Center Mode' ) }
+                            options={
+                                [
+                                    { label: __( 'No' ), value: '0' },
+                                    { label: __( 'Yes' ), value: '1' }
+                                ]
+                            }
+                            selected={ attributes.centermode }
+                            onChange={ ( value ) => {
+                                startSliderAfterRender();
+                                setAttributes({ centermode: value });
+
+                            }}
+                        />
+                        <RadioControl
+                            label={ __( 'Dots' ) }
+                            options={
+                                [
+                                    { label: __( 'No' ), value: '0' },
+                                    { label: __( 'Yes' ), value: '1' }
+                                ]
+                            }
+                            selected={ attributes.dots }
+                            onChange={ ( value ) => {
+                                startSliderAfterRender();
+                                setAttributes({ dots: value });
+
+                            }}
+                        />
+                        <RadioControl
+                            label={ __( 'Infinite' ) }
+                            options={
+                                [
+                                    { label: __( 'No' ), value: '0' },
+                                    { label: __( 'Yes' ), value: '1' }
+                                ]
+                            }
+                            selected={ attributes.infinite }
+                            onChange={ ( value ) => {
+                                startSliderAfterRender();
+                                setAttributes({ infinite: value });
+
+                            }}
+                        />
+                        <TextControl
+                            label={ __( 'Slides to Show' ) }
+                            type='number'
+                            value={ attributes.slidestoshow }
+                            onChange={ ( value ) => {
+                                startSliderAfterRender();
+                                setAttributes({ slidestoshow: value });
+
+                            }}
+                        />
+                        <TextControl
+                            label={ __( 'Slides to Scroll' ) }
+                            type='number'
+                            value={ attributes.slidestoscroll }
+                            onChange={ ( value ) => {
+                                startSliderAfterRender();
+                                setAttributes({ slidestoscroll: value });
+
+                            }}
+                        />
+                    </PanelBody>}
             </InspectorControls>
 
             <ServerSideRender

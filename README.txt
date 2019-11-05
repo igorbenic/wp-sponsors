@@ -3,7 +3,7 @@ Contributors: ibenic
 Donate link: http://www.wpsimplesponsorships.com
 Tags: post type, images, partners, sponsors
 Requires at least: 3.1.0
-Tested up to: 5.2.2
+Tested up to: 5.3.0
 Requires PHP: 7.0
 Stable tag: 3.2.0
 License: GPLv2 or later
@@ -41,9 +41,18 @@ The shortcode [sponsors] takes the following options:
 * with_categories (yes|no, default: no )
 * category_title ( HTML tag for category title, default: h3)
 * size (small|medium|large|full, default: medium)
-* style (list|grid, default: list)
+* style (list|grid|slider, default: list)
 * order (ASC|DESC, default: ASC )
 * orderby (menu_order|post_title|..., default: menu_order)
+* adaptiveheight (1|0, default: 1) - available for style=slider
+* autoplay (1|0, default: 1) - available for style=slider
+* autoplayspeed (number, default: 3000)  - available for style=slider
+* arrows (1|0, default: 1 ) - available for style=slider
+* centermode (1|0, default: 0 ) - available for style=slider
+* dots (1|0, default: 0 ) - available for style=slider
+* infinite (1|0, default: 1 ) - available for style=slider
+* slidestoshow (number, default: 1 ) - available for style=slider
+* slidestoscroll (number, default: 1 ) - available for style=slider
 
 When with_categories is used, it will show sponsors under their appropriate categories.
 The attribute size is used to define the size of the columns. More style updates will come in future versions.
@@ -73,9 +82,11 @@ Here are some of the features planned for future versions:
 
 == Changelog ==
 
-
-= 3.2.0 - 2019-10-X =
+= 3.2.0 - 2019-11-05 =
+* New: Slider layout for shortcode (style=slider)
+* New: Slider layout for Sponsor Block
 * Fix: Additional paragraphs in HTML in shortcode.
+* Fix: Image size option is used in all layout options (Shortcode/Block/Widget).
 
 = 3.1.1 - 2019-08-13 =
 * Refactor: Each sponsor in shortcode has all their assigned categories.

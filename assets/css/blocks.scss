@@ -23,3 +23,30 @@ div#wp-sponsors ul li { list-style: none;}
 #wp-sponsors div.sponsor-item.default p, #wp-sponsors div.sponsor-item.default a img {width:100%;}
 #wp-sponsors div.sponsor-item.default p, #wp-sponsors div.sponsor-item.default a img {width:100%;}
 #wp-sponsors div.sponsor-item.default p, #wp-sponsors div.sponsor-item.default a img {width:100%;}
+
+/** Sliders **/
+@import '_slick.scss';
+
+.wp-sponsors.slider {
+    .slick-prev {
+        &:before {
+            margin-right: 10px;
+            [dir="rtl"] & {
+                margin-right: 0;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .slick-next {
+
+        &:before {
+
+            margin-left: 10px;
+            [dir="rtl"] & {
+                margin-right: 10px;
+                margin-left: 0px;
+            }
+        }
+    }
+}
