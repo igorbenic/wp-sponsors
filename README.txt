@@ -110,7 +110,7 @@ If you want to accept payments from sponsors on your site and have a way to defi
 
 == Changelog ==
 
-= 3.3.0 - 2020-TBD =
+= 3.3.0 - 2020-02-27 =
 * New: Shortcode attribute variablewidth for slider so the slides width will be the same as the image.
 * New: Shortcode attribute breakpoints added to create breakpoints for showing different number of images. Check the shortcode attributes documentation.
 * New: Documentation page in the admin area.
