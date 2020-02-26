@@ -5,7 +5,7 @@ Tags: post type, images, partners, sponsors
 Requires at least: 3.1.0
 Tested up to: 5.3.0
 Requires PHP: 7.0
-Stable tag: 3.2.0
+Stable tag: 3.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,18 +15,6 @@ Sponsors makes it easy to add your sponsors and partners to your WordPress websi
 
 Ever had to add a bunch of images with links on them for your event/company partners?
 With Sponsors, you won't have to use a text widget for that anymore. The companies and people that support you, your company or your event now get a separate place in the dashboar where you can add a link and an image for each of them. Then you add the Sponsors widget to the sidebar of your choosing and the linked images will show up there.
-
-== Installation ==
-
-1. Upload `wp-sponsors` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Add your sponsors under the sponsors section with links and logo's
-4. Add the widget to your sidebar
-
-
-== Screenshots ==
-1. After you activate the plugin, a new content type will become available on the your WordPress admin panel. Here you can add a link, a description and an image for each Sponsor.
-2. Add the widget to one or more sidebars and the images of your sponsors will show up there. Choose from which category you want to display sponsors (or select all), to show or hide images and the description
 
 == Shortcodes ==
 
@@ -53,9 +41,22 @@ The shortcode [sponsors] takes the following options:
 * infinite (1|0, default: 1 ) - available for style=slider
 * slidestoshow (number, default: 1 ) - available for style=slider
 * slidestoscroll (number, default: 1 ) - available for style=slider
+* variablewidth (number, default: 0 ) - available for style=slider
+* breakpoints (string) - available for style=slider
 
 When with_categories is used, it will show sponsors under their appropriate categories.
 The attribute size is used to define the size of the columns. More style updates will come in future versions.
+
+If you want to use the slider and show different number of images on different screen sizes, you can use the **breakpoints** attribute.
+For example, we want to show 3 images on large screens and slide 3 images on click. Then on 640px view, we want to show 2 and slide 2 images. And on 480px view, we want only 1 image and 1 image to slide.
+We would use the shortcode like this:
+
+[sponsors style=slider arrows=1 image_size=full slidestoscroll=3 slidestoshow=3 breakpoints=480;1;1|640;2;2]
+
+The attribute **breakpoints** uses format "screen_px;images_to_show;images_to_slide". Then for multiple breakpoints, we separate them by "|".
+In the above example we have separated 2 breakpoints 480px and 640px.
+For 480px, we set 1 for images to show and 1 for images to slide.
+For 640px, we set 2 for images to show and 2 for images to slide.
 
 ** Form **
 This shortcode will display a form so potential sponsors can submit their information.
@@ -69,6 +70,16 @@ Shortcode [sponsors_acquisition_form] will allow it. Fields that are used here a
 * Description
 * Link
 
+Available attributes:
+
+- fields - separate field keys with comma,
+- fields_labels - separate field labels with comma,
+- button - Button text.
+
+Each defined field will be a textarea. For example, you can add more fields like this:
+
+[sponsors_acquisition_form fields=about,what fields_labels=About,What?]
+
 == Planned Features ==
 
 Here are some of the features planned for future versions:
@@ -80,7 +91,31 @@ Here are some of the features planned for future versions:
 * Front optimizations
 * Elementor Blocks
 
+== Simple Sponsorships ==
+
+This plugin is fully compatible with [Simple Sponsorships](https://wordpress.org/plugins/simple-sponsorships/).
+
+If you want to accept payments from sponsors on your site and have a way to define different packages and automate the whole process, try Simple Sponsorships.
+
+== Installation ==
+
+1. Upload `wp-sponsors` to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Add your sponsors under the sponsors section with links and logo's
+4. Add the widget to your sidebar
+
+== Screenshots ==
+1. After you activate the plugin, a new content type will become available on the your WordPress admin panel. Here you can add a link, a description and an image for each Sponsor.
+2. Add the widget to one or more sidebars and the images of your sponsors will show up there. Choose from which category you want to display sponsors (or select all), to show or hide images and the description
+
 == Changelog ==
+
+= 3.3.0 - 2020-TBD =
+* New: Shortcode attribute variablewidth for slider so the slides width will be the same as the image.
+* New: Shortcode attribute breakpoints added to create breakpoints for showing different number of images. Check the shortcode attributes documentation.
+* New: Documentation page in the admin area.
+* Fix: CSS Slider fixes.
+* Fix: Sponsors Block slider option would not always create the slider.
 
 = 3.2.0 - 2019-11-05 =
 * New: Slider layout for shortcode (style=slider)

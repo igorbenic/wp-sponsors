@@ -12,6 +12,7 @@ class WP_Sponsors_Shortcodes {
 
 	/**
 	 * Sponsor Form
+     *
 	 * @return string
 	 */
 	public static function sponsors_form( $atts = array() ) {
@@ -110,6 +111,8 @@ class WP_Sponsors_Shortcodes {
 			'infinite' => '1',
 			'slidestoshow' => '1',
 			'slidestoscroll' => '1',
+			'variablewidth' => '0',
+			'breakpoints' => '',
 			'debug' => NULL
 		), $atts, 'wp_sponsors' );
 
@@ -190,6 +193,8 @@ class WP_Sponsors_Shortcodes {
 			$categories[0] = array( 'title' => '', 'slug' => '',  'sponsors' => $sponsors );
 		}
 
+
+
 		ob_start();
 
 		// Set up the shortcode styles
@@ -222,6 +227,41 @@ class WP_Sponsors_Shortcodes {
 				$slickSettings['infinite']       = $atts['infinite'] === '1' ? true : false;
 				$slickSettings['slidesToShow']   = absint( $atts['slidestoshow'] );
 				$slickSettings['slidesToScroll'] = absint( $atts['slidestoscroll'] );
+				$slickSettings['variablewidth']  = $atts['variablewidth'] === '1' ? true : false;
+
+				if ( $atts['breakpoints'] ) {
+				    $breakpoints                 = explode( '|', $atts['breakpoints'] );
+					$slickSettings['responsive'] = array();
+
+					foreach ( $breakpoints as $breakpoint ) {
+					    $breakpoint_config = explode( ';', $breakpoint );
+					    if ( count( $breakpoint_config ) > 2 ) {
+						    $slickSettings['responsive'][] = array(
+                                'breakpoint' => absint( $breakpoint_config[0] ),
+                                'settings'   => array(
+                                    'slidesToShow' => absint( $breakpoint_config[1] ),
+                                    'slidesToScroll' => absint( $breakpoint_config[2] ),
+                                )
+                            );
+                        }
+                    }
+                }
+				/*$slickSettings['responsive'] = array(
+                    array(
+                        'breakpoint' => 600,
+                        'settings'   => array(
+                            'slidesToShow' => 2,
+                            'slidesToScroll' => 2,
+                        )
+                    ),
+					array(
+						'breakpoint' => 480,
+						'settings'   => array(
+							'slidesToShow' => 1,
+							'slidesToScroll' => 1,
+						)
+					),
+                );*/
 				$style['containerPre'] = '<div id="wp-sponsors" class="clearfix slider wp-sponsors" data-slick="' . esc_attr( wp_json_encode( $slickSettings ) ) . '">';
 				$style['containerPost'] = '</div>';
 				$style['wrapperClass'] = 'sponsor-item';

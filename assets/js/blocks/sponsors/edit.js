@@ -50,9 +50,9 @@ export default class Edit extends Component {
 
         function startSliderAfterRender() {
             setTimeout( () => {
-                if ( $('.wp-sponsors.slider').length ) {
-                    $('.wp-sponsors.slider').each(function(){
-                        $(this).slick();
+                if ( jQuery('.wp-sponsors.slider').length ) {
+                    jQuery('.wp-sponsors.slider').each(function(){
+                        jQuery(this).slick();
                     });
                 }
             }, 2000 );

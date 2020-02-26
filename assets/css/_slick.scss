@@ -1,6 +1,10 @@
 @import '~slick-carousel/slick/slick.scss';
 
 .wp-sponsors.slider {
+
+  &#wp-sponsors div.sponsor-item {
+    margin-right: 0;
+  }
   /* Slider */
 
   .slick-list {

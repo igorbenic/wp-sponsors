@@ -222,4 +222,25 @@ class WP_Sponsors_Admin {
         return;
     }
 
+	/**
+	 * Register Menus
+	 */
+    public function register_menus() {
+	    add_submenu_page(
+	    	'edit.php?post_type=sponsors',
+		    __( 'Sponsors - Documentation', 'wp-sponsors'),
+		    __( 'Documentation', 'wp-sponsors'),
+		    'manage_options',
+		    'wp-sponsors-docs',
+		    array( $this, 'documentation' )
+	    );
+    }
+
+	/**
+	 * Documentation Page
+	 */
+    public function documentation() {
+		include_once 'partials/documentation.php';
+    }
+
 }

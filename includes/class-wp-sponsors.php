@@ -186,7 +186,7 @@ class WP_Sponsors {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'manage_sponsors_posts_custom_column', $plugin_admin, 'sponsors_custom_columns', 10, 2 );
-
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'register_menus' );
 		$this->loader->add_filter( 'manage_edit-sponsors_sortable_columns', $plugin_admin,'sponsor_order_column' );
 		$this->loader->add_filter( 'manage_sponsors_posts_columns', $plugin_admin, 'add_new_sponsors_column' );
 
