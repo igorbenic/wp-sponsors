@@ -181,7 +181,7 @@ class WP_Sponsors {
 		$plugin_admin = new WP_Sponsors_Admin( $this->get_wp_sponsors(), $this->get_version() );
 
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin,'add_meta_boxes' );
-		$this->loader->add_action( 'save_post', $plugin_admin,'save_meta_boxes' );
+		$this->loader->add_action( 'save_post', $plugin_admin,'save_meta_boxes', 10, 2 );
 		$this->loader->add_action( 'plugins_loaded', $plugin_admin, 'update' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );

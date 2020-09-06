@@ -108,8 +108,9 @@ class WP_Sponsors_Admin {
 	 * Save Metaboxes.
 	 *
 	 * @param $post_id
+	 * @param \WP_Post $post Post object
 	 */
-	public function save_meta_boxes( $post_id ) {
+	public function save_meta_boxes( $post_id, $post ) {
 		// verify this came from the our screen and with proper authorization,
 		// because save_post can be triggered at other times
 
@@ -121,6 +122,12 @@ class WP_Sponsors_Admin {
 		if ( $is_autosave || $is_revision || ! $is_valid_nonce ) {
 			return;
 		}
+
+		if ( 'sponsors' !== get_post_type( $post ) ) {
+			return;
+		}
+
+
 		// Checks for input and sanitizes/saves if needed
 		if ( isset( $_POST['_website'] ) ) {
 			update_post_meta( $post_id, '_website', sanitize_text_field( $_POST['_website'] ) );
