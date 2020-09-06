@@ -5,7 +5,7 @@ Tags: post type, images, partners, sponsors
 Requires at least: 3.1.0
 Tested up to: 5.3.0
 Requires PHP: 7.0
-Stable tag: 3.3.0
+Stable tag: 3.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,7 @@ The shortcode [sponsors] takes the following options:
 * with_categories (yes|no, default: no )
 * category_title ( HTML tag for category title, default: h3)
 * size (small|medium|large|full, default: medium)
+* slider_image (full|default, default: full) - if full, the image will take full width
 * style (list|grid|slider, default: list)
 * order (ASC|DESC, default: ASC )
 * orderby (menu_order|post_title|..., default: menu_order)

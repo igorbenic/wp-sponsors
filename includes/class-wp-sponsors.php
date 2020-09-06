@@ -69,7 +69,7 @@ class WP_Sponsors {
 	public function __construct() {
 
 		$this->wp_sponsors = 'wp-sponsors';
-		$this->version     = '3.2.0';
+		$this->version     = '3.4.0';
 
 		$this->define_constants();
 		$this->load_dependencies();
