@@ -212,6 +212,21 @@ export default class Edit extends Component {
                             }}
                         />
                         <RadioControl
+                            label={ __( 'Slider Image Size' ) }
+                            options={
+                                [
+                                    { label: __( 'Default' ), value: 'default' },
+                                    { label: __( 'Full' ), value: 'full' }
+                                ]
+                            }
+                            selected={ attributes.slider_image }
+                            onChange={ ( value ) => {
+                                startSliderAfterRender();
+                                setAttributes({ slider_image: value });
+
+                            }}
+                        />
+                        <RadioControl
                             label={ __( 'Autoplay' ) }
                             options={
                                 [

@@ -3,7 +3,7 @@ Contributors: ibenic
 Donate link: http://www.wpsimplesponsorships.com
 Tags: post type, images, partners, sponsors
 Requires at least: 3.1.0
-Tested up to: 5.3.0
+Tested up to: 5.5.1
 Requires PHP: 7.0
 Stable tag: 3.4.0
 License: GPLv2 or later
@@ -85,8 +85,6 @@ Each defined field will be a textarea. For example, you can add more fields like
 
 Here are some of the features planned for future versions:
 
-* Form Block - for the new WordPress block editor
-* Sponsors Block - for the new WordPress block editor
 * Category ordering
 * Documentation Page
 * Front optimizations
@@ -110,6 +108,11 @@ If you want to accept payments from sponsors on your site and have a way to defi
 2. Add the widget to one or more sidebars and the images of your sponsors will show up there. Choose from which category you want to display sponsors (or select all), to show or hide images and the description
 
 == Changelog ==
+
+= 3.4.0 - 2020-09-06 =
+* New: Shortcode attribute slider_image for slider to define how we show images. Options are full and default.
+* New: Sponsor Acquisition form now sends email to the site owner.
+* New: Block option same as shortcode slider_image added.
 
 = 3.3.0 - 2020-02-27 =
 * New: Shortcode attribute variablewidth for slider so the slides width will be the same as the image.
