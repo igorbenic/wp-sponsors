@@ -188,4 +188,20 @@ class WP_Sponsors_Public {
 		add_action( 'wp_sponsors_acquisition_form_fields_before', array( $this, 'show_errors_and_notices' ) );
 	}
 
+	/**
+	 * Send the Form Email
+	 *
+	 * @param integer $sponsor_id Sponsor ID
+	 */
+	public function send_acquisition_form_email( $sponsor_id ) {
+		$sponsor = get_post( $sponsor_id );
+
+		$sponsor_link = admin_url( 'post.php?post=' . $sponsor_id . '&action=edit');
+		$subject = sprintf( __( 'New Sponsor Submitted: %s', 'wp-sponsors' ), $sponsor->post_title );
+		$message = __( 'Hi, there was a new sponsor submission on your site!', 'wp-sponsors' );
+		$message .= sprintf( __( 'You can check it out here: %s', 'wp-sponsors' ), '<a href="' . esc_url( $sponsor_link ) . '">' . $sponsor_link . '</a>' );
+		$to = get_option( 'admin_email' );
+
+		wp_mail( $to, $subject, $message );
+	}
 }
