@@ -141,6 +141,10 @@ class WP_Sponsors_Blocks {
 					'type' => 'string',
 					'default' => '1',
 				],
+				'verticalcenter' => [
+					'type' => 'string',
+					'default' => '1',
+				],
 			]
 		] );
 

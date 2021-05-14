@@ -83,6 +83,10 @@ registerBlockType( 'wp-sponsors/sponsors', {
         slidestoscroll: {
             type: 'string',
             default: '1'
+        },
+        verticalcenter: {
+            type: 'string',
+            default: '1'
         }
     },
     edit: SponsorsEdit,

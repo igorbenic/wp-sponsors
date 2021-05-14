@@ -66,7 +66,7 @@ class WP_Sponsors_Widget extends WP_Widget {
         <ul class="<?php echo $instance['display_option']; ?>">
 			<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 				<?php
-                $image_size  = $instance['image_size'];
+                $image_size  = empty( $instance['image_size'] ) ? 'full' : $instance['image_size'];
 				$link        = get_post_meta( get_the_ID(), '_website', true );
 
 				if ( ! $link ) {

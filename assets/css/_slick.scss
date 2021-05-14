@@ -5,6 +5,13 @@
   &#wp-sponsors div.sponsor-item {
     margin-right: 0;
   }
+
+  &.vertical-center {
+    .slick-track {
+      display: flex;
+      align-items: center;
+    }
+  }
   /* Slider */
 
   .slick-list {

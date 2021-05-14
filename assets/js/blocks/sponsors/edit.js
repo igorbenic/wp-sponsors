@@ -267,6 +267,21 @@ export default class Edit extends Component {
                             }}
                         />
                         <RadioControl
+                            label={ __( 'Vertical Center' ) }
+                            options={
+                                [
+                                    { label: __( 'No' ), value: '0' },
+                                    { label: __( 'Yes' ), value: '1' }
+                                ]
+                            }
+                            selected={ attributes.verticalcenter }
+                            onChange={ ( value ) => {
+                                startSliderAfterRender();
+                                setAttributes({ verticalcenter: value });
+
+                            }}
+                        />
+                        <RadioControl
                             label={ __( 'Dots' ) }
                             options={
                                 [

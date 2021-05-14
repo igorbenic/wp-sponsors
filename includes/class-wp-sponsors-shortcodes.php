@@ -112,6 +112,7 @@ class WP_Sponsors_Shortcodes {
 			'slidestoshow' => '1',
 			'slidestoscroll' => '1',
 			'variablewidth' => '0',
+			'verticalcenter' => '1',
 			'breakpoints' => '',
 			'debug' => NULL
 		), $atts, 'wp_sponsors' );
@@ -194,7 +195,6 @@ class WP_Sponsors_Shortcodes {
 		}
 
 
-
 		ob_start();
 
 		// Set up the shortcode styles
@@ -262,7 +262,7 @@ class WP_Sponsors_Shortcodes {
 						)
 					),
                 );*/
-				$style['containerPre'] = '<div id="wp-sponsors" class="clearfix slider wp-sponsors" data-slick="' . esc_attr( wp_json_encode( $slickSettings ) ) . '">';
+				$style['containerPre'] = '<div id="wp-sponsors" class="clearfix slider wp-sponsors ' . ( 1 === absint( $atts['verticalcenter'] ) ? 'vertical-center' : '' ) . '" data-slick="' . esc_attr( wp_json_encode( $slickSettings ) ) . '">';
 				$style['containerPost'] = '</div>';
 				$style['wrapperClass'] = 'sponsor-item';
 				$style['wrapperPre'] = 'div';
