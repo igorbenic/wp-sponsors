@@ -87,6 +87,10 @@ registerBlockType( 'wp-sponsors/sponsors', {
         verticalcenter: {
             type: 'string',
             default: '1'
+        },
+        slider_image: {
+            type: 'string',
+            default: 'full'
         }
     },
     edit: SponsorsEdit,

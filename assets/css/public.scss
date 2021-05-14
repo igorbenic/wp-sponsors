@@ -64,6 +64,10 @@ div#wp-sponsors ul li { list-style: none;}
 #wp-sponsors div.sponsor-item.default p, #wp-sponsors div.sponsor-item.default a img {width:100%;}
 #wp-sponsors div.sponsor-item.default p, #wp-sponsors div.sponsor-item.default a img {width:100%;}
 
+#wp-sponsors.slider div.sponsor-item a img,
+#wp-sponsors.slider div.sponsor-item.default a img{width:auto;}
+#wp-sponsors.slider.full div.sponsor-item a img,
+#wp-sponsors.slider.full div.sponsor-item.default a img {width:100%;}
 /*
  * Other styling
  */

@@ -69,7 +69,7 @@ class WP_Sponsors {
 	public function __construct() {
 
 		$this->wp_sponsors = 'wp-sponsors';
-		$this->version     = '3.2.0';
+		$this->version     = '3.4.0';
 
 		$this->define_constants();
 		$this->load_dependencies();
@@ -208,7 +208,7 @@ class WP_Sponsors {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_action( 'init', $plugin_public, 'sponsors_acquisition_form_submit' );
-
+		$this->loader->add_action( 'sponsors_acquisition_form_submitted', $plugin_public, 'send_acquisition_form_email' );
 
 	}
 
