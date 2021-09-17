@@ -72,19 +72,21 @@ class WP_Sponsors_Widget extends WP_Widget {
 				if ( ! $link ) {
 					$link = get_post_meta( get_the_ID(), 'wp_sponsors_url', true );
 				}
-				$link_target = get_post_meta( get_the_ID(), 'wp_sponsor_link_behaviour', true );
-				$target      = ( $link_target == 1 OR $widget_target == true ) ? true : false;
-				$use_image   = isset( $instance['check_images'] ) && 'on' === $instance['check_images'] ? true : false;
-				$use_title   = isset( $instance['show_title'] ) && 'on' === $instance['show_title'] ? true : false;
-				$image       = $use_image ? get_the_post_thumbnail( get_the_ID(), $image_size ) : '';
-				$categories  = get_the_terms( get_the_ID(), 'sponsor_categories' );
-				$classes     = $sponsorStyling;
+				$link_target  = get_post_meta( get_the_ID(), 'wp_sponsor_link_behaviour', true );
+				$target       = ( $link_target == 1 OR $widget_target == true ) ? true : false;
+				$use_image    = isset( $instance['check_images'] ) && 'on' === $instance['check_images'] ? true : false;
+				$use_title    = isset( $instance['show_title'] ) && 'on' === $instance['show_title'] ? true : false;
+				$image        = $use_image ? get_the_post_thumbnail( get_the_ID(), $image_size ) : '';
+				$categories   = get_the_terms( get_the_ID(), 'sponsor_categories' );
+				$data_content = get_post_meta( get_the_ID(), '_data_content', true );
+                $data_content_attr = ( strlen($data_content ) > 0) ? ' data-content="' . $data_content . '" ' : '';
+				$classes      = $sponsorStyling . ' 1a';
 				if ( $categories ) {
 					$category_slugs = wp_list_pluck( $categories, 'slug' );
 					$classes .= ' ' . implode( ' ', $category_slugs );
 				}
 				?>
-                <li class="<?php echo esc_attr( $classes ); ?>">
+                <li class="<?php echo esc_attr( $classes );?>" <?php echo $data_content_attr; ?>>
                     <?php
                     if ( $link ) {
                         ?>
