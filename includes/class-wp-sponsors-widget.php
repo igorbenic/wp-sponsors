@@ -79,7 +79,7 @@ class WP_Sponsors_Widget extends WP_Widget {
 				$image        = $use_image ? get_the_post_thumbnail( get_the_ID(), $image_size ) : '';
 				$categories   = get_the_terms( get_the_ID(), 'sponsor_categories' );
 				$data_content = get_post_meta( get_the_ID(), '_data_content', true );
-                $data_content_attr = ( strlen($data_content ) > 0) ? ' data-content="' . $data_content . '" ' : '';
+                $data_content_attr = ( strlen($data_content ) > 0) ? ' data-track-content data-content-name="' . $data_content . '" ' : '';
 				$classes      = $sponsorStyling . ' 1a';
 				if ( $categories ) {
 					$category_slugs = wp_list_pluck( $categories, 'slug' );
