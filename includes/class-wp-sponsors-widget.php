@@ -80,7 +80,7 @@ class WP_Sponsors_Widget extends WP_Widget {
 				$categories   = get_the_terms( get_the_ID(), 'sponsor_categories' );
 				$data_content = get_post_meta( get_the_ID(), '_data_content', true );
                 $data_content_attr = ( strlen($data_content ) > 0) ? ' data-track-content data-content-name="sponsor" data-content-piece="' . $data_content . '" ' : '';
-				$classes      = $sponsorStyling . ' 1a';
+				$classes      = $sponsorStyling;
 				if ( $categories ) {
 					$category_slugs = wp_list_pluck( $categories, 'slug' );
 					$classes .= ' ' . implode( ' ', $category_slugs );
