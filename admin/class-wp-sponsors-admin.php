@@ -141,6 +141,10 @@ class WP_Sponsors_Admin {
 			update_post_meta( $post_id, 'wp_sponsors_desc', $_POST['wp_sponsors_desc'] );
 		}
 
+		if ( isset( $_POST['_data_content'] ) ) {
+			update_post_meta( $post_id, '_data_content', $_POST['_data_content'] );
+		}
+
 		$link_behaviour = isset($_POST['wp_sponsor_link_behaviour']) ? '1' : '0';
 		update_post_meta( $post_id, 'wp_sponsor_link_behaviour', $link_behaviour );
 	}

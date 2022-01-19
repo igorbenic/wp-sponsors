@@ -47,6 +47,11 @@ class WP_Sponsors_Shortcodes {
 			</div>
 
 			<div class="wp-sponsors-form-field">
+				<label for="wp_sponsors_data_content"><?php esc_html_e( 'Content tracking attribute', 'wp-sponsors' ); ?></label>
+				<input id="wp_sponsors_data_content" type="text" name="wp_sponsors_form[data_content]" placeholder="<?php esc_attr_e( 'data-content', 'wp-sponsors' ); ?>">
+			</div>
+
+			<div class="wp-sponsors-form-field">
 				<label for="wp_sponsors_desc"><?php esc_html_e( 'Sponsor Description', 'wp-sponsors' ); ?></label>
 				<textarea id="wp_sponsors_desc" name="wp_sponsors_form[desc]" placeholder="<?php esc_attr_e( 'Description', 'wp-sponsors' ); ?>"></textarea>
 			</div>
@@ -158,13 +163,16 @@ class WP_Sponsors_Shortcodes {
 				$link = get_post_meta( $sponsor_post->ID, 'wp_sponsors_url', true );
 			}
 
-			$sponsor                = array();
-			$sponsor['id']          = $sponsor_post->ID;
-			$sponsor['link']        = $link;
-			$sponsor['link_target'] = get_post_meta( $sponsor_post->ID, 'wp_sponsor_link_behaviour', true );
-			$sponsor['logo']        = get_the_post_thumbnail( $sponsor_post->ID, $atts['image_size'] );
-			$sponsor['title']       = get_the_title( $sponsor_post );
-			$sponsor['categories']  = get_the_terms( $sponsor_post, 'sponsor_categories');
+			$data_content = get_post_meta( $sponsor_post->ID, '_data_content', true );
+
+			$sponsor                 = array();
+			$sponsor['id']           = $sponsor_post->ID;
+			$sponsor['link']         = $link;
+			$sponsor['link_target']  = get_post_meta( $sponsor_post->ID, 'wp_sponsor_link_behaviour', true );
+			$sponsor['logo']         = get_the_post_thumbnail( $sponsor_post->ID, $atts['image_size'] );
+			$sponsor['title']        = get_the_title( $sponsor_post );
+			$sponsor['categories']   = get_the_terms( $sponsor_post, 'sponsor_categories');
+			$sponsor['data_content'] = $data_content;
 			$desc = do_shortcode( wpautop( $sponsor_post->post_content ) );
 			if ( ! $desc ) {
 				$desc = get_post_meta( $sponsor_post->ID, 'wp_sponsors_desc', true );
@@ -266,7 +274,7 @@ class WP_Sponsors_Shortcodes {
                 );*/
 				$style['containerPre'] = '<div id="wp-sponsors" class="clearfix slider wp-sponsors ' . $atts['slider_image'] . ' ' . ( 1 === absint( $atts['verticalcenter'] ) ? 'vertical-center' : '' ) . '" data-slick="' . esc_attr( wp_json_encode( $slickSettings ) ) . '">';
 				$style['containerPost'] = '</div>';
-				$style['wrapperClass'] = 'sponsor-item';
+				$style['wrapperClass'] = 'sponsor-item ';
 				$style['wrapperPre'] = 'div';
 				$style['wrapperPost'] = '</div>';
 				break;
@@ -286,7 +294,7 @@ class WP_Sponsors_Shortcodes {
 					$link        = $sponsor['link'];
 					$link_target = $sponsor['link_target'];
 					$target      = 1 === absint( $link_target ) ? 'target="_blank"' : '';
-					$class       = '';
+					$class       =  $sponsor['data-content'] . ' ';
 					$class       .= $atts['size'];
 
 					if ( $sponsor['categories'] ) {

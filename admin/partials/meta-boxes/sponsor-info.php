@@ -19,6 +19,11 @@ $meta_value = get_post_meta( get_the_ID(), '_email', true );
 echo '<p class="post-attributes-label-wrapper"><label for="wp_sponosrs_email" class="post-attributes-label">' . __( 'Email', 'wp-sponsors' ) . '</label></p>';
 echo '<input type="email" id="wp_sponosrs_email" name="_email" value="' . $meta_value . '" class="widefat" />';
 
+// Get the data-content data if its already been entered
+$meta_value = get_post_meta( get_the_ID(), '_data_content', true );
+// Checks and displays the retrieved value
+echo '<p class="post-attributes-label-wrapper"><label for="wp_sponosrs_data_content" class="post-attributes-label">' . __( 'data-content', 'wp-sponsors' ) . '</label></p>';
+echo '<input type="text" id="wp_sponosrs_data_content" name="_data_content" value="' . $meta_value . '" class="widefat" />';
 
 // Display code/markup goes here. Don't forget to include nonces!
 // Noncename needed to verify where the data originated
