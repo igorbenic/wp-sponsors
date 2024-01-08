@@ -121,13 +121,13 @@ class WP_Sponsors_Public {
 	public function show_errors_and_notices() {
 		if ( $this->form_errors ) {
 			foreach ( $this->form_errors as $error ) {
-				echo '<div class="wp-sponsors-form-notice wp-sponsors-form-error">' . $error . '</div>';
+				echo '<div class="wp-sponsors-form-notice wp-sponsors-form-error">' . wp_kses_post( $error ) . '</div>';
 			}
 		}
 
 		if ( $this->form_notices ) {
 			foreach ( $this->form_notices as $notice ) {
-				echo '<div class="wp-sponsors-form-notice">' . $notice . '</div>';
+				echo '<div class="wp-sponsors-form-notice">' . wp_kses_post( $notice ) . '</div>';
 			}
 		}
 	}
@@ -150,20 +150,20 @@ class WP_Sponsors_Public {
 			return;
 		}
 
-		$name = isset( $posted_data['name'] ) ? $posted_data['name'] : '';
+		$name = isset( $posted_data['name'] ) ? sanitize_text_field( $posted_data['name'] ) : '';
 
 		if ( ! $name ) {
 			$this->form_errors[] = __( 'Sponsor Name is required', 'wp-sponsors' );
 		}
 
-		$email = isset( $posted_data['email'] ) ? $posted_data['email'] : '';
+		$email = isset( $posted_data['email'] ) ? sanitize_text_field( $posted_data['email'] ) : '';
 
 		if ( ! $email ) {
 			$this->form_errors[] = __( 'Sponsor Email is required', 'wp-sponsors' );
 		}
 
-		$desc  = isset( $posted_data['desc'] ) ? $posted_data['desc'] : '';
-		$url   = isset( $posted_data['website'] ) ? $posted_data['website'] : '';
+		$desc  = isset( $posted_data['desc'] ) ? sanitize_textarea_field( $posted_data['desc'] ) : '';
+		$url   = isset( $posted_data['website'] ) ? sanitize_url( $posted_data['website'] ) : '';
 
 		do_action( 'sponsors_acquisition_form_before_submit', $this, $posted_data );
 
@@ -196,10 +196,10 @@ class WP_Sponsors_Public {
 	public function send_acquisition_form_email( $sponsor_id ) {
 		$sponsor = get_post( $sponsor_id );
 
-		$sponsor_link = admin_url( 'post.php?post=' . $sponsor_id . '&action=edit');
-		$subject = sprintf( __( 'New Sponsor Submitted: %s', 'wp-sponsors' ), $sponsor->post_title );
+		$sponsor_link = admin_url( 'post.php?post=' . absint( $sponsor_id ) . '&action=edit');
+		$subject = sprintf( __( 'New Sponsor Submitted: %s', 'wp-sponsors' ), esc_html( $sponsor->post_title ) );
 		$message = __( 'Hi, there was a new sponsor submission on your site!', 'wp-sponsors' );
-		$message .= sprintf( __( 'You can check it out here: %s', 'wp-sponsors' ), '<a href="' . esc_url( $sponsor_link ) . '">' . $sponsor_link . '</a>' );
+		$message .= sprintf( __( 'You can check it out here: %s', 'wp-sponsors' ), '<a href="' . esc_url( $sponsor_link ) . '">' . esc_html( $sponsor_link ) . '</a>' );
 		$to = get_option( 'admin_email' );
 
 		wp_mail( $to, $subject, $message );

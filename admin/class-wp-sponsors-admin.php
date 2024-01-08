@@ -98,9 +98,9 @@ class WP_Sponsors_Admin {
 
 		wp_enqueue_script( $this->wp_sponsors, WP_SPONSORS_URL . 'assets/dist/js/admin.js', array( 'jquery' ), $this->version, false );
 		wp_localize_script($this->wp_sponsors, 'objectL10n', array(
-			'title' => __('Select a sponsor logo', 'wp-sponsors'),
+			'title'  => __('Select a sponsor logo', 'wp-sponsors'),
 			'button' => __('Add image', 'wp-sponsors')
-			));
+		));
 
 	}
 
@@ -130,15 +130,15 @@ class WP_Sponsors_Admin {
 
 		// Checks for input and sanitizes/saves if needed
 		if ( isset( $_POST['_website'] ) ) {
-			update_post_meta( $post_id, '_website', sanitize_text_field( $_POST['_website'] ) );
+			update_post_meta( $post_id, '_website', sanitize_text_field( wp_unslash( $_POST['_website'] ) ) );
 		}
 
 		if ( isset( $_POST['_email'] ) ) {
-			update_post_meta( $post_id, '_email', sanitize_text_field( $_POST['_email'] ) );
+			update_post_meta( $post_id, '_email', sanitize_text_field( wp_unslash( $_POST['_email'] ) ) );
 		}
 
 		if ( isset( $_POST['wp_sponsors_desc'] ) ) {
-			update_post_meta( $post_id, 'wp_sponsors_desc', $_POST['wp_sponsors_desc'] );
+			update_post_meta( $post_id, 'wp_sponsors_desc', wp_kses_post( wp_unslash( $_POST['wp_sponsors_desc'] ) ) );
 		}
 
 		$link_behaviour = isset($_POST['wp_sponsor_link_behaviour']) ? '1' : '0';
@@ -221,8 +221,8 @@ class WP_Sponsors_Admin {
     public function update() {
         if(is_admin()) {
         	if(get_option( 'sponsors_db_version') < 2 ) {
-                $update = new WP_Sponsors_upgrade( $this->version );
-                $update->run( 'upgrade200' );
+		        wp_sponsors_update_200();
+		        wp_sponsors_update_post_type_300();
         	}
             return;
         }

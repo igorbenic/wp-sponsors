@@ -191,7 +191,8 @@ class WP_Sponsors_Blocks {
 			wp_register_script(
 				'wp-sponsors-block-js',
 				WP_SPONSORS_URL . '/assets/dist/js/gutenberg.js',
-				array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor', 'wp-compose' )
+				array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor', 'wp-compose' ),
+				filemtime( WP_SPONSORS_PATH . '/assets/dist/js/gutenberg.js', )
 			);
 		}
 
@@ -209,7 +210,8 @@ class WP_Sponsors_Blocks {
 		wp_enqueue_style(
 			'wp-sponsors-block-css',
 			WP_SPONSORS_URL . '/assets/dist/css/gutenberg.css',
-			array( 'wp-edit-blocks' )
+			array( 'wp-edit-blocks' ),
+			filemtime( WP_SPONSORS_PATH . '/assets/dist/css/gutenberg.css', )
 		);
 	}
 }

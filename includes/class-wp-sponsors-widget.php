@@ -63,7 +63,7 @@ class WP_Sponsors_Widget extends WP_Widget {
 		<?php if ( $title ) {
 			echo $args['before_title'] . $title . $args['after_title'];
 		} ?>
-        <ul class="<?php echo $instance['display_option']; ?>">
+        <ul class="<?php echo esc_attr( $instance['display_option'] ); ?>">
 			<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 				<?php
                 $image_size  = empty( $instance['image_size'] ) ? 'full' : $instance['image_size'];
@@ -93,7 +93,7 @@ class WP_Sponsors_Widget extends WP_Widget {
                     }
                     if ( ! $image || $use_title ) {
                         ?>
-                        <div class="sponsor-title widget-title"><?php echo the_title(); ?></div>
+                        <div class="sponsor-title widget-title"><?php echo esc_html( the_title( '', '', false ) ); ?></div>
                         <?php
                     }
 
@@ -112,7 +112,7 @@ class WP_Sponsors_Widget extends WP_Widget {
                         }
                         if ( $desc ) {
                             echo '<br/>';
-                            echo '<p class="sponsor-desc">' . $desc . '</p>';
+                            echo '<p class="sponsor-desc">' . wp_kses_post( $desc ) . '</p>';
                         }
                     }
 
@@ -179,85 +179,85 @@ class WP_Sponsors_Widget extends WP_Widget {
 		$images_sizes[] = 'full';
 		$cats = get_terms( 'sponsor_categories' ); ?>
         <p>
-            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title', 'wp-sponsors' ); ?></label>
-            <input id="<?php echo $this->get_field_id( 'title' ); ?>"
-                   name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>"
+            <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title', 'wp-sponsors' ); ?></label>
+            <input id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"
+                   name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>"
                    style="width:100%;"/>
         </p>
 		<?php if ( ! empty( $cats ) && ! is_wp_error( $cats ) ) { ?>
             <p>
-                <label for="<?php echo $this->get_field_id( 'category' ); ?>"> <?php echo __( 'Category', 'wp-sponsors' ) ?></label>
-                <select id="<?php echo $this->get_field_id( 'category' ); ?>"
-                        name="<?php echo $this->get_field_name( 'category' ); ?>" class="widefat" style="width:100%;">
-                    <option value="all"><?php echo _e( 'All', 'wp-sponsors' ); ?></option>
+                <label for="<?php echo esc_attr( $this->get_field_id( 'category' ) ); ?>"> <?php echo __( 'Category', 'wp-sponsors' ) ?></label>
+                <select id="<?php echo esc_attr( $this->get_field_id( 'category' ) ); ?>"
+                        name="<?php echo esc_attr( $this->get_field_name( 'category' ) ); ?>" class="widefat" style="width:100%;">
+                    <option value="all"><?php echo __( 'All', 'wp-sponsors' ); ?></option>
 					<?php foreach ( $cats as $cat ) { ?>
                         <option <?php selected( $instance['category'], $cat->slug, 'selected' ); ?>
-                                value="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></option>
+                                value="<?php echo esc_attr( $cat->slug ); ?>"><?php echo esc_html( $cat->name ); ?></option>
 					<?php } ?>
                 </select>
             </p>
 		<?php } ?>
         <p>
-            <label for="<?php echo $this->get_field_id( 'display_option' ); ?>"> <?php echo __( 'Display', 'wp-sponsors' ) ?></label>
-            <select id="<?php echo $this->get_field_id( 'display_option' ); ?>"
-                    name="<?php echo $this->get_field_name( 'display_option' ); ?>" class="widefat" style="width:100%;">
+            <label for="<?php echo esc_attr( $this->get_field_id( 'display_option' ) ); ?>"> <?php echo __( 'Display', 'wp-sponsors' ) ?></label>
+            <select id="<?php echo esc_attr( $this->get_field_id( 'display_option' ) ); ?>"
+                    name="<?php echo esc_attr( $this->get_field_name( 'display_option' ) ); ?>" class="widefat" style="width:100%;">
                 <option <?php selected( $instance['display_option'], 'vertical' ); ?>
-                        value="vertical"><?php echo _e( 'Vertical (best for sidebars)', 'wp-sponsors' ); ?></option>
+                        value="vertical"><?php echo __( 'Vertical (best for sidebars)', 'wp-sponsors' ); ?></option>
                 <option <?php selected( $instance['display_option'], 'horizontal' ); ?>
-                        value="horizontal"><?php echo _e( 'Horizontal (best for footers)', 'wp-sponsors' ); ?></option>
+                        value="horizontal"><?php echo __( 'Horizontal (best for footers)', 'wp-sponsors' ); ?></option>
             </select>
 
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id( 'order_by' ); ?>"> <?php echo __( 'Order by', 'wp-sponsors' ) ?></label>
-            <select id="<?php echo $this->get_field_id( 'order_by' ); ?>"
-                    name="<?php echo $this->get_field_name( 'order_by' ); ?>" class="widefat" style="width:100%;">
+            <label for="<?php echo esc_attr( $this->get_field_id( 'order_by' ) ); ?>"> <?php echo __( 'Order by', 'wp-sponsors' ) ?></label>
+            <select id="<?php echo esc_attr( $this->get_field_id( 'order_by' ) ); ?>"
+                    name="<?php echo esc_attr( $this->get_field_name( 'order_by' ) ); ?>" class="widefat" style="width:100%;">
                 <option <?php selected( $instance['order_by'], 'menu_order' ); ?>
-                        value="menu_order"><?php echo _e( 'Weight', 'wp-sponsors' ); ?></option>
+                        value="menu_order"><?php echo __( 'Weight', 'wp-sponsors' ); ?></option>
                 <option <?php selected( $instance['order_by'], 'title' ); ?>
-                        value="title"><?php echo _e( 'Title', 'wp-sponsors' ); ?></option>
+                        value="title"><?php echo __( 'Title', 'wp-sponsors' ); ?></option>
                 <option <?php selected( $instance['order_by'], 'rand' ); ?>
-                        value="rand"><?php echo _e( 'Random', 'wp-sponsors' ); ?></option>
+                        value="rand"><?php echo __( 'Random', 'wp-sponsors' ); ?></option>
             </select>
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id( 'max' ); ?>"><?php _e( 'Number of sponsors to show  (leave to show all)', 'wp-sponsors' ); ?></label>
-            <input id="<?php echo $this->get_field_id( 'max' ); ?>" name="<?php echo $this->get_field_name( 'max' ); ?>"
-                   value="<?php echo $instance['max']; ?>" style="width:100%;" type="number"/>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'max' ) ); ?>"><?php _e( 'Number of sponsors to show  (leave to show all)', 'wp-sponsors' ); ?></label>
+            <input id="<?php echo esc_attr( $this->get_field_id( 'max' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'max' ) ); ?>"
+                   value="<?php echo esc_attr( $instance['max'] ); ?>" style="width:100%;" type="number"/>
         </p>
         <p>
-            <input type="checkbox" id="<?php echo $this->get_field_id( 'show_title' ); ?>"
-                   name="<?php echo $this->get_field_name( 'show_title' ); ?>" <?php checked( $instance['show_title'], 'on' ); ?> />
-            <label for="<?php echo $this->get_field_id( 'show_title' ); ?>"><?php echo __( 'Show sponsor title', 'wp-sponsors' ) ?></label>
+            <input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'show_title' ) ); ?>"
+                   name="<?php echo esc_attr( $this->get_field_name( 'show_title' ) ); ?>" <?php checked( $instance['show_title'], 'on' ); ?> />
+            <label for="<?php echo esc_attr( $this->get_field_id( 'show_title' ) ); ?>"><?php echo __( 'Show sponsor title', 'wp-sponsors' ) ?></label>
         </p>
         <p>
-            <input type="checkbox" id="<?php echo $this->get_field_id( 'check_images' ); ?>"
-                   name="<?php echo $this->get_field_name( 'check_images' ); ?>" <?php checked( $instance['check_images'], 'on' ); ?> />
-            <label for="<?php echo $this->get_field_id( 'check_images' ); ?>"><?php echo __( 'Show sponsor logo', 'wp-sponsors' ) ?></label>
+            <input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'check_images' ) ); ?>"
+                   name="<?php echo esc_attr( $this->get_field_name( 'check_images' ) ); ?>" <?php checked( $instance['check_images'], 'on' ); ?> />
+            <label for="<?php echo esc_attr( $this->get_field_id( 'check_images' ) ); ?>"><?php echo __( 'Show sponsor logo', 'wp-sponsors' ) ?></label>
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id( 'image_size' ); ?>"> <?php echo __( 'Image Size', 'wp-sponsors' ) ?></label>
-            <select id="<?php echo $this->get_field_id( 'image_size' ); ?>"
-                    name="<?php echo $this->get_field_name( 'image_size' ); ?>" class="widefat" style="width:100%;">
+            <label for="<?php echo esc_attr( $this->get_field_id( 'image_size' ) ); ?>"> <?php echo __( 'Image Size', 'wp-sponsors' ) ?></label>
+            <select id="<?php echo esc_attr( $this->get_field_id( 'image_size' ) ); ?>"
+                    name="<?php echo esc_attr( $this->get_field_name( 'image_size' ) ); ?>" class="widefat" style="width:100%;">
                 <?php
                     foreach( $images_sizes as $size ) {
                         ?>
                         <option <?php selected( $instance['image_size'], $size ); ?>
-                                value="<?php echo esc_attr( $size ); ?>"><?php echo $size ?></option>
+                                value="<?php echo esc_attr( $size ); ?>"><?php echo esc_html( $size ); ?></option>
                         <?php
                     }
                 ?>
             </select>
         </p>
         <p>
-            <input type="checkbox" id="<?php echo $this->get_field_id( 'show_description' ); ?>"
-                   name="<?php echo $this->get_field_name( 'show_description' ); ?>" <?php checked( $instance['show_description'], 'on' ); ?> />
-            <label for="<?php echo $this->get_field_id( 'show_description' ); ?>"><?php echo __( 'Show sponsor description', 'wp-sponsors' ) ?></label>
+            <input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'show_description' ) ); ?>"
+                   name="<?php echo esc_attr( $this->get_field_name( 'show_description' ) ); ?>" <?php checked( $instance['show_description'], 'on' ); ?> />
+            <label for="<?php echo esc_attr( $this->get_field_id( 'show_description' ) ); ?>"><?php echo __( 'Show sponsor description', 'wp-sponsors' ) ?></label>
         </p>
         <p>
-            <input type="checkbox" id="<?php echo $this->get_field_id( 'target_blank' ); ?>"
-                   name="<?php echo $this->get_field_name( 'target_blank' ); ?>" <?php checked( $instance['target_blank'], 'on' ); ?> />
-            <label for="<?php echo $this->get_field_id( 'target_blank' ); ?>"><?php echo __( 'Open links in a new window', 'wp-sponsors' ) ?></label>
+            <input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'target_blank' ) ); ?>"
+                   name="<?php echo esc_attr( $this->get_field_name( 'target_blank' ) ); ?>" <?php checked( $instance['target_blank'], 'on' ); ?> />
+            <label for="<?php echo esc_attr( $this->get_field_id( 'target_blank' ) ); ?>"><?php echo __( 'Open links in a new window', 'wp-sponsors' ) ?></label>
 
         </p>
 	<?php }

@@ -264,7 +264,7 @@ class WP_Sponsors_Shortcodes {
 						)
 					),
                 );*/
-				$style['containerPre'] = '<div id="wp-sponsors" class="clearfix slider wp-sponsors ' . $atts['slider_image'] . ' ' . ( 1 === absint( $atts['verticalcenter'] ) ? 'vertical-center' : '' ) . '" data-slick="' . esc_attr( wp_json_encode( $slickSettings ) ) . '">';
+				$style['containerPre'] = '<div id="wp-sponsors" class="clearfix slider wp-sponsors ' . esc_attr( $atts['slider_image'] ) . ' ' . ( 1 === absint( $atts['verticalcenter'] ) ? 'vertical-center' : '' ) . '" data-slick="' . esc_attr( wp_json_encode( $slickSettings ) ) . '">';
 				$style['containerPost'] = '</div>';
 				$style['wrapperClass'] = 'sponsor-item';
 				$style['wrapperPre'] = 'div';
@@ -298,7 +298,7 @@ class WP_Sponsors_Shortcodes {
 						$class .= ' debug';
 					}
 
-					echo '<' . $style['wrapperPre'] . ' class="' . $style['wrapperClass'] . ' ' . $class . '">';
+					echo '<' . $style['wrapperPre'] . ' class="' . esc_attr( $style['wrapperClass'] ) . ' ' . esc_attr( $class ) . '">';
 					$sponsor_html = '';
 
 					if ( $title ) {
