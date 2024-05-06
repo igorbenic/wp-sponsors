@@ -60,8 +60,8 @@ class WP_Sponsors_Shortcodes {
 						$label = isset( $labels[ $index ] ) ? $labels[ $index ] : ucfirst( $field );
 						?>
 						<div class="wp-sponsors-form-field">
-							<label for="wp_sponsors_<?php echo $field; ?>"><?php echo esc_html( $label ); ?></label>
-							<textarea id="wp_sponsors_<?php echo $field; ?>" name="wp_sponsors_form[<?php echo $field; ?>]" placeholder="<?php echo esc_attr( $label ); ?>"></textarea>
+							<label for="wp_sponsors_<?php echo esc_attr( $field ); ?>"><?php echo esc_html( $label ); ?></label>
+							<textarea id="wp_sponsors_<?php echo esc_attr( $field ); ?>" name="wp_sponsors_form[<?php echo esc_attr( $field ); ?>]" placeholder="<?php echo esc_attr( $label ); ?>"></textarea>
 						</div>
 
 						<?php
@@ -71,7 +71,7 @@ class WP_Sponsors_Shortcodes {
 				do_action( 'wp_sponsors_acquisition_form_fields' );
 			?>
 
-			<button type="submit" class="button wp-sponsors-button" name="sponsors_acquisition_form"><?php echo $atts['button']; ?></button>
+			<button type="submit" class="button wp-sponsors-button" name="sponsors_acquisition_form"><?php echo wp_kses_post( $atts['button'] ); ?></button>
 		</form>
 		<?php
 

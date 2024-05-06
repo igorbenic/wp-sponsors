@@ -3,9 +3,9 @@ Contributors: ibenic
 Donate link: http://www.wpsimplesponsorships.com
 Tags: post type, images, partners, sponsors
 Requires at least: 3.1.0
-Tested up to: 6.4.2
+Tested up to: 6.5.2
 Requires PHP: 7.0
-Stable tag: 3.5.1
+Stable tag: 3.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -108,6 +108,9 @@ If you want to accept payments from sponsors on your site and have a way to defi
 2. Add the widget to one or more sidebars and the images of your sponsors will show up there. Choose from which category you want to display sponsors (or select all), to show or hide images and the description
 
 == Changelog ==
+
+= 3.5.2 - 2024-05-06 =
+* Security update
 
 = 3.5.1 - 2024-01-08 =
 * Security update
