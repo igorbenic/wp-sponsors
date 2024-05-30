@@ -1,0 +1,605 @@
+# Copyright (C) 2021 wp-sponsors
+# This file is distributed under the same license as the wp-sponsors package.
+msgid ""
+msgstr ""
+"Project-Id-Version: wp-sponsors\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:"
+"1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
+"esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-19 20:05+0000\n"
+"PO-Revision-Date: 2021-10-19 21:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: فارسی\n"
+"Language: fa-IR\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.5; wp-5.8.1"
+
+#: admin/partials/meta-boxes/ss-info.php:3
+msgid "A complete solution for managing Sponsors."
+msgstr "یک راهکار کامل برای مدیریت اسپانسرها"
+
+#: admin/partials/meta-boxes/ss-info.php:7
+msgid "Accept Payments"
+msgstr "قبول پرداخت ها"
+
+#: admin/partials/documentation.php:176
+msgid "Adaptive Height when using slider layout."
+msgstr "ارتفاع سازگار هنگام استفاده از طرح اسلایدر."
+
+#: admin/class-wp-sponsors-admin.php:102
+msgid "Add image"
+msgstr "افزودن تصویر"
+
+#: includes/class-wp-sponsors-installer.php:81
+msgctxt "add new on admin bar"
+msgid "Sponsor"
+msgstr "اسپانسر"
+
+#: includes/class-wp-sponsors-installer.php:83
+msgid "Add New Sponsor"
+msgstr "اضافه کردن اسپانسر جدید"
+
+#: admin/partials/documentation.php:316
+msgid ""
+"Adding responsive breakpoints to define how many images will be shown and "
+"slide"
+msgstr ""
+"اضافه کردن breakpointها برای تعیین تعداد تصاویر نمایش داده شده و اسلاید"
+
+#: admin/partials/documentation.php:368
+msgid "Additional Fields to be added"
+msgstr "فیلدهای اضافی اضافه می شود"
+
+#: includes/class-wp-sponsors-installer.php:80
+msgctxt "admin menu"
+msgid "Sponsors"
+msgstr "اسپانسرها"
+
+#: includes/class-wp-sponsors-widget.php:192
+msgid "All"
+msgstr "همه"
+
+#: includes/class-wp-sponsors-installer.php:87
+msgid "All Sponsors"
+msgstr "همه اسپانسرها"
+
+#: admin/partials/documentation.php:96
+msgid "Any category slug"
+msgstr "افزودن نامک دسته بندی"
+
+#: admin/partials/documentation.php:372
+msgid "any field keys separated by comma."
+msgstr "هر کلید زمینه ای که با کاما جدا می شود."
+
+#: admin/partials/documentation.php:124
+msgid "Any HTML tag"
+msgstr "هر نوع تگ HTML"
+
+#: admin/partials/documentation.php:68
+msgid "any number"
+msgstr "هر عددی"
+
+#: admin/partials/documentation.php:278, admin/partials/documentation.php:292
+msgid "any number."
+msgstr "هر عددی"
+
+#: admin/partials/documentation.php:208
+msgid "any number. Represents miliseconds."
+msgstr "هر عددی نشان دهنده میلی ثانیه است."
+
+#: admin/partials/documentation.php:40
+msgid "any registered image size"
+msgstr "هر اندازه تصویر ثبت شده"
+
+#: admin/partials/documentation.php:14, admin/partials/documentation.php:360
+msgid "Attribute"
+msgstr "ویژگی"
+
+#: admin/partials/meta-boxes/ss-info.php:6
+msgid "Automate Sponsor Requests"
+msgstr "اتوماتیک کردن درخواست های اسپانسری"
+
+#: admin/partials/documentation.php:190
+msgid "Autoplay the slides when using slider layout."
+msgstr "هنگام استفاده از اسلاید، اسلایدها را به صورت خودکار پخش کنید."
+
+#: includes/class-wp-sponsors-installer.php:82
+msgctxt "book"
+msgid "Add New"
+msgstr "افزودن جدید"
+
+#: includes/class-wp-sponsors-widget.php:189
+msgid "Category"
+msgstr "دسته بندی"
+
+#: admin/partials/documentation.php:232
+msgid "Center the slides."
+msgstr "اسلایدها در مرکز"
+
+#: admin/partials/meta-boxes/ss-info.php:12
+msgid "Check the free version"
+msgstr "بررسی نسخه رایگان"
+
+#: admin/partials/meta-boxes/ss-info.php:11
+msgid "Compatible with Sponsors"
+msgstr "سازگار با اسپانسرها"
+
+#: admin/partials/documentation.php:29, admin/partials/documentation.php:43, 
+#: admin/partials/documentation.php:57, admin/partials/documentation.php:71, 
+#: admin/partials/documentation.php:85, admin/partials/documentation.php:99, 
+#: admin/partials/documentation.php:113, admin/partials/documentation.php:127, 
+#: admin/partials/documentation.php:141, admin/partials/documentation.php:155, 
+#: admin/partials/documentation.php:169, admin/partials/documentation.php:183, 
+#: admin/partials/documentation.php:197, admin/partials/documentation.php:211, 
+#: admin/partials/documentation.php:225, admin/partials/documentation.php:239, 
+#: admin/partials/documentation.php:253, admin/partials/documentation.php:267, 
+#: admin/partials/documentation.php:281, admin/partials/documentation.php:295, 
+#: admin/partials/documentation.php:309, admin/partials/documentation.php:397
+msgid "Default Value:"
+msgstr "مقدار پیشفرض"
+
+#: admin/partials/documentation.php:15, admin/partials/documentation.php:354, 
+#: admin/partials/documentation.php:361, 
+#: includes/class-wp-sponsors-shortcodes.php:51
+msgid "Description"
+msgstr "توضیحات"
+
+#: includes/class-wp-sponsors-widget.php:201
+msgid "Display"
+msgstr "نمایش"
+
+#: admin/partials/documentation.php:50
+msgid "Display or not the description"
+msgstr "توضیحات نمایش داده شود یا نشود"
+
+#: admin/partials/documentation.php:22
+msgid "Display or not the images"
+msgstr "تصاویر نمایش داده شود یا نشود"
+
+#: admin/partials/documentation.php:78
+msgid "Display or not the title of the sponsor"
+msgstr "عنوان اسپانسر نمایش داده شود یا نشود"
+
+#: admin/partials/meta-boxes/ss-info.php:8
+msgid "Display Packages"
+msgstr "نمایش پکیج ها"
+
+#: admin/partials/meta-boxes/ss-info.php:9
+msgid ""
+"Display Sponsors on any page with shortcode/block or under the appropriate "
+"content."
+msgstr ""
+"اسپانسرها را در هر صفحه ای با کد کوتاه/بلاک یا تحت محتوای مناسب نمایش دهید."
+
+#: admin/partials/documentation.php:106
+msgid ""
+"Display sponsors with categories. It will separate sponsors by categories."
+msgstr ""
+"نمایش اسپانسرها با دسته بندی؛ اسپانسرها را بر اساس دسته بندی جدا می کند."
+
+#: admin/class-wp-sponsors-admin.php:239
+msgid "Documentation"
+msgstr "مستندات"
+
+#: admin/partials/documentation.php:404
+msgid ""
+"Each defined field will be a textarea. For example, you can add more fields "
+"like this:"
+msgstr ""
+"هر فیلد تعریف شده یک textarea خواهد بود. به عنوان مثال، می توانید فیلدهای "
+"بیشتری مانند این را اضافه کنید:"
+
+#: admin/partials/documentation.php:347
+msgid ""
+"Each Sponsor entered with that form will become a Draft so they won't be "
+"displayed immediately."
+msgstr ""
+"هر حامی مالی (اسپانسری) که با آن فرم وارد شده است به یک پیش نویس تبدیل می "
+"شود، بنابراین بلافاصله نمایش داده نمی شود."
+
+#: includes/class-wp-sponsors-installer.php:85
+msgid "Edit Sponsor"
+msgstr "ویرایش اسپانسر"
+
+#: admin/partials/meta-boxes/sponsor-info.php:19
+msgid "Email"
+msgstr "ایمیل"
+
+#: admin/partials/documentation.php:353
+msgid "Email (so you can email them about their submission)"
+msgstr "ایمیل (همچنین شما می توانید در مورد ثبت ها به آن ها ایمیل بزنید.)"
+
+#: admin/partials/documentation.php:331
+msgid "Example of using breakpoints attribute:"
+msgstr "مثال استفاده از ویژگی breakpointها:"
+
+#: admin/partials/documentation.php:350
+msgid "Fields that are displayed:"
+msgstr "فیلدهایی که نمایش داده می شوند:"
+
+#: admin/partials/documentation.php:339
+msgid "For 480px, we set 1 for images to show and 1 for images to slide."
+msgstr ""
+"برای 480 پیکسل ، 1 را برای نمایش تصاویر و 1 را برای نمایش اسلاید تنظیم کردیم."
+
+#: admin/partials/documentation.php:340
+msgid "For 640px, we set 2 for images to show and 2 for images to slide."
+msgstr ""
+"برای 640 پیکسل ، 2 را برای نمایش تصاویر و 2 را برای نمایش اسلاید تنظیم کردیم."
+
+#: admin/partials/documentation.php:332
+msgid ""
+"For example, we want to show 3 images on large screens and slide 3 images on "
+"click. Then on 640px view, we want to show 2 and slide 2 images. And on "
+"480px view, we want only 1 image and 1 image to slide."
+msgstr ""
+"به عنوان مثال، ما می خواهیم 3 تصویر را روی صفحه های بزرگ نشان دهیم و 3 تصویر "
+"را روی اسلاید با کلیک نمایش دهیم. سپس در نمای 640px ، می خواهیم 2 تصویر را "
+"نشان دهیم و 2 تصویر را اسلاید کنیم. و در نمای 480px ، ما فقط 1 تصویر و 1 "
+"تصویر را می خواهیم اسلاید شود."
+
+#: admin/partials/documentation.php:343
+msgid "Form"
+msgstr "فرم"
+
+#: admin/partials/documentation.php:394
+msgid "Form button text"
+msgstr "متن دکمه فرم"
+
+#: public/class-wp-sponsors-public.php:201
+msgid "Hi, there was a new sponsor submission on your site!"
+msgstr "سلام؛ یک اسپانسر جدید برای سایت شما ثبت شده است."
+
+#: includes/class-wp-sponsors-widget.php:207
+msgid "Horizontal (best for footers)"
+msgstr "افقی (مناسب برای فوتر)"
+
+#: admin/partials/documentation.php:288
+msgid "How many slides are going to be scrolled."
+msgstr "چه تعداد اسلاید برای اسکرول شدن استفاده می شود"
+
+#: admin/partials/documentation.php:274
+msgid "How many slides are going to be shown."
+msgstr "چند اسلاید قرار است نمایش داده شود."
+
+#: admin/partials/documentation.php:64
+msgid "How many sponsors will we show"
+msgstr "چه تعداد اسپانسر نمایش داده شود."
+
+#: admin/partials/documentation.php:148
+msgid "How will we order the sponsors."
+msgstr "چگونه حامیان مالی سفارش داده می شود."
+
+#: admin/partials/documentation.php:120
+msgid "HTML tag for the category title"
+msgstr "تگ HTML برای عنوان دسته بندی"
+
+#: includes/class-wp-sponsors-widget.php:239
+msgid "Image Size"
+msgstr "اندازه تصویر"
+
+#: admin/partials/documentation.php:338
+msgid "In the above example we have separated 2 breakpoints 480px and 640px."
+msgstr ""
+"در مثال بالا ما تعداد دو breakpoint با 480px و 640px را برای جداکردن استفاده "
+"کردیم."
+
+#: admin/partials/documentation.php:381
+msgid "Labels for Additional Fields"
+msgstr "برچسب زمینه های اضافه"
+
+#: admin/partials/documentation.php:385
+msgid "labels separated by comma in the same order as fields."
+msgstr "برچسب ها با کاما در همان ترتیب فیلدها جدا شده اند."
+
+#: admin/partials/documentation.php:355, 
+#: admin/partials/meta-boxes/sponsor-info.php:12
+msgid "Link"
+msgstr "لینک"
+
+#: admin/partials/meta-boxes/sponsor-info.php:31
+msgid "Link behaviour"
+msgstr "رفتار پیوند"
+
+#: includes/class-wp-sponsors-widget.php:13
+msgid "List your sponsors, per category, with or without images"
+msgstr "اسپانسرهای خود را، در هر دسته، یا بدون تصویر فهرست کنید"
+
+#: admin/partials/documentation.php:352
+msgid "Name"
+msgstr "نام"
+
+#: includes/class-wp-sponsors-installer.php:84
+msgid "New Sponsor"
+msgstr "نام اسپانسر"
+
+#: public/class-wp-sponsors-public.php:200
+msgid "New Sponsor Submitted: %s"
+msgstr "حامی جدید ثبت شد: %s"
+
+#: admin/partials/documentation.php:324, admin/partials/documentation.php:375, 
+#: admin/partials/documentation.php:388
+msgid "No Default Value."
+msgstr "بدون مقدار پیش فرض"
+
+#: includes/class-wp-sponsors-installer.php:91
+msgid "No sponsor found in Trash."
+msgstr "هیچ اسپانسری در زباله دان یافت نشد."
+
+#: includes/class-wp-sponsors-installer.php:90
+msgid "No sponsor found."
+msgstr "هیچ اسپناسری یافت نشد."
+
+#: admin/partials/documentation.php:72
+msgid "none, showing all sponsors"
+msgstr "نشان دادن همه حامیان مالی"
+
+#: includes/class-wp-sponsors-widget.php:224
+msgid "Number of sponsors to show  (leave to show all)"
+msgstr "تعداد اسپانسرها برای نمایش (اگر خالی رها شود همه نمایش داده می شود)"
+
+#: admin/partials/meta-boxes/sponsor-info.php:33
+msgid "Open link in a new window"
+msgstr "باز کردن لینک در پنجره جدید"
+
+#: includes/class-wp-sponsors-widget.php:260
+msgid "Open links in a new window"
+msgstr "باز کردن لینک ها در پنجره جدید"
+
+#: admin/class-wp-sponsors-admin.php:176
+msgid "Order"
+msgstr "سفارش"
+
+#: includes/class-wp-sponsors-widget.php:212
+msgid "Order by"
+msgstr "مرتب سازی با"
+
+#: includes/class-wp-sponsors-widget.php:161
+msgid "Our sponsors"
+msgstr "اسپانسرهای ما"
+
+#: includes/class-wp-sponsors-installer.php:89
+msgid "Parent Sponsors:"
+msgstr "اسپانسرهای والدین"
+
+#: admin/partials/documentation.php:25, admin/partials/documentation.php:39, 
+#: admin/partials/documentation.php:53, admin/partials/documentation.php:67, 
+#: admin/partials/documentation.php:81, admin/partials/documentation.php:95, 
+#: admin/partials/documentation.php:109, admin/partials/documentation.php:123, 
+#: admin/partials/documentation.php:137, admin/partials/documentation.php:151, 
+#: admin/partials/documentation.php:165, admin/partials/documentation.php:179, 
+#: admin/partials/documentation.php:193, admin/partials/documentation.php:207, 
+#: admin/partials/documentation.php:221, admin/partials/documentation.php:235, 
+#: admin/partials/documentation.php:249, admin/partials/documentation.php:263, 
+#: admin/partials/documentation.php:277, admin/partials/documentation.php:291, 
+#: admin/partials/documentation.php:305, admin/partials/documentation.php:319, 
+#: admin/partials/documentation.php:371, admin/partials/documentation.php:384
+msgid "Possible Values:"
+msgstr "مقدار های احتمالی:"
+
+#: includes/class-wp-sponsors-installer.php:78
+msgctxt "post type general name"
+msgid "Sponsors"
+msgstr "اسپانسرها"
+
+#: includes/class-wp-sponsors-installer.php:79
+msgctxt "post type singular name"
+msgid "Sponsor"
+msgstr "اسپانسر"
+
+#: includes/class-wp-sponsors-widget.php:220
+msgid "Random"
+msgstr "تصادفی"
+
+#: includes/class-wp-sponsors-installer.php:94
+msgid "Remove Sponsor Logo"
+msgstr "حذف لوگو اسپانسر"
+
+#: includes/class-wp-sponsors-installer.php:88
+msgid "Search Sponsors"
+msgstr "جستجو اسپانسرها"
+
+#: admin/class-wp-sponsors-admin.php:101
+msgid "Select a sponsor logo"
+msgstr "یک لوگو اسپانسر انتخاب کنید"
+
+#: includes/class-wp-sponsors-installer.php:93
+msgid "Set Sponsor Logo"
+msgstr "تنظیم کردن لوگو اسپانسر"
+
+#: admin/partials/documentation.php:8
+msgid "Shortcodes"
+msgstr "میانبر ها"
+
+#: admin/partials/documentation.php:302
+msgid "Should the slide width represent the image/content width."
+msgstr "عرض اسلاید نشان دهنده عرض تصویر/محتوا است؟"
+
+#: admin/partials/documentation.php:260
+msgid "Should the slider be infinite or not."
+msgstr "آیا اسلایدر باید بی نهایت باشد یا خیر."
+
+#: includes/class-wp-sponsors-widget.php:255
+msgid "Show sponsor description"
+msgstr "نمایش توضیحات اسپانسر"
+
+#: includes/class-wp-sponsors-widget.php:236
+msgid "Show sponsor logo"
+msgstr "نمایش لوگوی اسپانسر"
+
+#: includes/class-wp-sponsors-widget.php:231
+msgid "Show sponsor title"
+msgstr "نمایش عنوان اسپانسر"
+
+#: admin/partials/documentation.php:92
+msgid "Show sponsors under a specific category"
+msgstr "اسپانسرها را در یک دسته بندی خاص نشان دهید"
+
+#: admin/partials/documentation.php:218
+msgid "Showing slider arrows."
+msgstr "نمایش فلش های اسلایدر"
+
+#: admin/class-wp-sponsors-admin.php:156
+msgid "Simple Sponsorships"
+msgstr "حمایت مالی ساده"
+
+#: admin/partials/documentation.php:204
+msgid "Speed of the autoplay of slides when using slider layout."
+msgstr "سرعت نمایش اسلایدرها زمانی که از طرح اسلایدر استفاده می شود."
+
+#: includes/class-wp-sponsors-shortcodes.php:50
+msgid "Sponsor Description"
+msgstr "توضیحات اسپانسر"
+
+#: includes/class-wp-sponsors-shortcodes.php:40, 
+#: includes/class-wp-sponsors-shortcodes.php:41
+msgid "Sponsor Email"
+msgstr "ایمیل اسپانسر"
+
+#: public/class-wp-sponsors-public.php:162
+msgid "Sponsor Email is required"
+msgstr "ایمیل اسپانسر ضروری است"
+
+#: public/class-wp-sponsors-public.php:181
+msgid "Sponsor Information submitted."
+msgstr "اطلاعات اسپانسر ثبت شده"
+
+#: includes/class-wp-sponsors-installer.php:92
+msgid "Sponsor Logo"
+msgstr "لوگو اسپانسر"
+
+#: admin/class-wp-sponsors-admin.php:154, admin/class-wp-sponsors-admin.php:175
+msgid "Sponsor logo"
+msgstr "لوگو اسپانسر"
+
+#: includes/class-wp-sponsors-shortcodes.php:35, 
+#: includes/class-wp-sponsors-shortcodes.php:36
+msgid "Sponsor Name"
+msgstr "نام اسپانسر"
+
+#: public/class-wp-sponsors-public.php:156
+msgid "Sponsor Name is required"
+msgstr "نام اسپانسر ضروری است"
+
+#: includes/class-wp-sponsors-shortcodes.php:45
+msgid "Sponsor Website"
+msgstr "وبسایت اسپانسر"
+
+#: admin/partials/documentation.php:9, 
+#: includes/class-wp-sponsors-blocks.php:179, 
+#: includes/class-wp-sponsors-widget.php:11
+msgid "Sponsors"
+msgstr "اسپانسرها"
+
+#: admin/class-wp-sponsors-admin.php:238
+msgid "Sponsors - Documentation"
+msgstr "اسپانسرها - مستندات"
+
+#: admin/partials/documentation.php:320
+msgid "string in format screen_size_px;images_to_show;images_to_slide."
+msgstr "رشته با فرمت screen_size_px ؛ images_to_show ؛ images_to_slaide."
+
+#: admin/partials/documentation.php:134
+msgid "Style of showing the sponsors."
+msgstr "استایل برای نمایش اسپانسرها"
+
+#: includes/class-wp-sponsors-shortcodes.php:22
+msgid "Submit"
+msgstr "ثبت"
+
+#: admin/partials/documentation.php:337
+msgid ""
+"The attribute **breakpoints** uses format \"screen_px;images_to_show;"
+"images_to_slide\". Then for multiple breakpoints, we separate them by \"|\"."
+msgstr ""
+"ویژگی ** breakpoints ** از قالب \"screen_px ؛ images_to_show ؛ "
+"images_to_slide\" استفاده می کند. سپس برای breakpointهای چندگانه ، آنها را "
+"با \"|\" جدا می کنیم."
+
+#: includes/class-wp-sponsors-blocks.php:38
+msgid "There were no sponsors found."
+msgstr "هیچ حامی مالی یافت نشد."
+
+#: admin/partials/documentation.php:346
+msgid ""
+"This shortcode will display a form so potential sponsors can submit their "
+"information."
+msgstr ""
+"این کد کوتاه یک فرم را نشان می دهد تا حامیان احتمالی بتوانند اطلاعات خود را "
+"ارسال کنند."
+
+#: includes/class-wp-sponsors-widget.php:182, 
+#: includes/class-wp-sponsors-widget.php:218
+msgid "Title"
+msgstr "عنوان"
+
+#: admin/partials/documentation.php:321
+msgid "To define multiple breakpoints separate them by |."
+msgstr "تعریف breakpointهای چندگانه با | انجام می شود"
+
+#: includes/class-wp-sponsors-extras.php:47
+msgid "Try Simple Sponsorships"
+msgstr "حمایت های ساده را امتحان کنید"
+
+#: includes/class-wp-sponsors-installer.php:95
+msgid "Use Sponsor Logo"
+msgstr "استفاده لوگو اسپانسر"
+
+#: admin/partials/documentation.php:246
+msgid "Using slider dots."
+msgstr "استفاده از نقطه ها در اسلایدر"
+
+#: admin/partials/documentation.php:16, admin/partials/documentation.php:362
+msgid "Value"
+msgstr "مقدار"
+
+#: includes/class-wp-sponsors-widget.php:205
+msgid "Vertical (best for sidebars)"
+msgstr "عمودی (مناسب برای نوار کناری یا سایدبار)"
+
+#: includes/class-wp-sponsors-installer.php:86
+msgid "View Sponsor"
+msgstr "بازدید اسپانسر"
+
+#: admin/partials/documentation.php:333
+msgid "We would use the shortcode like this:"
+msgstr "ما از کد کوتاه به این صورت استفاده می کنیم:"
+
+#: includes/class-wp-sponsors-shortcodes.php:46
+msgid "Website"
+msgstr "وبسایت"
+
+#: includes/class-wp-sponsors-widget.php:216
+msgid "Weight"
+msgstr "ابزارک"
+
+#: admin/partials/documentation.php:162
+msgid "What data are we using to order."
+msgstr "از چه داده هایی برای سفارش استفاده می کنیم."
+
+#: admin/partials/documentation.php:36
+msgid "Which image size will the images be"
+msgstr "تصاویر چه اندازه ای خواهند بود"
+
+#: admin/partials/meta-boxes/ss-info.php:4
+msgid "With Simple Sponsorships you can:"
+msgstr "با حمایت های مالی ساده می توانید:"
+
+#: public/class-wp-sponsors-public.php:202
+msgid "You can check it out here: %s"
+msgstr "می توانید آن را در اینجا بررسی کنید: %s"
+
+#: admin/partials/documentation.php:348
+msgid "You can publish them, or send them an email to get their logo as well."
+msgstr ""
+"می توانید آنها را منتشر کنید یا برای آنها ایمیل بفرستید تا لوگوی آنها را نیز "
+"دریافت کنید."
